@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using static System.Collections.Generic.Create;
 using static System.Functional.Func;
+
 namespace InputValidation
 {
     public static class Contracts
