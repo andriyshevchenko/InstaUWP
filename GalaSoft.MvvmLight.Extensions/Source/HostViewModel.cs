@@ -2,36 +2,10 @@
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using InputValidation;
+using static System.Collections.Generic.Create;
 
-namespace GalaSoft.MvvmLight.Extensions.Source
+namespace GalaSoft.MvvmLight.Extensions
 {
-
-    public interface IRedirectRoot
-    {
-        bool CanGoBack(int steps = 1);
-        bool CanGoForward(int steps = 1);
-
-        void GoForward(int steps = 1);
-        void GoBack(int steps = 1);
-        void NavigateTo(object viewModel);
-    }
-
-    public interface ICanNavigate
-    {
-        bool CanGoBack(string childName, int steps = 1);
-        bool CanGoForward(string childName, int steps = 1);
-
-        void GoForward(string childName, int steps = 1);
-        void GoBack(string childName, int steps = 1);
-        void NavigateTo(string childName, object viewModel, int steps = 1);
-    }
-
-    public class RouteContext
-    {
-        ICanNavigate Root { get; }
-        string Key { get; }
-    }
-
     public interface IParent
     {
         IDictionary<string, object> Children { get; }
@@ -39,6 +13,11 @@ namespace GalaSoft.MvvmLight.Extensions.Source
 
     public class HostViewModel : IParent, ICanNavigate
     {
+        public HostViewModel()
+        {
+
+        }
+
         struct Item
         {
             public readonly List<object> ViewModel; 

@@ -7,11 +7,11 @@
   IgnorableNamespaces="uap mp">
 
   <Identity
-    Name="aa749607-6c75-4294-bf12-c3b72ba94820"
+    Name="320f2984-2012-49c1-8e51-75a4d7f994a7"
     Publisher="CN=user"
     Version="1.0.0.0" />
 
-  <mp:PhoneIdentity PhoneProductId="aa749607-6c75-4294-bf12-c3b72ba94820" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="320f2984-2012-49c1-8e51-75a4d7f994a7" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>Instagram</DisplayName>
