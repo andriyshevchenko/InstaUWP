@@ -18,6 +18,11 @@ namespace GalaSoft.MvvmLight.Extensions
 
         }
 
+        public HostViewModel(string childName, object viewModel)
+        {
+            NavigateInternal(childName, viewModel, Direction.Forward);
+        }
+
         public enum Direction
         {
             Forward,
@@ -45,18 +50,8 @@ namespace GalaSoft.MvvmLight.Extensions
             public void NewViewModel(object viewModel)
             {
                 _vm.Add(viewModel);
-                GoForward(1);
-            }
-
-            public void GoForward(int steps)
-            {
-                _position += steps;
-            }
-
-            public void GoBack(int steps)
-            {
-                _position -= steps;
-            }
+                _position = _vm.Count - 1;
+            } 
 
             public bool OnTop => Position == ViewModel.Count - 1;
 
@@ -75,6 +70,7 @@ namespace GalaSoft.MvvmLight.Extensions
 
         ObservableConcurrentDictionary<string, object> Children = new ObservableConcurrentDictionary<string, object>();
         Dictionary<string, Item> _items = new Dictionary<string, Item>();
+        public IReadOnlyDictionary<string, Item> Items => _items;
 
         void NotifyUiListeners(string childName, object viewModel)
         {
