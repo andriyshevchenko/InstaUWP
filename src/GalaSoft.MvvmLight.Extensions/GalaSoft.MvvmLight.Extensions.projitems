@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>59b6da88-7ca6-4232-88af-2d443f54a864</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>GalaSoft.MvvmLight.Extensions</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Internal\ObservableConcurrentDictionary.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Source\HostViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Source\ICanNavigate.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Source\IRedirectRoot.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Source\RouteContext.cs" />
+  </ItemGroup>
+</Project>
