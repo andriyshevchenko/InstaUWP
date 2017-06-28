@@ -4,10 +4,13 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Instagram"
     xmlns:xaml="using:GalaSoft.MvvmLight.Extensions.Xaml"
+    xmlns:application="using:Instagram.Application"
     RequestedTheme="Light">
 
     <Application.Resources>
         <ResourceDictionary>
+            <application:Locator x:Key="Locator" ></application:Locator>
+            
             <xaml:ValueConverterPipe x:Key="ViewModelConverter">
                 <xaml:ValueConverterPipe.Converters>
                     <xaml:ViewModelAccessor></xaml:ViewModelAccessor>

@@ -96,6 +96,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Application\BlankViewModel.cs" />
+    <Compile Include="Application\Locator.cs" />
     <Compile Include="Application\MainViewModel.cs" />
     <Compile Include="BlankPage.xaml.cs">
       <DependentUpon>BlankPage.xaml</DependentUpon>
