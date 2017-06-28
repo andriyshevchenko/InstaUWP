@@ -68,7 +68,7 @@ namespace GalaSoft.MvvmLight.Extensions
 
         bool _flag = false;
 
-        ObservableConcurrentDictionary<string, object> Children = new ObservableConcurrentDictionary<string, object>();
+        public ConcurrentDictionary<string, object> Children { get; } = new ConcurrentDictionary<string, object>();
         Dictionary<string, Item> _items = new Dictionary<string, Item>();
         public IReadOnlyDictionary<string, Item> Items => _items;
 
@@ -88,7 +88,7 @@ namespace GalaSoft.MvvmLight.Extensions
             if (_items.ContainsKey(childName))
             {
                 _items.TryGetValue(childName, out Item item);
-                
+
                 void error() => throw new ArgumentOutOfRangeException(nameof(steps));
                 if (direction == Direction.Forward)
                 {

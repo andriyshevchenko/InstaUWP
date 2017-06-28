@@ -58,6 +58,20 @@ namespace GalaSoft.MvvmLight.Extensions.Test
     public class HostViewModelTest
     {
         [TestMethod]
+        public void should_trigger_property_changed()
+        {
+            var vm = new HostViewModel();
+            vm.PropertyChanged += (sender, args) =>
+            {
+                if (args.PropertyName != nameof(vm.Children))
+                {
+                    Assert.Fail("Property changed should be Children");
+                }
+            };
+            vm.NavigateInternal("main", new object(), Direction.Forward);
+        }
+
+        [TestMethod]
         public void should_throw_exception_navigate_forward()
         {
             var vm = new HostViewModel();
