@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using static GalaSoft.MvvmLight.Extensions.HostViewModel;
 using static System.Collections.Generic.Create;
+using static System.Functional.Func;
 
 namespace GalaSoft.MvvmLight.Extensions.Test
 {
@@ -69,6 +70,23 @@ namespace GalaSoft.MvvmLight.Extensions.Test
                 }
             };
             vm.NavigateInternal("main", new object(), Direction.Forward);
+        }
+
+        [TestMethod]
+        public void should_navigate_back_two_steps()
+        {
+            Assert.AreEqual(monad(new FakeHost("main", new object(), 4),
+                            host => host.GoBack("main", 2))
+                            .Items["main"]
+                            .Position, 1);
+        }
+
+        [TestMethod]
+        public void should_navigate_null_view_model()
+        {
+            var vm = monad(new FakeHost("main", new object(), 2), 
+                           (host) => host.NavigateInternal("main", 4, Direction.Back));
+            Assert.AreEqual(0, vm.Items["main"].Position);
         }
 
         [TestMethod]

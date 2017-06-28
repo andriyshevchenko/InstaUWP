@@ -11,8 +11,13 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Source\HostViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Source\ICanNavigate.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Source\IParent.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Source\IRedirectRoot.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Source\RouteContext.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Xaml\IViewMap.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Xaml\ValueConverterPipe.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Xaml\ViewModelAccessor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Xaml\ViewModelConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Internal\" />

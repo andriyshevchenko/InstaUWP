@@ -7,6 +7,6 @@
 
         void GoForward(string childName, int steps = 1);
         void GoBack(string childName, int steps = 1);
-        void NavigateTo(string childName, object viewModel, int steps = 1);
+        void NavigateTo(string childName, object viewModel);
     }
 }

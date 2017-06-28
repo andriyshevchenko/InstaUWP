@@ -6,12 +6,7 @@ using static System.Collections.Generic.Create;
 
 namespace GalaSoft.MvvmLight.Extensions
 {
-    public interface IParent
-    {
-        IDictionary<string, object> Children { get; }
-    }
-
-    public class HostViewModel : ViewModelBase
+    public class HostViewModel : ViewModelBase, IParent, ICanNavigate
     {
         public HostViewModel()
         {
@@ -53,34 +48,41 @@ namespace GalaSoft.MvvmLight.Extensions
                 _position = _vm.Count - 1;
             }
 
+            internal void GoBack(int steps = 1) => _position-=steps;
+
+            internal void GoForward(int steps = 1) => _position+=steps;
+
             public bool OnTop => Position == ViewModel.Count - 1;
 
-            public bool CanGoBack(int steps)
+            internal object Current => ViewModel[Position];
+
+            internal bool CanGoBack(int steps)
             {
-                return Position - steps > 0;
+                return Position - steps >= 0;
             }
 
-            public bool CanGoForward(int steps)
+            internal bool CanGoForward(int steps)
             {
                 return Position + steps < ViewModel.Count;
             }
         }
 
-        bool _flag = false;
-
-        public ConcurrentDictionary<string, object> Children { get; } = new ConcurrentDictionary<string, object>();
+        ConcurrentDictionary<string, object> _children = new ConcurrentDictionary<string, object>();
         Dictionary<string, Item> _items = new Dictionary<string, Item>();
-        public IReadOnlyDictionary<string, Item> Items => _items;
 
+        public IReadOnlyDictionary<string, Item> Items => _items;
+        public IReadOnlyDictionary<string, object> Children => (IReadOnlyDictionary<string, object>)_children;
+
+        bool _flag = false;
         void NotifyUiListeners(string childName, object viewModel)
         {
-            Children[childName] = viewModel;
+            _children[childName] = viewModel;
             Set(nameof(Children), ref _flag, !_flag);
         }
 
         public void NavigateInternal(string childName, object viewModel, Direction direction, int steps = 1)
         {
-            viewModel.CheckNotNull(nameof(viewModel));
+            //viewModel.CheckNotNull(nameof(viewModel));
             childName.CheckNotNull(nameof(childName));
             steps.CheckIfNatural(nameof(steps));
 
@@ -92,22 +94,33 @@ namespace GalaSoft.MvvmLight.Extensions
                 void error() => throw new ArgumentOutOfRangeException(nameof(steps));
                 if (direction == Direction.Forward)
                 {
-                    if (steps == 1 && item.OnTop)
+                    if (steps == 1)
                     {
-                        item.NewViewModel(viewModel);
-                        _items[childName] = new Item(ref item);
+                        if (item.OnTop)
+                        {
+                            item.NewViewModel(viewModel);
+                        }
+                        else
+                        {
+                            item.GoForward();
+                        }
                     }
                     else
                     {
-                        item.CanGoForward(steps).CheckIfFalse(error);
-                        VM = item.ViewModel[item.Position + steps];
+                        item.CanGoForward(steps)
+                            .CheckIfFalse(error);
+                        item.GoForward(steps);
+                        VM = item.Current;
                     }
                 }
                 else
                 {
-                    item.CanGoBack(steps).CheckIfFalse(error);
-                    VM = item.ViewModel[item.Position - steps];
+                    item.CanGoBack(steps)
+                        .CheckIfFalse(error);
+                    item.GoBack(steps);
+                    VM = item.Current;
                 }
+                _items[childName] = new Item(ref item);
             }
             else
             {
@@ -115,6 +128,31 @@ namespace GalaSoft.MvvmLight.Extensions
             }
 
             NotifyUiListeners(childName, VM);
+        }
+
+        public bool CanGoBack(string childName, int steps = 1)
+        {
+            return _items.ContainsKey(childName) && _items[childName].CanGoBack(steps);
+        }
+
+        public bool CanGoForward(string childName, int steps = 1)
+        {
+            return _items.ContainsKey(childName) && _items[childName].CanGoForward(steps);
+        }
+
+        public void GoForward(string childName, int steps = 1)
+        {
+            NavigateInternal(childName, null, Direction.Forward, steps: steps);
+        }
+
+        public void GoBack(string childName, int steps = 1)
+        {
+            NavigateInternal(childName, null, Direction.Back, steps: steps);
+        }
+
+        public void NavigateTo(string childName, object viewModel)
+        {
+            NavigateInternal(childName, viewModel, Direction.Forward);
         }
     }
 }
