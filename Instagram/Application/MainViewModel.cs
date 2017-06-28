@@ -9,5 +9,6 @@ namespace Instagram.Application
 {
     public class MainViewModel : HostViewModel
     {
+
     }
 }
