@@ -19,22 +19,19 @@ namespace GalaSoft.MvvmLight.Extensions.Test
         [TestMethod]
         public void should_determine_is_on_top()
         {
-            var item = new Item(list(new object()));
-            Assert.IsTrue(item.OnTop);
+            Assert.IsTrue(new Item(list(new object())).OnTop);
         }
 
         [TestMethod]
         public void should_have_same_number_of_view_models_in_item()
         {
-            Item item = Item();
-            Assert.AreEqual(item.ViewModel.Count, 3);
+            Assert.AreEqual(Item().ViewModel.Count, 3);
         }
 
         [TestMethod]
         public void should_have_same_position_in_item()
         {
-            Item item = Item();
-            Assert.AreEqual(item.Position, 2);
+            Assert.AreEqual(Item().Position, 2);
         }
 
         private static Item Item()
@@ -46,43 +43,78 @@ namespace GalaSoft.MvvmLight.Extensions.Test
         }
     }
 
+    public class FakeHost : HostViewModel
+    {
+        public FakeHost(string childName, object viewModel, int makeSteps = 2)
+        {
+            for (int i = 0; i < makeSteps; i++)
+            {
+                NavigateInternal("main", new object(), Direction.Forward);
+            }
+        }
+    }
+
     [TestClass]
     public class HostViewModelTest
     {
         [TestMethod]
         public void should_throw_exception_navigate_forward()
         {
+            var vm = new HostViewModel();
+            vm.NavigateInternal("main", new object(), Direction.Forward);
             Assert.ThrowsException<ArgumentOutOfRangeException>(
-                () => ViewModel().NavigateInternal("main", new object(), Direction.Forward, 2));
+                () => vm.NavigateInternal("main", new object(), Direction.Forward, 2));
         }
 
         [TestMethod]
         public void should_throw_exception_navigate_back()
         {
+            var vm = new HostViewModel();
+            vm.NavigateInternal("main", new object(), Direction.Forward);
             Assert.ThrowsException<ArgumentOutOfRangeException>(
-                () => new HostViewModel("main", new object()).NavigateInternal("main", new object(), Direction.Back, 2));
+                () => vm.NavigateInternal("main", new object(), Direction.Back, 2));
         }
 
         [TestMethod]
-        public void should_have_same_position_in_navigate()
+        public void should_have_same_position_in_navigate_once()
         {
-            HostViewModel vm = v ViewModel();
-            Assert.AreEqual(2, vm.Items["main"].Position);
+            Assert.AreEqual(0, ViewModel(1).Items["main"].Position);
+        }
+
+
+        [TestMethod]
+        public void should_have_same_position_in_navigate_twice()
+        {
+            Assert.AreEqual(1, ViewModel(2).Items["main"].Position);
         }
 
         [TestMethod]
-        public void should_have_same_number_of_view_models_in_navigate()
+        public void should_have_one_view_model_in_navigate()
         {
-            HostViewModel vm = ViewModel();
-            Assert.AreEqual(3, vm.Items["main"].ViewModel.Count);
+            Assert.AreEqual(1, ViewModel(1).Items["main"].ViewModel.Count);
         }
 
-        private static HostViewModel ViewModel()
+        [TestMethod]
+        public void should_have_two_view_model_in_navigate()
         {
-            var vm = new HostViewModel("main", new object());
-            vm.NavigateInternal("main", new object(), Direction.Forward);
-            vm.NavigateInternal("main", new object(), Direction.Forward);
-            return vm;
+            Assert.AreEqual(2, ViewModel(2).Items["main"].ViewModel.Count);
+        }
+
+        [TestMethod]
+        public void should_have_three_view_models_in_navigate()
+        {
+            Assert.AreEqual(3, ViewModel(3).Items["main"].ViewModel.Count);
+        }
+
+        [TestMethod]
+        public void should_have_four_view_models_in_navigate()
+        {
+            Assert.AreEqual(4, ViewModel(4).Items["main"].ViewModel.Count);
+        }
+
+        private static HostViewModel ViewModel(int makeSteps)
+        {
+            return new FakeHost("main", new object(), makeSteps);
         }
     }
 }

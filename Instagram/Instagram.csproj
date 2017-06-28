@@ -128,13 +128,13 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="fcollections.Uwp">
-      <Version>1.0.4</Version>
+      <Version>1.0.5</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>5.3.3</Version>
     </PackageReference>
     <PackageReference Include="SmartValidation.Uwp">
-      <Version>1.0.4</Version>
+      <Version>1.0.5</Version>
     </PackageReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">

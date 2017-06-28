@@ -18,11 +18,6 @@ namespace GalaSoft.MvvmLight.Extensions
 
         }
 
-        public HostViewModel(string childName, object viewModel)
-        {
-            NavigateInternal(childName, viewModel, Direction.Forward);
-        }
-
         public enum Direction
         {
             Forward,
@@ -35,6 +30,11 @@ namespace GalaSoft.MvvmLight.Extensions
             public IReadOnlyList<object> ViewModel => _vm;
             private int _position;
             public int Position => _position;
+
+            public Item(ref Item other) : this(other._vm, other.Position)
+            {
+
+            }
 
             public Item(List<object> list) : this(list, 0)
             {
@@ -51,7 +51,7 @@ namespace GalaSoft.MvvmLight.Extensions
             {
                 _vm.Add(viewModel);
                 _position = _vm.Count - 1;
-            } 
+            }
 
             public bool OnTop => Position == ViewModel.Count - 1;
 
@@ -87,40 +87,26 @@ namespace GalaSoft.MvvmLight.Extensions
             object VM = viewModel;
             if (_items.ContainsKey(childName))
             {
-                var item = _items[childName];
-
+                _items.TryGetValue(childName, out Item item);
+                
                 void error() => throw new ArgumentOutOfRangeException(nameof(steps));
                 if (direction == Direction.Forward)
                 {
-                    if (steps == 1)
+                    if (steps == 1 && item.OnTop)
                     {
-                        if (item.OnTop)
-                        {
-                            item.NewViewModel(viewModel);
-                        }
+                        item.NewViewModel(viewModel);
+                        _items[childName] = new Item(ref item);
                     }
                     else
                     {
-                        if (item.CanGoForward(steps))
-                        {
-                            VM = item.ViewModel[item.Position + steps];
-                        }
-                        else
-                        {
-                            error();
-                        };
+                        item.CanGoForward(steps).CheckIfFalse(error);
+                        VM = item.ViewModel[item.Position + steps];
                     }
                 }
                 else
                 {
-                    if (item.CanGoBack(steps))
-                    {
-                        VM = item.ViewModel[item.Position - steps];
-                    }
-                    else
-                    {
-                        error();
-                    }
+                    item.CanGoBack(steps).CheckIfFalse(error);
+                    VM = item.ViewModel[item.Position - steps];
                 }
             }
             else
