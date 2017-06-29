@@ -36,13 +36,39 @@ namespace GalaSoft.MvvmLight.Extensions.Xaml
 
     public class ViewMapItemCollection : System.Collections.Generic.List<ViewMapItem>
     {
+        public ViewMapItemCollection(IEnumerable<ViewMapItem> item):base(item)
+        {
 
+        }
+
+        public ViewMapItemCollection()
+        {
+
+        }
+    }
+
+    public class MappedViews
+    {
+        ViewMapItemCollection _items;
+        public Dictionary<Type, Func<Page>> ToDictionary()
+        {
+            return dictionary(_items.Select(item => (item.ViewModel, fun(() => Activator.CreateInstance(item.View).As<Page>()))));
+        }
+        public MappedViews(ViewMapItemCollection items)
+        {
+            _items = items;
+        }
     }
 
     public class ViewMap : DependencyObject, IViewMap
     {
         public ViewMap()
         {
+
+        }
+        public ViewMap(ViewMapItemCollection map)
+        {
+            Map = map;
         }
 
         public ViewMapItemCollection Map
@@ -55,19 +81,6 @@ namespace GalaSoft.MvvmLight.Extensions.Xaml
         public static readonly DependencyProperty MapProperty =
             DependencyProperty.Register("Map", typeof(ViewMapItemCollection), typeof(ViewMap), new PropertyMetadata(0));
          
-        class MappedViews
-        {
-            ViewMapItemCollection _items;
-            public Dictionary<Type, Func<Page>> ToDictionary()
-            {
-                return dictionary(_items.Select(item => (item.ViewModel, fun(() => Activator.CreateInstance(item.View).As<Page>()))));
-            }
-            public MappedViews(ViewMapItemCollection items)
-            {
-                _items = items;
-            }
-        }
-
         public object GetViewFor(object viewModel)
         {
             _views = Lazy(ref _views, () => new MappedViews(Map).ToDictionary());

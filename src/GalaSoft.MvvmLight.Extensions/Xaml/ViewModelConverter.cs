@@ -9,6 +9,16 @@ namespace GalaSoft.MvvmLight.Extensions.Xaml
 {
     public class ViewModelConverter : DependencyObject, IValueConverter
     {
+        public ViewModelConverter()
+        {
+
+        }
+
+        public ViewModelConverter(IViewMap map)
+        {
+            ViewMap = map;
+        }
+
         public IViewMap ViewMap
         {
             get { return (IViewMap)GetValue(ViewMapProperty); }

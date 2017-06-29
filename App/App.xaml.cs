@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Serilog;
 
 namespace App
 {
@@ -28,13 +29,17 @@ namespace App
         /// </summary>
         public App()
         {
+            Log.Logger = new LoggerConfiguration()
+                                 .WriteTo.RollingFile("C:\\projects\\log-{Date}.txt")
+                                 .CreateLogger();
             this.InitializeComponent();
             this.Suspending += OnSuspending;
             this.UnhandledException += (sender, e) =>
             {
-                e.Handled = true;
-                System.Diagnostics.Debug.WriteLine(e.Exception);
+                e.Handled = true; 
+                Log.Error(e.ToString());
             };
+            Log.Information("app started");
         }
 
         /// <summary>
