@@ -1,0 +1,34 @@
+﻿<Application
+    x:Class="App.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:App"
+    xmlns:sys="using:Windows.UI.Xaml.Data"
+    xmlns:mvvmlight="using:GalaSoft.MvvmLight.Extensions.Xaml"
+    xmlns:application="using:Instagram.Application"
+    xmlns:system="using:System"
+    RequestedTheme="Light">
+    <Application.Resources>
+        <ResourceDictionary>
+            <application:Locator x:Key="Locator" />
+            
+            
+            
+            <mvvmlight:ValueConverterPipe x:Key="ViewModelConverter">
+                <mvvmlight:ValueConverterPipe.Converters>
+                    <mvvmlight:ViewModelAccessor/>
+                    <mvvmlight:ViewModelConverter>
+                        <mvvmlight:ViewModelConverter.ViewMap>
+                            <mvvmlight:ViewMap>
+                                <mvvmlight:ViewMap.Map>
+                                    <mvvmlight:ViewMapItem View="local:BlankPage" ViewModel="application:BlankViewModel"/>
+                                </mvvmlight:ViewMap.Map>
+                            </mvvmlight:ViewMap>
+                        </mvvmlight:ViewModelConverter.ViewMap>
+                    </mvvmlight:ViewModelConverter>
+                </mvvmlight:ValueConverterPipe.Converters>
+            </mvvmlight:ValueConverterPipe>
+
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

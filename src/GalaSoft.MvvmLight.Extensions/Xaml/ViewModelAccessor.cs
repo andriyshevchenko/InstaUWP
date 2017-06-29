@@ -7,6 +7,11 @@ namespace GalaSoft.MvvmLight.Extensions.Xaml
 {
     public class ViewModelAccessor : IValueConverter
     {
+        public ViewModelAccessor()
+        {
+
+        }
+
         public object Convert(object value, Type targetType, object parameter, string language)
         {
             var children = value.As<IReadOnlyDictionary<string, object>>();
@@ -15,7 +20,7 @@ namespace GalaSoft.MvvmLight.Extensions.Xaml
             {
                 return children[childName];
             }
-            return null;
+            return new object();
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)

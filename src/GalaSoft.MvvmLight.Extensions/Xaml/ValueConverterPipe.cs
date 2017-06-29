@@ -6,22 +6,26 @@ using Windows.UI.Xaml.Data;
 
 namespace GalaSoft.MvvmLight.Extensions.Xaml
 {
+    public class ValueConverterCollection : List<IValueConverter>
+    {
+
+    }
     public class ValueConverterPipe : DependencyObject, IValueConverter
     {
-        public IValueConverter[] Converters
+        public ValueConverterCollection Converters
         {
-            get { return (IValueConverter[])GetValue(ConvertersProperty); }
+            get { return (ValueConverterCollection)GetValue(ConvertersProperty); }
             set { SetValue(ConvertersProperty, value); }
         }
 
         // Using a DependencyProperty as the backing store for Converters.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ConvertersProperty =
-            DependencyProperty.Register("Converters", typeof(IValueConverter[]), typeof(ValueConverterPipe), new PropertyMetadata(0));
+            DependencyProperty.Register("Converters", typeof(ValueConverterCollection), typeof(ValueConverterPipe), new PropertyMetadata(0));
 
         public object Convert(object value, Type targetType, object parameter, string language)
         {
             object returnValue = value;
-            foreach (var item in Converters)
+            foreach (var item in Converters ?? new ValueConverterCollection())
             {
                 returnValue = item.Convert(returnValue, targetType, parameter, language);
             }
