@@ -39,7 +39,7 @@ namespace GalaSoft.MvvmLight.Extensions.Xaml
             throw new InvalidOperationException($"View for view model {type} not added yet");
         }
 
-        private Dictionary<Type, Func<Page>> _views;
+        private Dictionary<Type, Func<object>> _views;
 
         private static T Lazy<T>(ref T item, Func<T> @return) where T:class
         {

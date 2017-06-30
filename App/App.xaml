@@ -14,24 +14,9 @@
 
             <mvvmlight:ViewModelConverterPipe x:Key="ok">
                 <mvvmlight:ViewModelConverterPipe.Map>
-                    <mvvmlight:ViewMapItem View="local:BlankPage" ViewModel="application:BlankViewModel"/>
+                    <mvvmlight:Pair View="local:Blank" ViewModel="application:BlankViewModel"/>
                 </mvvmlight:ViewModelConverterPipe.Map>
             </mvvmlight:ViewModelConverterPipe>
-
-            <mvvmlight:ValueConverterPipe x:Key="ViewModelConverter">
-                <mvvmlight:ValueConverterPipe.Converters>
-                    <mvvmlight:ViewModelAccessor/>
-                    <mvvmlight:ViewModelConverter>
-                        <mvvmlight:ViewModelConverter.ViewMap>
-                            <mvvmlight:ViewMap>
-                                <mvvmlight:ViewMap.Map>
-                                    <mvvmlight:ViewMapItem View="local:BlankPage" ViewModel="application:BlankViewModel"/>
-                                </mvvmlight:ViewMap.Map>
-                            </mvvmlight:ViewMap>
-                        </mvvmlight:ViewModelConverter.ViewMap>
-                    </mvvmlight:ViewModelConverter>
-                </mvvmlight:ValueConverterPipe.Converters>
-            </mvvmlight:ValueConverterPipe>
 
         </ResourceDictionary>
     </Application.Resources>

@@ -2,9 +2,9 @@
 
 namespace GalaSoft.MvvmLight.Extensions.Xaml
 {
-    public class ViewMapItemCollection : List<ViewMapItem>
+    public class ViewMapItemCollection : List<Pair>
     {
-        public ViewMapItemCollection(IEnumerable<ViewMapItem> item):base(item)
+        public ViewMapItemCollection(IEnumerable<Pair> item):base(item)
         {
 
         }

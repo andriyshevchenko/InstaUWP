@@ -11,9 +11,13 @@ namespace GalaSoft.MvvmLight.Extensions.Xaml
     public class MappedViews
     {
         ViewMapItemCollection _items;
-        public Dictionary<Type, Func<Page>> ToDictionary()
+        public Dictionary<Type, Func<object>> ToDictionary()
         {
-            return dictionary(_items.Select(item => (item.ViewModel, fun(() => Activator.CreateInstance(item.View).As<Page>()))));
+            return dictionary(
+                _items.Select(
+                    item => (item.ViewModel, fun(() => Activator.CreateInstance(item.View))
+                    )
+                 ));
         }
         public MappedViews(ViewMapItemCollection items)
         {
