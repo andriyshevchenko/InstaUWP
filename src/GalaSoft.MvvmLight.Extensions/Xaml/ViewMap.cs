@@ -1,9 +1,11 @@
-﻿using System;
+﻿using InputValidation;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using static System.Functional.Func;
 
 namespace GalaSoft.MvvmLight.Extensions.Xaml
 {
@@ -32,14 +34,18 @@ namespace GalaSoft.MvvmLight.Extensions.Xaml
         {
             _views = Lazy(ref _views, () => new MappedViews(Map).ToDictionary());
             Type type = viewModel.GetType();
+
             if (_views.ContainsKey(type))
             {
-                return _views[type];
+                var func = _views[type];
+                return monad(func().As<FrameworkElement>(), 
+                             element => element.DataContext = viewModel);
             }
-            throw new InvalidOperationException($"View for view model {type} not added yet");
+
+            throw new InvalidOperationException($"View for requested view model {type} not added yet");
         }
 
-        private Dictionary<Type, Func<object>> _views;
+        private Dictionary<Type, Func<UserControl>> _views;
 
         private static T Lazy<T>(ref T item, Func<T> @return) where T:class
         {

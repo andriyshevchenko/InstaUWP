@@ -9,9 +9,7 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Grid.ColumnDefinitions>
-            
-        </Grid.ColumnDefinitions>
+         
         <ContentControl Content="{Binding Children, 
                         Converter={StaticResource ViewModelConverter}, 
                         ConverterParameter='main'}">
