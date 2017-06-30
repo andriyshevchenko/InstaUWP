@@ -4,62 +4,9 @@ using System.Linq;
 using System.Text;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using InputValidation;
-using static System.Collections.Generic.Create;
-using static System.Functional.Func;
 
 namespace GalaSoft.MvvmLight.Extensions.Xaml
 {
-    public class ViewMapItem : DependencyObject
-    {
-        public Type View
-        {
-            get { return (Type)GetValue(ViewProperty); }
-            set { SetValue(ViewProperty, value); }
-        }
-
-        // Using a DependencyProperty as the backing store for View.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty ViewProperty =
-            DependencyProperty.Register("View", typeof(Type), typeof(ViewMapItem), new PropertyMetadata(0));
-
-
-        public Type ViewModel
-        {
-            get { return (Type)GetValue(ViewModelProperty); }
-            set { SetValue(ViewModelProperty, value); }
-        }
-
-        // Using a DependencyProperty as the backing store for ViewModel.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty ViewModelProperty =
-            DependencyProperty.Register("ViewModel", typeof(Type), typeof(ViewMapItem), new PropertyMetadata(0));
-    }
-
-    public class ViewMapItemCollection : System.Collections.Generic.List<ViewMapItem>
-    {
-        public ViewMapItemCollection(IEnumerable<ViewMapItem> item):base(item)
-        {
-
-        }
-
-        public ViewMapItemCollection()
-        {
-
-        }
-    }
-
-    public class MappedViews
-    {
-        ViewMapItemCollection _items;
-        public Dictionary<Type, Func<Page>> ToDictionary()
-        {
-            return dictionary(_items.Select(item => (item.ViewModel, fun(() => Activator.CreateInstance(item.View).As<Page>()))));
-        }
-        public MappedViews(ViewMapItemCollection items)
-        {
-            _items = items;
-        }
-    }
-
     public class ViewMap : DependencyObject, IViewMap
     {
         public ViewMap()
