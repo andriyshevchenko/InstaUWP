@@ -2,6 +2,7 @@
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using InputValidation;
+
 using static System.Collections.Generic.Create;
 
 namespace GalaSoft.MvvmLight.Extensions
@@ -22,8 +23,9 @@ namespace GalaSoft.MvvmLight.Extensions
         public struct Item
         {
             private readonly List<object> _vm;
-            public IReadOnlyList<object> ViewModel => _vm;
             private int _position;
+
+            public IReadOnlyList<object> ViewModel => _vm;
             public int Position => _position;
 
             public Item(ref Item other) : this(other._vm, other.Position)
@@ -82,7 +84,6 @@ namespace GalaSoft.MvvmLight.Extensions
 
         public void NavigateInternal(string childName, object viewModel, Direction direction, int steps = 1)
         {
-            //viewModel.CheckNotNull(nameof(viewModel));
             childName.CheckNotNull(nameof(childName));
             steps.CheckIfNatural(nameof(steps));
 

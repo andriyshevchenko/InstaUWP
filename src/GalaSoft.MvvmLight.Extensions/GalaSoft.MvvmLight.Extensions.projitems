@@ -9,11 +9,6 @@
     <Import_RootNamespace>GalaSoft.MvvmLight.Extensions</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)Source\HostViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Source\ICanNavigate.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Source\IParent.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Source\IRedirectRoot.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Source\RouteContext.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Xaml\IViewMap.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Xaml\MappedViews.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Xaml\ValueConverterCollection.cs" />

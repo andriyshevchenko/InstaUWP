@@ -11,20 +11,24 @@ namespace GalaSoft.MvvmLight.Extensions.Xaml
 {
     public class MappedViews
     {
-        ViewMapItemCollection _items;
+        private readonly ViewMapItemCollection _items;
+
         public Dictionary<Type, Func<UserControl>> ToDictionary()
         {
             return dictionary(
                        _items.Select(
-                           item => (item.ViewModel, fun(() => Activator.CreateInstance(item.View).As<UserControl>()))
+                           item => (
+                               item.ViewModel, 
+                               fun(() => Activator.CreateInstance(item.View).As<UserControl>())
+                           )
                         )
                    );
         }
+
         public MappedViews(ViewMapItemCollection items)
         {
             each(items.Views, item => item.CheckNotNull("Null View type occured, please correct your Xaml"));
             each(items.ViewModels, item => item.CheckNotNull("Null ViewModel type occured, please correct your Xaml"));
-
             _items = items;
         }
     }

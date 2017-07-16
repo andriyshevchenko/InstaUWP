@@ -13,7 +13,7 @@ namespace GalaSoft.MvvmLight.Extensions.Xaml
     {
         public ViewMap()
         {
-
+            _viewsLazy = new Lazy<Dictionary<Type, Func<UserControl>>>(() => new MappedViews(Map).ToDictionary());
         }
         public ViewMap(ViewMapItemCollection map)
         {
@@ -32,25 +32,21 @@ namespace GalaSoft.MvvmLight.Extensions.Xaml
          
         public object GetViewFor(object viewModel)
         {
-            _views = Lazy(ref _views, () => new MappedViews(Map).ToDictionary());
             Type type = viewModel.GetType();
 
             if (_views.ContainsKey(type))
             {
-                var func = _views[type];
-                return monad(func().As<FrameworkElement>(), 
-                             element => element.DataContext = viewModel);
+                return monad(
+                           _views[type]().As<FrameworkElement>(), 
+                           element => element.DataContext = viewModel
+                       );
             }
 
             throw new InvalidOperationException($"View for requested view model {type} not added yet");
         }
 
-        private Dictionary<Type, Func<UserControl>> _views;
-
-        private static T Lazy<T>(ref T item, Func<T> @return) where T:class
-        {
-            return item ?? (item = @return());
-        }
+        private Dictionary<Type, Func<UserControl>> _views => _viewsLazy.Value;
+        private Lazy<Dictionary<Type, Func<UserControl>>> _viewsLazy;
 
         public bool HasView(object viewModel)
         {
