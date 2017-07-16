@@ -6,7 +6,6 @@ using static System.Collections.Generic.Create;
 using static System.Functional.Func;
 using System.Linq;
 using static System.Functional.FlowControl;
-using static System.Functional.Action;
 
 namespace GalaSoft.MvvmLight.Extensions.Xaml
 {
@@ -16,10 +15,10 @@ namespace GalaSoft.MvvmLight.Extensions.Xaml
         public Dictionary<Type, Func<UserControl>> ToDictionary()
         {
             return dictionary(
-                _items.Select(
-                    item => (item.ViewModel, fun(() => Activator.CreateInstance(item.View).As<UserControl>())
-                    )
-                 ));
+                       _items.Select(
+                           item => (item.ViewModel, fun(() => Activator.CreateInstance(item.View).As<UserControl>()))
+                        )
+                   );
         }
         public MappedViews(ViewMapItemCollection items)
         {
