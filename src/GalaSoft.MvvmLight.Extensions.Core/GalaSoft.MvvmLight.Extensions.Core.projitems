@@ -9,6 +9,7 @@
     <Import_RootNamespace>GalaSoft.MvvmLight.Extensions.Core</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Source\FakeHost.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Source\HostViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Source\ICanNavigate.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Source\IParent.cs" />

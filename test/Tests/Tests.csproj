@@ -69,7 +69,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FakeHost.cs" />
     <Compile Include="HostViewModelTest.cs" />
     <Compile Include="ItemTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
