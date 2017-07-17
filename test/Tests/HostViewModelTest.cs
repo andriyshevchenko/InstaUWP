@@ -1,59 +1,9 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using static GalaSoft.MvvmLight.Extensions.HostViewModel;
-using static System.Collections.Generic.Create;
-using static System.Functional.Func;
-
-namespace GalaSoft.MvvmLight.Extensions.Test
+﻿namespace GalaSoft.MvvmLight.Extensions.Test
 {
-    [TestClass]
-    public class ItemTest
-    {
-        [TestMethod]
-        public void should_determine_is_on_top_after_add()
-        {
-            var item = new Item(list(new object()));
-            item.NewViewModel(new object());
-            Assert.IsTrue(item.OnTop);
-        }
-
-        [TestMethod]
-        public void should_determine_is_on_top()
-        {
-            Assert.IsTrue(new Item(list(new object())).OnTop);
-        }
-
-        [TestMethod]
-        public void should_have_same_number_of_view_models_in_item()
-        {
-            Assert.AreEqual(Item().ViewModel.Count, 3);
-        }
-
-        [TestMethod]
-        public void should_have_same_position_in_item()
-        {
-            Assert.AreEqual(Item().Position, 2);
-        }
-
-        private static Item Item()
-        {
-            var item = new Item(list(new object()));
-            item.NewViewModel(new object());
-            item.NewViewModel(new object());
-            return item;
-        }
-    }
-
-    public class FakeHost : HostViewModel
-    {
-        public FakeHost(string childName, object viewModel, int makeSteps = 2)
-        {
-            for (int i = 0; i < makeSteps; i++)
-            {
-                NavigateInternal("main", new object(), Direction.Forward);
-            }
-        }
-    }
+    using System;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using static GalaSoft.MvvmLight.Extensions.HostViewModel;
+    using static System.Functional.Func;
 
     [TestClass]
     public class HostViewModelTest
@@ -84,7 +34,7 @@ namespace GalaSoft.MvvmLight.Extensions.Test
         [TestMethod]
         public void should_navigate_null_view_model()
         {
-            var vm = monad(new FakeHost("main", new object(), 2), 
+            var vm = monad(new FakeHost("main", new object(), 2),
                            (host) => host.NavigateInternal("main", 4, Direction.Back));
             Assert.AreEqual(0, vm.Items["main"].Position);
         }
