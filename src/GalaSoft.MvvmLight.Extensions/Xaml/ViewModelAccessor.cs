@@ -20,7 +20,7 @@ namespace GalaSoft.MvvmLight.Extensions.Xaml
             {
                 return children[childName];
             }
-            return new object();
+            throw new KeyNotFoundException(nameof(childName));
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, string language)

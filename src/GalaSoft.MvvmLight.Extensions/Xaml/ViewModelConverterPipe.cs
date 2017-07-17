@@ -22,8 +22,7 @@ namespace GalaSoft.MvvmLight.Extensions.Xaml
                 new ViewModelAccessor(),
                 new ViewModelConverter(
                     new ViewMap(
-                        new ViewMapItemCollection(Map ?? throw new InvalidOperationException("No map defined, please correct your Xaml and set ValueConverterPipe.Map property to something.")
-                        )
+                        new ViewMapItemCollection(Map)
                     )
                 )
             };
