@@ -130,7 +130,7 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="..\src\GalaSoft.MvvmLight.Extensions\GalaSoft.MvvmLight.Extensions.projitems" Label="Shared" />
-  <Import Project="..\GalaSoft.MvvmLight.Extensions.Core\GalaSoft.MvvmLight.Extensions.Core.projitems" Label="Shared" />
+  <Import Project="..\src\GalaSoft.MvvmLight.Extensions.Core\GalaSoft.MvvmLight.Extensions.Core.projitems" Label="Shared" />
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>

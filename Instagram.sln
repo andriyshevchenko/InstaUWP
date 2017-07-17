@@ -11,17 +11,17 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App", "App\App.csproj", "{3
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestLibNet45", "test\TestLibNet45\TestLibNet45.csproj", "{970FF974-27F7-44B0-A2BA-49D93BCE914A}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "GalaSoft.MvvmLight.Extensions.Core", "GalaSoft.MvvmLight.Extensions.Core\GalaSoft.MvvmLight.Extensions.Core.shproj", "{4FFDC3A3-F663-427C-BA1D-CA751865DB59}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "test\Tests\Tests.csproj", "{8E980D23-869D-4626-AC9E-AB45156F47CF}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "GalaSoft.MvvmLight.Extensions.Core", "src\GalaSoft.MvvmLight.Extensions.Core\GalaSoft.MvvmLight.Extensions.Core.shproj", "{4FFDC3A3-F663-427C-BA1D-CA751865DB59}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		GalaSoft.MvvmLight.Extensions.Core\GalaSoft.MvvmLight.Extensions.Core.projitems*{4ffdc3a3-f663-427c-ba1d-ca751865db59}*SharedItemsImports = 13
+		src\GalaSoft.MvvmLight.Extensions.Core\GalaSoft.MvvmLight.Extensions.Core.projitems*{4ffdc3a3-f663-427c-ba1d-ca751865db59}*SharedItemsImports = 13
 		src\GalaSoft.MvvmLight.Extensions\GalaSoft.MvvmLight.Extensions.projitems*{59b6da88-7ca6-4232-88af-2d443f54a864}*SharedItemsImports = 13
-		GalaSoft.MvvmLight.Extensions.Core\GalaSoft.MvvmLight.Extensions.Core.projitems*{699850ec-913f-4d63-9dbc-c2fccfeb76d7}*SharedItemsImports = 4
+		src\GalaSoft.MvvmLight.Extensions.Core\GalaSoft.MvvmLight.Extensions.Core.projitems*{699850ec-913f-4d63-9dbc-c2fccfeb76d7}*SharedItemsImports = 4
 		src\GalaSoft.MvvmLight.Extensions\GalaSoft.MvvmLight.Extensions.projitems*{699850ec-913f-4d63-9dbc-c2fccfeb76d7}*SharedItemsImports = 4
-		GalaSoft.MvvmLight.Extensions.Core\GalaSoft.MvvmLight.Extensions.Core.projitems*{970ff974-27f7-44b0-a2ba-49d93bce914a}*SharedItemsImports = 4
+		src\GalaSoft.MvvmLight.Extensions.Core\GalaSoft.MvvmLight.Extensions.Core.projitems*{970ff974-27f7-44b0-a2ba-49d93bce914a}*SharedItemsImports = 4
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

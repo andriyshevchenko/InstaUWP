@@ -71,6 +71,6 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <Import Project="..\..\GalaSoft.MvvmLight.Extensions.Core\GalaSoft.MvvmLight.Extensions.Core.projitems" Label="Shared" />
+  <Import Project="..\..\src\GalaSoft.MvvmLight.Extensions.Core\GalaSoft.MvvmLight.Extensions.Core.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
