@@ -1,8 +1,6 @@
 ﻿using InputValidation;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using static System.Functional.Func;
