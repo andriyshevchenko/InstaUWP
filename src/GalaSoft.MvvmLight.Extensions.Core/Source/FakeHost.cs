@@ -1,7 +1,8 @@
 ﻿namespace GalaSoft.MvvmLight.Extensions.Test
 {
     /// <summary>
-    /// Creates a <see cref="HostViewModel"/> which navigates forward N times
+    /// Creates a <see cref="HostViewModel"/> which navigates forward N times.
+    /// Use for test purposes.
     /// </summary>
     public class FakeHost : HostViewModel
     {
