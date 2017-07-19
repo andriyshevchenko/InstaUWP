@@ -15,6 +15,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)Source\IParent.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Source\IRedirectRoot.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Source\IViewMap.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Internal\LinqExpressionCtor.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Source\RouteContext.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Internal\" />
   </ItemGroup>
 </Project>

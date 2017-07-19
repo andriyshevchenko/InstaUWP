@@ -2,13 +2,10 @@
 using System.Collections.Generic;
 using Windows.UI.Xaml.Controls;
 using InputValidation;
-using System.Linq;
 
 using static System.Collections.Generic.Create;
 using static System.Functional.Func;
-using static System.Linq.Enumerable;
 using static System.Functional.FlowControl;
-
 namespace GalaSoft.MvvmLight.Extensions.Xaml
 {
     public class MappedViews
@@ -21,8 +18,8 @@ namespace GalaSoft.MvvmLight.Extensions.Xaml
                        map(
                            _items,
                            item => (
-                               item.ViewModel, 
-                               fun(() => Activator.CreateInstance(item.View).As<UserControl>())
+                               item.ViewModel,
+                               fun(() => new LinqExpressionCtor(item.View).As<UserControl>())
                            )
                         )
                    );
