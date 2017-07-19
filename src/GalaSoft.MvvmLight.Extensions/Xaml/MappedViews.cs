@@ -19,7 +19,7 @@ namespace GalaSoft.MvvmLight.Extensions.Xaml
                            _items,
                            item => (
                                item.ViewModel,
-                               fun(() => new LinqExpressionCtor(item.View).As<UserControl>())
+                               fun(() => new LinqExpressionCtor(item.View).Value().As<UserControl>())
                            )
                         )
                    );

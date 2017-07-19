@@ -1,9 +1,9 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using GalaSoft.MvvmLight.Extensions;
+using InputValidation;
 
 using static System.Collections.Generic.Create;
-using InputValidation;
 
 namespace Tests
 {
@@ -13,7 +13,7 @@ namespace Tests
         [TestMethod]
         public void should_create_from_type_and_args()
         {
-            Assert.IsTrue(new LinqExpressionCtor(typeof(string), array<object>(array('1', '2'))).Value().As<string>() == "12";
+            Assert.IsTrue(new LinqExpressionCtor(typeof(string), 6, array('1', '2')).Value().As<string>() == "12");
         }
     }
 }
