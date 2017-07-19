@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using Windows.UI.Xaml.Controls;
 using InputValidation;
+using System.Linq;
+
 using static System.Collections.Generic.Create;
 using static System.Functional.Func;
-using System.Linq;
+using static System.Linq.Enumerable;
 using static System.Functional.FlowControl;
 
 namespace GalaSoft.MvvmLight.Extensions.Xaml
@@ -16,7 +18,8 @@ namespace GalaSoft.MvvmLight.Extensions.Xaml
         public Dictionary<Type, Func<UserControl>> ToDictionary()
         {
             return dictionary(
-                       _items.Select(
+                       map(
+                           _items,
                            item => (
                                item.ViewModel, 
                                fun(() => Activator.CreateInstance(item.View).As<UserControl>())

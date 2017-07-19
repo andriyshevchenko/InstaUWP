@@ -14,6 +14,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Source\ICanNavigate.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Source\IParent.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Source\IRedirectRoot.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Source\IViewMap.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Source\RouteContext.cs" />
   </ItemGroup>
 </Project>
