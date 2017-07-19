@@ -3,12 +3,7 @@ using System.Reflection;
 using System.Linq.Expressions;
 using System.Linq;
 using InputValidation;
-
-
-using static System.Functional.Func;
-using static System.Functional.FlowControl;
 using static System.Collections.Generic.Create;
-using System.IO;
 
 namespace GalaSoft.MvvmLight.Extensions
 {
@@ -75,10 +70,7 @@ namespace GalaSoft.MvvmLight.Extensions
         /// <returns>New instance of required type</returns>
         public object Value()
         {
-            ConstructorInfo[] constructorInfo = _type.GetConstructors();
-            
-            ConstructorInfo ctor = constructorInfo.ElementAt(_constructorNumber);
-            ParameterInfo[] paramsInfo = ctor.GetParameters();
+            ParameterInfo[] paramsInfo = _type.GetConstructors()[_constructorNumber].GetParameters();
 
             //create a single param of type object[]
             ParameterExpression param =
@@ -91,21 +83,19 @@ namespace GalaSoft.MvvmLight.Extensions
             //and create a typed expression of them
             for (int i = 0; i < paramsInfo.Length; i++)
             {
-                Expression index = Expression.Constant(i);
-                Type paramType = paramsInfo[i].ParameterType;
-
-                Expression paramAccessorExp =
-                    Expression.ArrayIndex(param, index);
-
-                Expression paramCastExp =
-                    Expression.Convert(paramAccessorExp, paramType);
-
-                argsExp[i] = paramCastExp;
+                argsExp[i] =
+                    Expression.Convert(
+                        Expression.ArrayIndex(
+                            param, 
+                            Expression.Constant(i)
+                        ),
+                        paramsInfo[i].ParameterType
+                    );
             }
 
             //make a NewExpression that calls the
             //ctor with the args we just created
-            NewExpression newExp = Expression.New(ctor, argsExp);
+            NewExpression newExp = Expression.New(_type.GetConstructors()[_constructorNumber], argsExp);
 
             //create a lambda with the New
             //Expression as body and our param object[] as arg
