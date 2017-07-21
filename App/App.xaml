@@ -10,7 +10,7 @@
         <ResourceDictionary>
             <application:Locator x:Key="Locator" />
 
-            <mvvmlight:ViewModelConverterPipe x:Key="ok">
+            <mvvmlight:ViewModelConverterPipe x:Key="viewModelConverter">
                 <mvvmlight:ViewModelConverterPipe.Map>
                     <mvvmlight:Pair View="local:Blank" ViewModel="application:BlankViewModel"/>
                 </mvvmlight:ViewModelConverterPipe.Map>

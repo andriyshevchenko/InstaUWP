@@ -11,7 +11,7 @@
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
          
         <ContentControl Content="{Binding Children, 
-                        Converter={StaticResource ViewModelConverter}, 
+                        Converter={StaticResource viewModelConverter}, 
                         ConverterParameter='main'}">
 
         </ContentControl>
