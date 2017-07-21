@@ -9,24 +9,24 @@ namespace GalaSoft.MvvmLight.Extensions.Xaml
 {
     public class ViewMap : DependencyObject, IViewMap
     {
-        public ViewMap()
-        {
-            _viewsLazy = new Lazy<Dictionary<Type, Func<UserControl>>>(() => new MappedViews(Map).ToDictionary());
-        }
-        public ViewMap(PairCollection map)
+        public ViewMap(PairList map)
         {
             Map = map;
+            _viewsLazy =
+                new Lazy<Dictionary<Type, Func<UserControl>>>(
+                    () => new MappedViews(Map).ToDictionary()
+                );
         }
 
-        public PairCollection Map
+        public PairList Map
         {
-            get { return (PairCollection)GetValue(MapProperty); }
+            get { return (PairList)GetValue(MapProperty); }
             set { SetValue(MapProperty, value); }
         }
 
         // Using a DependencyProperty as the backing store for Map.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty MapProperty =
-            DependencyProperty.Register("Map", typeof(PairCollection), typeof(ViewMap), new PropertyMetadata(0));
+            DependencyProperty.Register("Map", typeof(PairList), typeof(ViewMap), new PropertyMetadata(0));
          
         public object GetViewFor(object viewModel)
         {

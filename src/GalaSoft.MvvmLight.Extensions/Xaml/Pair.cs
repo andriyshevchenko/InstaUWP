@@ -8,6 +8,11 @@ namespace GalaSoft.MvvmLight.Extensions.Xaml
     /// </summary>
     public class Pair : DependencyObject
     {
+        public Pair()
+        {
+
+        }
+
         public Pair(Type view, Type viewModel)
         {
             View = view;

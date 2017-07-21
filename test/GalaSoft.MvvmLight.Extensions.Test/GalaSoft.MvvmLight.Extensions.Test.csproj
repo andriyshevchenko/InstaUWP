@@ -99,11 +99,16 @@
     <Compile Include="UnitTestApp.xaml.cs">
       <DependentUpon>UnitTestApp.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Xaml\FakeBoolToIntConverter.cs" />
+    <Compile Include="Xaml\FakeStringToBoolConverter.cs" />
     <Compile Include="Xaml\FakeView.xaml.cs">
       <DependentUpon>FakeView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Xaml\MappedViewsTest.cs" />
+    <Compile Include="Xaml\ValueConverterGroupTest.cs" />
+    <Compile Include="Xaml\ViewMapTest.cs" />
     <Compile Include="Xaml\ViewModelAccessorTest.cs" />
+    <Compile Include="Xaml\ViewModelConverterPipeTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="UnitTestApp.xaml">
