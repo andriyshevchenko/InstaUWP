@@ -3,8 +3,20 @@ using Windows.UI.Xaml;
 
 namespace GalaSoft.MvvmLight.Extensions.Xaml
 {
+    /// <summary>
+    /// Represents pair View-ViewModel
+    /// </summary>
     public class Pair : DependencyObject
     {
+        public Pair(Type view, Type viewModel)
+        {
+            View = view;
+            ViewModel = viewModel;
+        }
+
+        /// <summary>
+        /// View dependency property
+        /// </summary>
         public Type View
         {
             get { return (Type)GetValue(ViewProperty); }
@@ -15,6 +27,9 @@ namespace GalaSoft.MvvmLight.Extensions.Xaml
         public static readonly DependencyProperty ViewProperty =
             DependencyProperty.Register("View", typeof(Type), typeof(Pair), new PropertyMetadata(0));
 
+        /// <summary>
+        /// ViewModel dependency property
+        /// </summary>
         public Type ViewModel
         {
             get { return (Type)GetValue(ViewModelProperty); }

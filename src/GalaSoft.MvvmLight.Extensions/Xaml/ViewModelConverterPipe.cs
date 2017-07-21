@@ -4,15 +4,15 @@ namespace GalaSoft.MvvmLight.Extensions.Xaml
 {
     public class ViewModelConverterPipe : ValueConverterPipe
     {
-        public ViewMapItemCollection Map
+        public PairCollection Map
         {
-            get { return (ViewMapItemCollection)GetValue(MapProperty); }
+            get { return (PairCollection)GetValue(MapProperty); }
             set { SetValue(MapProperty, value); }
         }
 
         // Using a DependencyProperty as the backing store for Map.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty MapProperty =
-            DependencyProperty.Register("Map", typeof(ViewMapItemCollection), typeof(ViewMap), new PropertyMetadata(0));
+            DependencyProperty.Register("Map", typeof(PairCollection), typeof(ViewMap), new PropertyMetadata(0));
 
         public ViewModelConverterPipe()
         {
@@ -21,7 +21,7 @@ namespace GalaSoft.MvvmLight.Extensions.Xaml
                 new ViewModelAccessor(),
                 new ViewModelConverter(
                     new ViewMap(
-                        new ViewMapItemCollection(Map)
+                        new PairCollection(Map)
                     )
                 )
             };

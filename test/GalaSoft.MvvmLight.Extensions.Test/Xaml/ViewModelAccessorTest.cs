@@ -1,6 +1,4 @@
-﻿using GalaSoft.MvvmLight.Extensions.Xaml;
-using InputValidation;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using static System.Collections.Generic.Create;
 
