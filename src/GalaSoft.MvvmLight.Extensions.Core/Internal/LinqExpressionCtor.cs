@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Reflection;
 using System.Linq.Expressions;
-using System.Linq;
 using InputValidation;
 using static System.Collections.Generic.Create;
 
 namespace GalaSoft.MvvmLight.Extensions
 {
     /// <summary>
-    /// Allows to create objects without direct constructor invocation, 
+    /// Allows to create objects without direct constructor invocation,  
     /// only knowing its type and constructor arguments.
+    /// Significantly faster than Activator.CreateInstance()
     /// Warning! To use <see cref="LinqExpressionCtor"/> you have to know 
     /// exact position of required type constructor in Type.GetConstructors() array.
     /// For example, <see cref="String"/> has 8 constructors:
@@ -70,7 +70,8 @@ namespace GalaSoft.MvvmLight.Extensions
         /// <returns>New instance of required type</returns>
         public object Value()
         {
-            ParameterInfo[] paramsInfo = _type.GetConstructors()[_constructorNumber].GetParameters();
+            ConstructorInfo constructor = _type.GetConstructors()[_constructorNumber];
+            ParameterInfo[] paramsInfo = constructor.GetParameters();
 
             //create a single param of type object[]
             ParameterExpression param =
@@ -85,17 +86,14 @@ namespace GalaSoft.MvvmLight.Extensions
             {
                 argsExp[i] =
                     Expression.Convert(
-                        Expression.ArrayIndex(
-                            param, 
-                            Expression.Constant(i)
-                        ),
+                        Expression.ArrayIndex(param, Expression.Constant(i)),
                         paramsInfo[i].ParameterType
                     );
             }
 
             //make a NewExpression that calls the
             //ctor with the args we just created
-            NewExpression newExp = Expression.New(_type.GetConstructors()[_constructorNumber], argsExp);
+            NewExpression newExp = Expression.New(constructor, argsExp);
 
             //create a lambda with the New
             //Expression as body and our param object[] as arg

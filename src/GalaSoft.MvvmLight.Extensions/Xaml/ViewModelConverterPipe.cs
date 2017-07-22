@@ -23,7 +23,12 @@ namespace GalaSoft.MvvmLight.Extensions.Xaml
                     )
                 ))
         {
-            Map = map;
+
+        }
+
+        public ViewModelConverterPipe()
+        {
+
         }
     }
 }
