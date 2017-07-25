@@ -1,7 +1,10 @@
-﻿namespace Instagram.Application
+﻿namespace App
 {
     public class BlankViewModel
     {
+        public BlankViewModel()
+        {
 
+        }
     }
 }

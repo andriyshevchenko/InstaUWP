@@ -5,7 +5,7 @@ using Windows.UI.Xaml;
 
 namespace GalaSoft.MvvmLight.Extensions.Xaml
 {
-    public class ViewModelToViewConverter : DependencyObject, IValueConverter
+    public class ViewModelToViewConverter : IValueConverter
     {
         public ViewModelToViewConverter()
         {
@@ -17,18 +17,12 @@ namespace GalaSoft.MvvmLight.Extensions.Xaml
             ViewMap = map;
         }
 
-        public IViewMap ViewMap
-        {
-            get { return (IViewMap)GetValue(ViewMapProperty); }
-            set { SetValue(ViewMapProperty, value); }
-        }
+        public IViewMap ViewMap { get; set; }
 
         private const string NoIViewMapDefinedInXaml = "Forget to set a ViewMap property in ViewModelConverter in Xaml code";
 
         // Using a DependencyProperty as the backing store for ViewMap.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty ViewMapProperty =
-            DependencyProperty.Register("ViewMap", typeof(IViewMap), typeof(ViewModelToViewConverter), new PropertyMetadata(0));
-
+      
         public object Convert(object value, Type targetType, object parameter, string language)
         {
             return ViewMap

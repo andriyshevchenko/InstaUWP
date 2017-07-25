@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Instagram.Application
+namespace App
 {
     public class Locator 
     {

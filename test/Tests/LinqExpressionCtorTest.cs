@@ -12,7 +12,7 @@ namespace Tests
         [TestMethod]
         public void should_create_from_type_and_args()
         {
-            Assert.IsTrue(new LinqExpressionCtor(typeof(string), 6, array('1', '2')).Value().As<string>() == "12");
+            Assert.IsTrue(new FastObjectCreation(typeof(string), 6, array('1', '2')).Value().As<string>() == "12");
         }
     }
 }

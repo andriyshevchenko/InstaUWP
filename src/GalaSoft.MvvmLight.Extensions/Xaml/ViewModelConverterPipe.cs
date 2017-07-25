@@ -12,15 +12,13 @@ namespace GalaSoft.MvvmLight.Extensions.Xaml
 
         // Using a DependencyProperty as the backing store for Map.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty MapProperty =
-            DependencyProperty.Register("Map", typeof(PairList), typeof(ViewMap), new PropertyMetadata(0));
+            DependencyProperty.Register("Map", typeof(PairList), typeof(ViewMap), new PropertyMetadata(null));
 
         public ViewModelConverterPipe(PairList map) 
             : base(
                 new ViewModelAccessor(),
                 new ViewModelToViewConverter(
-                    new ViewMap(
-                        new PairList(map)
-                    )
+                    new ViewMap(map)
                 ))
         {
 

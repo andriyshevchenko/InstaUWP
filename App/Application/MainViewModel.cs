@@ -1,6 +1,6 @@
 ﻿using GalaSoft.MvvmLight.Extensions;
 
-namespace Instagram.Application
+namespace App
 {
     public class MainViewModel : HostViewModel
     {

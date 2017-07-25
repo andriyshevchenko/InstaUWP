@@ -20,7 +20,7 @@ namespace GalaSoft.MvvmLight.Extensions.Xaml
                            _items,
                            item => (
                                item.ViewModel,
-                               fun(() => new LinqExpressionCtor(item.View).Value().As<UserControl>())
+                               fun(() => new FastObjectCreation(item.View).Value().As<UserControl>())
                            )
                         )
                    );

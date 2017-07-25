@@ -4,15 +4,14 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:App"
     xmlns:mvvmlight="using:GalaSoft.MvvmLight.Extensions.Xaml"
-    xmlns:application="using:Instagram.Application"
     RequestedTheme="Light">
     <Application.Resources>
         <ResourceDictionary>
-            <application:Locator x:Key="Locator" />
+            <local:Locator x:Key="Locator" />
 
             <mvvmlight:ViewModelConverterPipe x:Key="viewModelConverter">
                 <mvvmlight:ViewModelConverterPipe.Map>
-                    <mvvmlight:Pair View="local:Blank" ViewModel="application:BlankViewModel"/>
+                    <mvvmlight:Pair View="local:Blank" ViewModel="local:BlankViewModel"/>
                 </mvvmlight:ViewModelConverterPipe.Map>
             </mvvmlight:ViewModelConverterPipe>
 

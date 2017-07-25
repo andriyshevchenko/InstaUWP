@@ -7,7 +7,7 @@ using static System.Functional.Func;
 
 namespace GalaSoft.MvvmLight.Extensions.Xaml
 {
-    public class ViewMap : DependencyObject, IViewMap
+    public class ViewMap : IViewMap
     {
         public ViewMap(PairList map)
         {
@@ -18,16 +18,8 @@ namespace GalaSoft.MvvmLight.Extensions.Xaml
                 );
         }
 
-        public PairList Map
-        {
-            get { return (PairList)GetValue(MapProperty); }
-            set { SetValue(MapProperty, value); }
-        }
-
-        // Using a DependencyProperty as the backing store for Map.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty MapProperty =
-            DependencyProperty.Register("Map", typeof(PairList), typeof(ViewMap), new PropertyMetadata(0));
-         
+        public PairList Map { get; set; }
+        
         public object GetViewFor(object viewModel)
         {
             Type type = viewModel.GetType();

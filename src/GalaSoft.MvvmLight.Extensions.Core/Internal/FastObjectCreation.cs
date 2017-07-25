@@ -10,7 +10,7 @@ namespace GalaSoft.MvvmLight.Extensions
     /// Allows to create objects without direct constructor invocation,  
     /// only knowing its type and constructor arguments.
     /// Significantly faster than Activator.CreateInstance()
-    /// Warning! To use <see cref="LinqExpressionCtor"/> you have to know 
+    /// Warning! To use <see cref="FastObjectCreation"/> you have to know 
     /// exact position of required type constructor in Type.GetConstructors() array.
     /// For example, <see cref="String"/> has 8 constructors:
     /// 
@@ -27,24 +27,24 @@ namespace GalaSoft.MvvmLight.Extensions
     /// so the ctorPosition will be 6 (in zero-based index).
     /// Example usage:
     ///
-    ///     var ctor = new LinqExpressionCtor(typeof(string), 6, new char[2]{'1', '2'}); 
+    ///     var ctor = new FastObjectCreation(typeof(string), 6, new char[2]{'1', '2'}); 
     ///     var str = ctor.Value(); 
     ///     
     /// str is equal to "12" now.
     /// </summary>
-    public struct LinqExpressionCtor
+    public struct FastObjectCreation
     {
         private int _constructorNumber;
         private Type _type;
         private object[] _args;
 
         /// <summary>
-        /// Intializes a new instance of <see cref="LinqExpressionCtor"/>
+        /// Intializes a new instance of <see cref="FastObjectCreation"/>
         /// </summary>
         /// <param name="type">Type of object to create</param>
         /// <param name="ctorPosition">Position of constructor in Type.GetConstructors() array</param>
         /// <param name="args">Constructor arguments</param>
-        public LinqExpressionCtor(Type type, int ctorPosition, params object[] args)
+        public FastObjectCreation(Type type, int ctorPosition, params object[] args)
         {
             _type = type;
             _constructorNumber = ctorPosition
@@ -53,11 +53,11 @@ namespace GalaSoft.MvvmLight.Extensions
         }
 
         /// <summary>
-        /// Intializes a new instance of <see cref="LinqExpressionCtor"/> running a default constructor.
+        /// Intializes a new instance of <see cref="FastObjectCreation"/> running a default constructor.
         /// </summary>
         /// <param name="type">Type of object to create</param>
         /// <param name="ctorPosition">Position of constructor in Type.GetConstructors() array</param>
-        public LinqExpressionCtor(Type type, int ctorPosition = 0) : this(type, ctorPosition, array<object>())
+        public FastObjectCreation(Type type, int ctorPosition = 0) : this(type, ctorPosition, array<object>())
         {
 
         }
