@@ -4,11 +4,11 @@
 
 namespace App
 {
-    public sealed partial class Blank : UserControl
+    public sealed partial class Blank 
     {
         public Blank()
         {
-            this.InitializeComponent();
+           // this.InitializeComponent();
         }
     }
 }

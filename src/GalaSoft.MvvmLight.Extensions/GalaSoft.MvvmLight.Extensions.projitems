@@ -18,5 +18,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Xaml\ViewModelAccessor.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Xaml\ViewModelToViewConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Xaml\ViewModelConverterPipe.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Xaml\IPair.cs" />
   </ItemGroup>
 </Project>

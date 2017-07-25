@@ -13,23 +13,29 @@ namespace App
     /// </summary>
     sealed partial class App : Application
     {
+        static App()
+        {
+            Log.Logger = new LoggerConfiguration()
+                                          .WriteTo.RollingFile("C:\\projects\\log-{Date}.txt")
+                                          .CreateLogger();
+
+            Log.Information("app starting");
+        }
+
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
         /// </summary>
         public App()
         {
-            Log.Logger = new LoggerConfiguration()
-                                 .WriteTo.RollingFile("C:\\projects\\log-{Date}.txt")
-                                 .CreateLogger();
             this.InitializeComponent();
             this.Suspending += OnSuspending;
             this.UnhandledException += (sender, e) =>
             {
-                e.Handled = true; 
+                e.Handled = true;
                 Log.Error(e.ToString());
             };
-            Log.Information("app started");
+            Log.Information("app started succesfully");
         }
 
         /// <summary>

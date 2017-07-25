@@ -11,13 +11,13 @@ namespace GalaSoft.MvvmLight.Extensions.Xaml
 {
     public class MappedViews
     {
-        private readonly PairList _items;
+        private readonly PairList items;
 
         public Dictionary<Type, Func<UserControl>> ToDictionary()
         {
             return dictionary(
                        map(
-                           _items,
+                           items,
                            item => (
                                item.ViewModel,
                                fun(() => new FastObjectCreation(item.View).Value().As<UserControl>())
@@ -30,7 +30,7 @@ namespace GalaSoft.MvvmLight.Extensions.Xaml
         {
             each(items.Views, item => item.CheckNotNull("Null View type occured, please correct your Xaml"));
             each(items.ViewModels, item => item.CheckNotNull("Null ViewModel type occured, please correct your Xaml"));
-            _items = items;
+            this.items = items;
         }
     }
 }
