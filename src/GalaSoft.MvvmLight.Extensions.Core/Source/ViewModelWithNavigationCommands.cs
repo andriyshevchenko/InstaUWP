@@ -3,11 +3,12 @@ using System.Windows.Input;
 
 namespace GalaSoft.MvvmLight.Extensions
 {
-    public class ViewModelWithNavigationCommands :IRedirectRoot 
+
+    public class ViewModelWithNavigationCommands : IRedirectRoot, ISimpleNavigationViewModel
     {
         private IRedirectRoot _source;
 
-        public ICommand GoForwardCommand => 
+        public ICommand GoForwardCommand =>
             new RelayCommand(() =>
             {
                 if (CanGoForward())

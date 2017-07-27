@@ -44,7 +44,7 @@ namespace App
 
                 navigationRoot.NavigateTo(
                     "main", 
-                     new ViewModelWithNavigationCommands(
+                     new ErrorViewModelWithNavigationCommands(
                          new ErrorViewModel(navigationRoot, "main", e.Exception)
                      )
                 );

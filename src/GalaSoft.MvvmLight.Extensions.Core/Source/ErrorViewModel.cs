@@ -3,7 +3,7 @@ using System;
 
 namespace GalaSoft.MvvmLight.Extensions
 {
-    public class ErrorViewModel : RedirectViewModel
+    public class ErrorViewModel : RedirectViewModel, IErrorViewModel
     {
         public string Error { get; }
 
