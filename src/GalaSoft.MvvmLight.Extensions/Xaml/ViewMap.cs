@@ -45,7 +45,7 @@ namespace GalaSoft.MvvmLight.Extensions.Xaml
         public ViewMap(IList<IPair> map)
         {
             _lazy = new Lazy<Dictionary<Type, Func<UserControl>>>(
-                () => new MappedViews(map).ToDictionary()
+                () => new PairsAsDictionary(map).Value()
             );
         }
 

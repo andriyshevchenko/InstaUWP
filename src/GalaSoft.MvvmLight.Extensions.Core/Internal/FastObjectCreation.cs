@@ -3,6 +3,7 @@ using System.Reflection;
 using System.Linq.Expressions;
 using InputValidation;
 using static System.Collections.Generic.Create;
+using Cactoos;
 
 namespace GalaSoft.MvvmLight.Extensions
 {
@@ -44,7 +45,7 @@ namespace GalaSoft.MvvmLight.Extensions
         /// <parameters name="type">Type of object to create</parameters>
         /// <parameters name="ctorPosition">Position of constructor in Type.GetConstructors() array</parameters>
         /// <parameters name="args">Constructor arguments</parameters>
-        public FastObjectCreation(Type type, int ctorPosition, parameters object[] args)
+        public FastObjectCreation(Type type, int ctorPosition, params object[] args)
         {
             _type = type;
             _constructorNumber = ctorPosition
@@ -62,7 +63,7 @@ namespace GalaSoft.MvvmLight.Extensions
 
         }
 
-        public delegate object ObjectActivator(parameters object[] args);
+        public delegate object ObjectActivator(params object[] args);
 
         /// <summary>
         /// Initializes a new instance of required type.

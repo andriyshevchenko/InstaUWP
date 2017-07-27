@@ -9,7 +9,7 @@
     <Import_RootNamespace>GalaSoft.MvvmLight.Extensions</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)Xaml\MappedViews.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Xaml\PairsAsDictionary.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Xaml\Pair.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Xaml\ValueConverterList.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Xaml\ValueConverterGroup.cs" />

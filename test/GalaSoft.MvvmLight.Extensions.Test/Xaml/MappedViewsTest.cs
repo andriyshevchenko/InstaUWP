@@ -13,7 +13,7 @@ namespace GalaSoft.MvvmLight.Extensions.Test.Xaml
         {
             Type type = typeof(object);
             Assert.IsTrue(
-                new MappedViews(
+                new PairsAsDictionary(
                     new PairList(
                         new Pair(FakeView.Type, type)
                     )
