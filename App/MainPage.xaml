@@ -12,7 +12,10 @@
          
         <ContentControl Content="{Binding Children, 
                         Converter={StaticResource viewModelConverter}, 
-                        ConverterParameter='main'}">
+                        ConverterParameter='main'}"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
+
 
         </ContentControl>
     </Grid>

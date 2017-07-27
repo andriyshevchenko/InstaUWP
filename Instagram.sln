@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GalaSoft.MvvmLight.Extensio
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestLibNet45", "test\TestLibNet45\TestLibNet45.csproj", "{30D8D9AE-D56A-4CE3-969E-6EB3102D4021}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "test\Tests\Tests.csproj", "{8E980D23-869D-4626-AC9E-AB45156F47CF}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		src\GalaSoft.MvvmLight.Extensions.Core\GalaSoft.MvvmLight.Extensions.Core.projitems*{30d8d9ae-d56a-4ce3-969e-6eb3102d4021}*SharedItemsImports = 4
@@ -108,6 +110,22 @@ Global
 		{30D8D9AE-D56A-4CE3-969E-6EB3102D4021}.Release|x64.Build.0 = Release|Any CPU
 		{30D8D9AE-D56A-4CE3-969E-6EB3102D4021}.Release|x86.ActiveCfg = Release|Any CPU
 		{30D8D9AE-D56A-4CE3-969E-6EB3102D4021}.Release|x86.Build.0 = Release|Any CPU
+		{8E980D23-869D-4626-AC9E-AB45156F47CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E980D23-869D-4626-AC9E-AB45156F47CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E980D23-869D-4626-AC9E-AB45156F47CF}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{8E980D23-869D-4626-AC9E-AB45156F47CF}.Debug|ARM.Build.0 = Debug|Any CPU
+		{8E980D23-869D-4626-AC9E-AB45156F47CF}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{8E980D23-869D-4626-AC9E-AB45156F47CF}.Debug|x64.Build.0 = Debug|Any CPU
+		{8E980D23-869D-4626-AC9E-AB45156F47CF}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{8E980D23-869D-4626-AC9E-AB45156F47CF}.Debug|x86.Build.0 = Debug|Any CPU
+		{8E980D23-869D-4626-AC9E-AB45156F47CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E980D23-869D-4626-AC9E-AB45156F47CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E980D23-869D-4626-AC9E-AB45156F47CF}.Release|ARM.ActiveCfg = Release|Any CPU
+		{8E980D23-869D-4626-AC9E-AB45156F47CF}.Release|ARM.Build.0 = Release|Any CPU
+		{8E980D23-869D-4626-AC9E-AB45156F47CF}.Release|x64.ActiveCfg = Release|Any CPU
+		{8E980D23-869D-4626-AC9E-AB45156F47CF}.Release|x64.Build.0 = Release|Any CPU
+		{8E980D23-869D-4626-AC9E-AB45156F47CF}.Release|x86.ActiveCfg = Release|Any CPU
+		{8E980D23-869D-4626-AC9E-AB45156F47CF}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
