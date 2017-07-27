@@ -1,32 +1,45 @@
-﻿using Windows.UI.Xaml;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Markup;
 
 namespace GalaSoft.MvvmLight.Extensions.Xaml
 {
-    public class ViewModelConverterPipe : ValueConverterGroup
+     public class ViewModelConverterPipe : ValueConverterGroup
     {
-        public PairList Map
+        public IList<object> Map
         {
-            get { return (PairList)GetValue(MapProperty); }
-            set { SetValue(MapProperty, value); }
+            get { return (IList<object>)GetValue(MapProperty); }
+            set
+            {
+                SetValue(MapProperty, value);
+            }
         }
 
-        // Using a DependencyProperty as the backing store for Map.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty MapProperty =
-            DependencyProperty.Register("Map", typeof(PairList), typeof(ViewMap), new PropertyMetadata(null));
+            DependencyProperty.Register("Map", typeof(IList<object>),
+                typeof(ViewModelConverterPipe), new PropertyMetadata(new List<object>()));
 
-        public ViewModelConverterPipe(PairList map) 
+        public ViewModelConverterPipe(List<TextPair> map)
             : base(
                 new ViewModelAccessor(),
-                new ViewModelToViewConverter(
-                    new ViewMap(map)
-                ))
+                new ViewModelToViewConverter(new ViewMap(map.Cast<IPair>().ToList()))
+              )
         {
 
         }
 
         public ViewModelConverterPipe()
         {
-
+            _lazy = new System.Lazy<ValueConverterList>(
+                        () => new ValueConverterList(
+                                 new ViewModelAccessor(),
+                                 new ViewModelToViewConverter(
+                                     Map.Cast<IPair>().ToList()
+                                 )
+                              )
+                    );
         }
     }
 }

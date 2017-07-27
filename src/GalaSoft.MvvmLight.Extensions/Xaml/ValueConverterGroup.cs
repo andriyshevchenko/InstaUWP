@@ -13,10 +13,11 @@ namespace GalaSoft.MvvmLight.Extensions.Xaml
 
         public ValueConverterGroup(params IValueConverter[] source)
         {
-            Converters = new ValueConverterList(source);
+            _lazy = new Lazy<ValueConverterList>(() => new ValueConverterList(source));
         }
 
-        public ValueConverterList Converters { get; set; }
+        protected Lazy<ValueConverterList> _lazy;
+        public ValueConverterList Converters => _lazy.Value;
 
         public object Convert(object value, Type targetType, object parameter, string language)
         {
@@ -27,7 +28,7 @@ namespace GalaSoft.MvvmLight.Extensions.Xaml
             }
             return returnValue;
         }
-    
+
         public object ConvertBack(object value, Type targetType, object parameter, string language)
         {
             throw new NotImplementedException();

@@ -9,6 +9,7 @@
     <Import_RootNamespace>GalaSoft.MvvmLight.Extensions.Core</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Internal\AssemblyTypeCache.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Source\FakeHost.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Source\HostViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Source\ICanNavigate.cs" />
@@ -17,8 +18,5 @@
     <Compile Include="$(MSBuildThisFileDirectory)Source\IViewMap.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Internal\FastObjectCreation.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Source\RouteContext.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)Internal\" />
   </ItemGroup>
 </Project>

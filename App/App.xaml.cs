@@ -16,8 +16,8 @@ namespace App
         static App()
         {
             Log.Logger = new LoggerConfiguration()
-                                          .WriteTo.RollingFile("C:\\projects\\log-{Date}.txt")
-                                          .CreateLogger();
+                            .WriteTo.RollingFile("C:\\projects\\log-{Date}.txt")
+                            .CreateLogger();
 
             Log.Information("app starting");
         }

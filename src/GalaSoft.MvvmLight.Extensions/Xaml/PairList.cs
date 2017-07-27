@@ -7,17 +7,17 @@ namespace GalaSoft.MvvmLight.Extensions.Xaml
     /// <summary>
     /// Represents a list of pairs
     /// </summary>
-    public class PairList : List<Pair>
+    public class PairList : List<IPair>, ICollection<IPair>, IEnumerable<IPair>
     {
-        public Type[] Views => System.Linq.Enumerable.Select(this, collection => collection.View).ToArray();
-        public Type[] ViewModels => System.Linq.Enumerable.Select(this, collection => collection.ViewModel).ToArray();
+        public Type[] Views => Enumerable.Select(this, collection => collection.View).ToArray();
+        public Type[] ViewModels => Enumerable.Select(this, collection => collection.ViewModel).ToArray();
 
-        public PairList(IEnumerable<Pair> item):base(item)
+        public PairList(IEnumerable<IPair> item):base(item)
         {
 
         }
 
-        public PairList(params Pair[] pairs):base(pairs)
+        public PairList(params IPair[] pairs):base(pairs)
         {
 
         }

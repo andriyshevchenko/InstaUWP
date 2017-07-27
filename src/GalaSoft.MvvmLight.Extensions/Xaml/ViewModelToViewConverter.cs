@@ -1,13 +1,18 @@
 ﻿using System;
 using Windows.UI.Xaml.Data;
 using InputValidation;
-using Windows.UI.Xaml;
+using System.Collections.Generic;
 
 namespace GalaSoft.MvvmLight.Extensions.Xaml
 {
     public class ViewModelToViewConverter : IValueConverter
     {
         public ViewModelToViewConverter()
+        {
+            throw new NotSupportedException();
+        }
+
+        public ViewModelToViewConverter(IList<IPair> source) : this(new ViewMap(source))
         {
 
         }

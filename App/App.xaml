@@ -11,7 +11,7 @@
 
             <mvvmlight:ViewModelConverterPipe x:Key="viewModelConverter">
                 <mvvmlight:ViewModelConverterPipe.Map>
-                    <mvvmlight:Pair View="local:Blank" ViewModel="local:BlankViewModel"/>
+                    <mvvmlight:TextPair ViewTypeName="App.Blank" ViewModelTypeName="App.BlankViewModel"/>
                 </mvvmlight:ViewModelConverterPipe.Map>
             </mvvmlight:ViewModelConverterPipe>
 

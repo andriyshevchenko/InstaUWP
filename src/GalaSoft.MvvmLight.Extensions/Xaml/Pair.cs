@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
-using System.Reflection;
 using Windows.UI.Xaml;
 
 namespace GalaSoft.MvvmLight.Extensions.Xaml
@@ -10,14 +8,15 @@ namespace GalaSoft.MvvmLight.Extensions.Xaml
     /// </summary>
     public class Pair : DependencyObject, IPair
     {
-        public Pair()
-        {
-            var m = Application.Current.GetType().GetTypeInfo().Assembly.FullName;
-        }
         public Pair(Type view, Type viewModel)
         {
             View = view;
             ViewModel = viewModel;
+        }
+
+        public Pair()
+        {
+
         }
 
         /// <summary>
@@ -26,11 +25,7 @@ namespace GalaSoft.MvvmLight.Extensions.Xaml
         public Type View
         {
             get { return (Type)GetValue(ViewProperty); }
-            set
-            {
-                SetValue(ViewProperty, value);
-                var tr = new StackTrace(new Exception(), false);
-            }
+            set { SetValue(ViewProperty, value); }
         }
 
         // Using a DependencyProperty as the backing store for View.  This enables animation, styling, binding, etc...
