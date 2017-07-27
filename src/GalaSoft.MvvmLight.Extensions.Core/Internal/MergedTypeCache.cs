@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using System.Reflection;
 using static System.Collections.Generic.Create;
 
 namespace GalaSoft.MvvmLight.Extensions
@@ -10,6 +10,18 @@ namespace GalaSoft.MvvmLight.Extensions
     public class MergedTypeCache : IScalar<IReadOnlyDictionary<string, Type>>
     {
         private IScalar<IReadOnlyDictionary<string, Type>>[] _items;
+
+        public MergedTypeCache(params IScalar<Assembly>[] items)
+           : this(array(items, item => new AssemblyTypeCache(item)))
+        {
+
+        }
+
+        public MergedTypeCache(params Assembly[] items)
+            : this(array(items, item => new AssemblyTypeCache(item)))
+        {
+
+        }
 
         public MergedTypeCache(params IScalar<IReadOnlyDictionary<string, Type>>[] items)
         {

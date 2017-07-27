@@ -11,12 +11,8 @@ namespace GalaSoft.MvvmLight.Extensions.Xaml
         private static IScalar<IReadOnlyDictionary<string, Type>> _typeCache
             = new CachedScalar<IReadOnlyDictionary<string, Type>>(
                   new MergedTypeCache(
-                      new AssemblyTypeCache(
-                          new AssemblyOfType<Pair>() 
-                      ),
-                      new AssemblyTypeCache(
-                          new AssemblyOfType(Application.Current.GetType())
-                      )
+                      new AssemblyOfType<Pair>(), 
+                      new AssemblyOfType(Application.Current.GetType())
                   )
               );
         
