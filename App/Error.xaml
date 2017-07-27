@@ -8,13 +8,14 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <controls:HeaderedTextBlock
-            Header="Sorry, an error occured" 
-            Text="{Binding Error}" 
-            Orientation="Vertical"
+        <StackPanel 
             HorizontalAlignment="Center"
             VerticalAlignment="Center"
-            Margin="20,10,0,0"
-        />
+            Margin="20,10,0,0">
+            <TextBlock Foreground="Red">Sorry, an error occured</TextBlock>
+            <TextBlock Text="{Binding Error}"/>
+        </StackPanel>
+
+    
     </Grid>
 </Page>
