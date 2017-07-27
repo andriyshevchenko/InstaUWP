@@ -33,7 +33,7 @@ namespace GalaSoft.MvvmLight.Extensions.Xaml
         private Dictionary<Type, Func<UserControl>> Views => _viewsLazy.Value;
         private Lazy<Dictionary<Type, Func<UserControl>>> _viewsLazy;
 
-        public ViewMap(IList<object> map) 
+        public ViewMap(IList<object> map)
             : this(map.Cast<IPair>()
                       .ToList()
                       .As<IList<IPair>>())
@@ -76,9 +76,8 @@ namespace GalaSoft.MvvmLight.Extensions.Xaml
                 var interfaces = type.GetInterfaces();
                 if (interfaces.Any())
                 {
-                    for (int i = 0; i < interfaces.Length; i++)
+                    foreach (var iface in interfaces)
                     {
-                        Type iface = interfaces[i];
                         if (Views.ContainsKey(iface))
                         {
                             //redirect to implemented interface view
