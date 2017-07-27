@@ -1,12 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Windows.UI.Xaml;
-using Windows.UI.Xaml.Markup;
 
 namespace GalaSoft.MvvmLight.Extensions.Xaml
 {
-     public class ViewModelConverterPipe : ValueConverterGroup
+    public class ViewModelConverterPipe : ValueConverterGroup
     {
         public IList<object> Map
         {
