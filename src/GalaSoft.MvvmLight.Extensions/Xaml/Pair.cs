@@ -12,7 +12,7 @@ namespace GalaSoft.MvvmLight.Extensions.Xaml
             = new CachedScalar<IReadOnlyDictionary<string, Type>>(
                   new MergedTypeCache(
                       new AssemblyTypeCache(
-                          new AssemblyOfType(typeof(Pair)) 
+                          new AssemblyOfType<Pair>() 
                       ),
                       new AssemblyTypeCache(
                           new AssemblyOfType(Application.Current.GetType())
