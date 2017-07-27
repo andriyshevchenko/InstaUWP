@@ -5,13 +5,15 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using Serilog;
+using InputValidation;
+using GalaSoft.MvvmLight.Extensions; 
 
 namespace App
 {
     /// <summary>
     /// Provides application-specific behavior to supplement the default Application class.
     /// </summary>
-    sealed partial class App : Application
+    sealed partial class App : Windows.UI.Xaml.Application
     {
         static App()
         {
@@ -33,7 +35,12 @@ namespace App
             this.UnhandledException += (sender, e) =>
             {
                 e.Handled = true;
-                Log.Error(e.ToString());
+                Log.Error(e.Exception.ToString());
+                Window.Current.Content
+                    .As<Frame>().Content
+                    .As<MainPage>()
+                    .DataContext.As<ICanNavigate>()
+                    .NavigateTo("main", new ErrorViewModel(e.Exception));
             };
             Log.Information("app started succesfully");
         }

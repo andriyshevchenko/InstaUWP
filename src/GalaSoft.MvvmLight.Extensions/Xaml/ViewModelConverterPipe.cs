@@ -21,7 +21,7 @@ namespace GalaSoft.MvvmLight.Extensions.Xaml
             DependencyProperty.Register("Map", typeof(IList<object>),
                 typeof(ViewModelConverterPipe), new PropertyMetadata(new List<object>()));
 
-        public ViewModelConverterPipe(List<TextPair> map)
+        public ViewModelConverterPipe(List<Pair> map)
             : base(
                 new ViewModelAccessor(),
                 new ViewModelToViewConverter(new ViewMap(map.Cast<IPair>().ToList()))

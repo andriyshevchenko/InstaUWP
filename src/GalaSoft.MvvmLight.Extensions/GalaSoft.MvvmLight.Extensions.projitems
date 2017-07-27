@@ -10,12 +10,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Xaml\MappedViews.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Xaml\TextPair.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Xaml\Pair.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Xaml\ValueConverterList.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Xaml\ValueConverterGroup.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Xaml\ViewMap.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Xaml\Pair.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Xaml\PairList.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Xaml\ViewModelAccessor.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Xaml\ViewModelToViewConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Xaml\ViewModelConverterPipe.cs" />

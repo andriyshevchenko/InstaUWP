@@ -10,7 +10,8 @@
             <local:Locator x:Key="Locator" />
 
             <mvvmlight:ViewModelConverterPipe x:Key="viewModelConverter">
-                <mvvmlight:TextPair ViewTypeName="App.Blank" ViewModelTypeName="App.BlankViewModel"/>
+                <mvvmlight:Pair ViewTypeName="App.Blank" ViewModelTypeName="App.BlankViewModel"/>
+                <mvvmlight:Pair ViewTypeName="App.Error" ViewModelTypeName="App.ErrorViewModel"/>
             </mvvmlight:ViewModelConverterPipe>
 
         </ResourceDictionary>

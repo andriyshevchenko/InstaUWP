@@ -73,7 +73,7 @@ namespace GalaSoft.MvvmLight.Extensions
         Dictionary<string, Item> _items = new Dictionary<string, Item>();
 
         public IReadOnlyDictionary<string, Item> Items => _items;
-        public IReadOnlyDictionary<string, object> Children => _children;
+        public IReadOnlyDictionary<string, object> Children => (IReadOnlyDictionary<string, object>)_children;
 
         bool _flag = false;
         void NotifyUiListeners(string childName, object viewModel)
