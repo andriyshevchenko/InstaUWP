@@ -1,48 +1,51 @@
-﻿using System;
+﻿using Cactoos;
+using Cactoos.Scalar;
+using System;
+using System.Collections.Generic;
 using Windows.UI.Xaml;
 
 namespace GalaSoft.MvvmLight.Extensions.Xaml
 {
-    /// <summary>
-    /// Represents pair View-ViewModel
-    /// </summary>
     public class Pair : DependencyObject, IPair
     {
-        public Pair(Type view, Type viewModel)
-        {
-            View = view;
-            ViewModel = viewModel;
-        }
-
+        private static IScalar<IReadOnlyDictionary<string, Type>> _typeCache
+            = new CachedScalar<IReadOnlyDictionary<string, Type>>(
+                  new MergedTypeCache(
+                      new AssemblyTypeCache(
+                          new AssemblyOfType(typeof(Pair)) 
+                      ),
+                      new AssemblyTypeCache(
+                          new AssemblyOfType(Application.Current.GetType())
+                      )
+                  )
+              );
+        
         public Pair()
         {
 
         }
 
-        /// <summary>
-        /// View dependency property
-        /// </summary>
-        public Type View
+        public Type View => _typeCache.Value()[ViewTypeName];
+        public Type ViewModel => _typeCache.Value()[ViewModelTypeName];
+
+        public string ViewTypeName
         {
-            get { return (Type)GetValue(ViewProperty); }
-            set { SetValue(ViewProperty, value); }
+            get { return (string)GetValue(ViewTypeNameProperty); }
+            set { SetValue(ViewTypeNameProperty, value); }
         }
 
-        // Using a DependencyProperty as the backing store for View.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty ViewProperty =
-            DependencyProperty.Register("View", typeof(Type), typeof(Pair), new PropertyMetadata(null));
+        // Using a DependencyProperty as the backing store for ViewTypeName.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ViewTypeNameProperty =
+            DependencyProperty.Register("ViewTypeName", typeof(string), typeof(Pair), new PropertyMetadata(null));
 
-        /// <summary>
-        /// ViewModel dependency property
-        /// </summary>
-        public Type ViewModel
+        public string ViewModelTypeName
         {
-            get { return (Type)GetValue(ViewModelProperty); }
-            set { SetValue(ViewModelProperty, value); }
+            get { return (string)GetValue(ViewModelTypeNameProperty); }
+            set { SetValue(ViewModelTypeNameProperty, value); }
         }
-
-        // Using a DependencyProperty as the backing store for ViewModel.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty ViewModelProperty =
-            DependencyProperty.Register("ViewModel", typeof(Type), typeof(Pair), new PropertyMetadata(null));
+        
+        // Using a DependencyProperty as the backing store for ViewModelTypeName.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ViewModelTypeNameProperty =
+            DependencyProperty.Register("ViewModelTypeName", typeof(string), typeof(Pair), new PropertyMetadata(null));
     }
 }

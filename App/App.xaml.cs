@@ -36,11 +36,18 @@ namespace App
             {
                 e.Handled = true;
                 Log.Error(e.Exception.ToString());
-                Window.Current.Content
+
+                INavigationRoot navigationRoot = Window.Current.Content
                     .As<Frame>().Content
                     .As<MainPage>()
-                    .DataContext.As<INavigationRoot>()
-                    .NavigateTo("main", new ErrorViewModel(e.Exception));
+                    .DataContext.As<INavigationRoot>();
+
+                navigationRoot.NavigateTo(
+                    "main", 
+                     new ViewModelWithNavigationCommands(
+                         new ErrorViewModel(navigationRoot, "main", e.Exception)
+                     )
+                );
             };
             Log.Information("app started succesfully");
         }

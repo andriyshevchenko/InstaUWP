@@ -14,6 +14,7 @@
             Margin="20,10,0,0">
             <TextBlock Foreground="Red">Sorry, an error occured</TextBlock>
             <TextBlock Text="{Binding Error}"/>
+            <Button Command="{Binding GoBackCommand}">Back</Button>
         </StackPanel>
 
     

@@ -110,6 +110,9 @@
     <EmbeddedResource Include="Properties\GalaSoft.MvvmLight.Extensions.rd.xml" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Cactoos.Net.UWP">
+      <Version>1.0.2</Version>
+    </PackageReference>
     <PackageReference Include="fcollections.Uwp">
       <Version>1.0.7</Version>
     </PackageReference>

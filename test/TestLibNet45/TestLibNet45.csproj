@@ -30,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Cactoos, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Cactoos.Net.1.0.2\lib\net45\Cactoos.dll</HintPath>
+    </Reference>
     <Reference Include="collections.Net45, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\fcollections.1.0.7\lib\net45\collections.Net45.dll</HintPath>
     </Reference>

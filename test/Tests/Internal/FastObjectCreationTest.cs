@@ -7,7 +7,7 @@ using static System.Collections.Generic.Create;
 namespace Tests
 {
     [TestClass]
-    public class LinqExpressionCtorTest
+    public class FastObjectCreationTest
     {
         [TestMethod]
         public void should_create_from_type_and_args()
