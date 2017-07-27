@@ -7,7 +7,7 @@ using static System.Collections.Generic.Create;
 
 namespace GalaSoft.MvvmLight.Extensions
 {
-    public class HostViewModel : ViewModelBase, IParent, ICanNavigate
+    public class HostViewModel : ViewModelBase, IParent, INavigationRoot
     {
         public HostViewModel()
         {

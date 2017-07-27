@@ -39,7 +39,7 @@ namespace App
                 Window.Current.Content
                     .As<Frame>().Content
                     .As<MainPage>()
-                    .DataContext.As<ICanNavigate>()
+                    .DataContext.As<INavigationRoot>()
                     .NavigateTo("main", new ErrorViewModel(e.Exception));
             };
             Log.Information("app started succesfully");

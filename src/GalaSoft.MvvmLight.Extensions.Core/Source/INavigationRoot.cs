@@ -1,6 +1,6 @@
 ﻿namespace GalaSoft.MvvmLight.Extensions
 {
-    public interface ICanNavigate
+    public interface INavigationRoot
     {
         bool CanGoBack(string childName, int steps = 1);
         bool CanGoForward(string childName, int steps = 1);

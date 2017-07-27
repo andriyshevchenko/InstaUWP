@@ -2,7 +2,7 @@
 {
     public class RouteContext
     {
-        ICanNavigate Root { get; }
+        INavigationRoot Root { get; }
         string Key { get; }
     }
 }

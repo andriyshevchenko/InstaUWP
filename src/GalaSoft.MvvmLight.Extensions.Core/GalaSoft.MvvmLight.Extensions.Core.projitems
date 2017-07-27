@@ -12,7 +12,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Internal\AssemblyTypeCache.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Source\FakeHost.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Source\HostViewModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Source\ICanNavigate.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Source\INavigationRoot.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Source\IParent.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Source\IRedirectRoot.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Source\IViewMap.cs" />
