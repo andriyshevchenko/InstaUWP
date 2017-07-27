@@ -30,27 +30,24 @@ namespace GalaSoft.MvvmLight.Extensions.Xaml
 
     public class ViewMap : IViewMap
     {
-        private Dictionary<Type, Func<UserControl>> Views => _viewsLazy.Value;
-        private Lazy<Dictionary<Type, Func<UserControl>>> _viewsLazy;
+        private Dictionary<Type, Func<UserControl>> Views => _lazy.Value;
+        private Lazy<Dictionary<Type, Func<UserControl>>> _lazy;
 
         public ViewMap(IList<object> map)
             : this(map.Cast<IPair>()
                       .ToList()
-                      .As<IList<IPair>>())
+                      .As<IList<IPair>>()
+              )
         {
 
         }
 
         public ViewMap(IList<IPair> map)
         {
-            Map = map;
-            _viewsLazy =
-                new Lazy<Dictionary<Type, Func<UserControl>>>(
-                    () => new MappedViews(Map).ToDictionary()
-                );
+            _lazy = new Lazy<Dictionary<Type, Func<UserControl>>>(
+                () => new MappedViews(map).ToDictionary()
+            );
         }
-
-        public IList<IPair> Map { get; set; }
 
         public object GetViewFor(object viewModel)
         {

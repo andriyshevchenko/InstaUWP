@@ -32,7 +32,7 @@ namespace GalaSoft.MvvmLight.Extensions
     ///     
     /// str is equal to "12" now.
     /// </summary>
-    public struct FastObjectCreation
+    public struct FastObjectCreation : IScalar<object>
     {
         private int _constructorNumber;
         private Type _type;
@@ -41,10 +41,10 @@ namespace GalaSoft.MvvmLight.Extensions
         /// <summary>
         /// Intializes a new instance of <see cref="FastObjectCreation"/>
         /// </summary>
-        /// <param name="type">Type of object to create</param>
-        /// <param name="ctorPosition">Position of constructor in Type.GetConstructors() array</param>
-        /// <param name="args">Constructor arguments</param>
-        public FastObjectCreation(Type type, int ctorPosition, params object[] args)
+        /// <parameters name="type">Type of object to create</parameters>
+        /// <parameters name="ctorPosition">Position of constructor in Type.GetConstructors() array</parameters>
+        /// <parameters name="args">Constructor arguments</parameters>
+        public FastObjectCreation(Type type, int ctorPosition, parameters object[] args)
         {
             _type = type;
             _constructorNumber = ctorPosition
@@ -55,14 +55,14 @@ namespace GalaSoft.MvvmLight.Extensions
         /// <summary>
         /// Intializes a new instance of <see cref="FastObjectCreation"/> running a default constructor.
         /// </summary>
-        /// <param name="type">Type of object to create</param>
-        /// <param name="ctorPosition">Position of constructor in Type.GetConstructors() array</param>
+        /// <parameters name="type">Type of object to create</parameters>
+        /// <parameters name="ctorPosition">Position of constructor in Type.GetConstructors() array</parameters>
         public FastObjectCreation(Type type, int ctorPosition = 0) : this(type, ctorPosition, array<object>())
         {
 
         }
 
-        public delegate object ObjectActivator(params object[] args);
+        public delegate object ObjectActivator(parameters object[] args);
 
         /// <summary>
         /// Initializes a new instance of required type.
@@ -71,34 +71,34 @@ namespace GalaSoft.MvvmLight.Extensions
         public object Value()
         {
             ConstructorInfo constructor = _type.GetConstructors()[_constructorNumber];
-            ParameterInfo[] paramsInfo = constructor.GetParameters();
+            ParameterInfo[] parametersInfo = constructor.GetParameters();
 
-            //create a single param of type object[]
-            ParameterExpression param =
+            //create a single parameters of type object[]
+            ParameterExpression parameters =
                 Expression.Parameter(typeof(object[]), "args");
 
-            Expression[] argsExp =
-                new Expression[paramsInfo.Length];
+            Expression[] arguments =
+                new Expression[parametersInfo.Length];
 
-            //pick each arg from the params array 
+            //pick each arg from the parameters array 
             //and create a typed expression of them
-            for (int i = 0; i < paramsInfo.Length; i++)
+            for (int i = 0; i < parametersInfo.Length; i++)
             {
-                argsExp[i] =
+                arguments[i] =
                     Expression.Convert(
-                        Expression.ArrayIndex(param, Expression.Constant(i)),
-                        paramsInfo[i].ParameterType
+                        Expression.ArrayIndex(parameters, Expression.Constant(i)),
+                        parametersInfo[i].ParameterType
                     );
             }
 
             //make a NewExpression that calls the
             //ctor with the args we just created
-            NewExpression newExp = Expression.New(constructor, argsExp);
+            NewExpression newExp = Expression.New(constructor, arguments);
 
             //create a lambda with the New
-            //Expression as body and our param object[] as arg
+            //Expression as body and our parameters object[] as arg
             LambdaExpression lambda =
-                Expression.Lambda(typeof(ObjectActivator), newExp, param);
+                Expression.Lambda(typeof(ObjectActivator), newExp, parameters);
 
             //compile it
             ObjectActivator compiled = (ObjectActivator)lambda.Compile();

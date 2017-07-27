@@ -4,6 +4,14 @@ using System;
 
 namespace GalaSoft.MvvmLight.Extensions
 {
+    public struct AssemblyOfType<T> : IScalar<Assembly>
+    {
+        public Assembly Value()
+        {
+            return typeof(T).GetTypeInfo().Assembly;
+        }
+    }
+
     public struct AssemblyOfType : IScalar<Assembly>
     {
         private Type _type;
