@@ -1,10 +1,12 @@
 ﻿using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Extensions.Core;
 using System;
 using System.Windows.Input;
+using GalaSoft.MvvmLight.Extensions;
 
 namespace App
 {
-    public class BlankViewModel
+    public class BlankViewModel : RedirectViewModel
     {
         public ICommand MakeErrorCommand => new RelayCommand(MakeError);
 
@@ -13,9 +15,8 @@ namespace App
             throw new NotImplementedException();
         }
 
-        public BlankViewModel()
+        public BlankViewModel(INavigationRoot root, string childName) : base(root, childName)
         {
-            
         }
     }
 }

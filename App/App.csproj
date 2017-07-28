@@ -97,12 +97,16 @@
     </Compile>
     <Compile Include="Application\BlankViewModel.cs" />
     <Compile Include="Application\Locator.cs" />
+    <Compile Include="Application\LoginViewModel.cs" />
     <Compile Include="Application\MainViewModel.cs" />
     <Compile Include="Blank.xaml.cs">
       <DependentUpon>Blank.xaml</DependentUpon>
     </Compile>
     <Compile Include="Error.xaml.cs">
       <DependentUpon>Error.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Login.xaml.cs">
+      <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -134,6 +138,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Error.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Login.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

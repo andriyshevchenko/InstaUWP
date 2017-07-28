@@ -7,11 +7,18 @@ using Windows.UI.Xaml.Controls;
 
 namespace GalaSoft.MvvmLight.Extensions.Xaml
 {
+    /// <summary>
+    /// A <see cref="IViewMap"/> which is created from <see cref="IPair"/>'s.
+    /// </summary>
     public class ViewMap : IViewMap
     {
         private Dictionary<Type, Func<UserControl>> Views => _lazy.Value;
         private Lazy<Dictionary<Type, Func<UserControl>>> _lazy;
 
+        /// <summary>
+        /// Initializes a new instance of <see cref="ViewMap"/>.
+        /// </summary>
+        /// <param name="map">The pairs.</param>
         public ViewMap(IList<object> map)
             : this(map.Cast<IPair>()
                       .ToList()
@@ -21,11 +28,19 @@ namespace GalaSoft.MvvmLight.Extensions.Xaml
 
         }
 
+        /// <summary>
+        /// Initializes a new instance of <see cref="ViewMap"/>.
+        /// </summary>
+        /// <param name="map">The pairs.</param>
         public ViewMap(IList<Pair> map) : this(map.Cast<IPair>().ToList())
         {
 
         }
 
+        /// <summary>
+        /// Initializes a new instance of <see cref="ViewMap"/>.
+        /// </summary>
+        /// <param name="map">The pairs.</param>
         public ViewMap(IList<IPair> map)
         {
             _lazy = new Lazy<Dictionary<Type, Func<UserControl>>>(
@@ -33,6 +48,11 @@ namespace GalaSoft.MvvmLight.Extensions.Xaml
             );
         }
 
+        /// <summary>
+        /// Gets a new view instance for specific view model.
+        /// </summary>
+        /// <param name="viewModel">The view model.</param>
+        /// <returns>New view instance.</returns>
         public object GetViewFor(object viewModel)
         {
             Type type = viewModel.GetType();
@@ -71,7 +91,11 @@ namespace GalaSoft.MvvmLight.Extensions.Xaml
             throw new InvalidOperationException($"View for requested view model {type} not added yet");
         }
 
-
+        /// <summary>
+        /// Determines if type of view model has a corresponding view.
+        /// </summary>
+        /// <param name="viewModel">The view model.</param>
+        /// <returns>True if specific type of view model has view defined.</returns>
         public bool HasView(object viewModel)
         {
             return Views.ContainsKey(viewModel.GetType());

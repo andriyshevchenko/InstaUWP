@@ -121,14 +121,7 @@ namespace GalaSoft.MvvmLight.Extensions
         /// <summary>
         /// The children.
         /// </summary>
-        public object Children => _children;
-
-        /// <summary>
-        /// Accesses a specific view model for child by its name.
-        /// </summary>
-        /// <param name="key">The child name.</param>
-        /// <returns>View model for specific child.</returns>
-        public object this[string key] => _children[key];
+        public IReadOnlyDictionary<string, object> Children => (IReadOnlyDictionary<string, object>)_children;
 
         /// <summary>
         /// Navigates a specific child to a specific view, with a specific direction in navigation 
@@ -185,7 +178,7 @@ namespace GalaSoft.MvvmLight.Extensions
             }
 
             //Notify UI listeners.
-            _children[childName] = viewModel;
+            _children[childName] = VM;
             Set(nameof(Children), ref notificationFlag, !notificationFlag);
         }
 

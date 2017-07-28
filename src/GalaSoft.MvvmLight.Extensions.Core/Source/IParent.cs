@@ -1,4 +1,6 @@
-﻿namespace GalaSoft.MvvmLight.Extensions
+﻿using System.Collections.Generic;
+
+namespace GalaSoft.MvvmLight.Extensions
 {
     /// <summary>
     /// Defines an interface of a root view model which owns
@@ -7,15 +9,8 @@
     public interface IParent
     {
         /// <summary>
-        /// The children. To use with data binding.
+        /// The children.
         /// </summary>
-        object Children { get; }
-
-        /// <summary>
-        /// Accesses a specific view model for child by its name.
-        /// </summary>
-        /// <param name="key">The child name.</param>
-        /// <returns>View model for specific child.</returns>
-        object this[string key] { get; }
+        IReadOnlyDictionary<string, object> Children { get; }
     }
 }

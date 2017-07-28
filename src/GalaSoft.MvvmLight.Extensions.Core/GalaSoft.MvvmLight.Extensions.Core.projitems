@@ -11,7 +11,10 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Internal\AssemblyOfType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Internal\AssemblyTypeCache.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Internal\IsBlank.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Internal\MergedTypeCache.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Internal\SimpleName.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Internal\NamespacedName.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Internal\TypeOf.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Source\ErrorViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Source\ErrorViewModelWithNavigationCommands.cs" />

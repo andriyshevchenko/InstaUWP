@@ -6,7 +6,7 @@ namespace App
     {
         public MainViewModel()
         {
-            NavigateTo("main", new BlankViewModel());
+            NavigateTo("main", new BlankViewModel(this, "main"));
         }
     }
 }

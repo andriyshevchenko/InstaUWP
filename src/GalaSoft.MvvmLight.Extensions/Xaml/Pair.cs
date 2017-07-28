@@ -11,31 +11,44 @@ namespace GalaSoft.MvvmLight.Extensions.Xaml
     /// </summary>
     public class Pair : DependencyObject, IPair
     {
+        private const string RootNamespace = nameof(Extensions);
+
+        private IScalar<string> _correctViewTypeName;
+        private IScalar<string> _correctViewModelTypeName;
+        
         private static IScalar<IReadOnlyDictionary<string, Type>> _typeCache
             = new CachedScalar<IReadOnlyDictionary<string, Type>>(
                   new MergedTypeCache(
-                      new AssemblyOfType<Pair>(), 
+                      new AssemblyOfType<Pair>(),
                       new AssemblyOfType(Application.Current.GetType())
                   )
               );
-        
+
         /// <summary>
         /// Initializes a new instance of <see cref="Pair"/>.
         /// </summary>
         public Pair()
         {
+            _correctViewTypeName
+                = new LazyScalar<string>(() =>
+                      new NamespacedName(ViewTypeName, RootNamespace).String()
+                  );
 
+            _correctViewModelTypeName
+                = new LazyScalar<string>(() =>
+                      new NamespacedName(ViewModelTypeName, RootNamespace).String()
+                  );
         }
 
         /// <summary>
         /// The view type.
         /// </summary>
-        public Type View => _typeCache.Value()[ViewTypeName];
+        public Type View => _typeCache.Value()[_correctViewTypeName.Value()];
 
         /// <summary>
         /// The view model type.
         /// </summary>
-        public Type ViewModel => _typeCache.Value()[ViewModelTypeName];
+        public Type ViewModel => _typeCache.Value()[_correctViewModelTypeName.Value()];
 
         /// <summary>
         /// Text representation of view type.

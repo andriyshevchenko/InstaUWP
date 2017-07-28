@@ -41,7 +41,7 @@ namespace App
                 INavigationRoot navigationRoot = Window.Current.Content
                     .As<Frame>().Content
                     .As<FrameworkElement>().DataContext
-		    .As<INavigationRoot>();
+		            .As<INavigationRoot>();
 
                 navigationRoot.NavigateTo(
                     "main", 

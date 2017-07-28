@@ -94,6 +94,16 @@
             Assert.AreEqual(4, ViewModel(4).Items["main"].ViewModel.Count);
         }
 
+        [TestMethod]
+        public void should_go_back()
+        {
+            var viewModel = new HostViewModel();
+            object vm = new object();
+            viewModel.NavigateTo("main", vm);
+            viewModel.NavigateTo("main", new object());
+            viewModel.GoBack("main");
+        }
+
         private static HostViewModel ViewModel(int makeSteps)
         {
             return new FakeHost("main", new object(), makeSteps);
