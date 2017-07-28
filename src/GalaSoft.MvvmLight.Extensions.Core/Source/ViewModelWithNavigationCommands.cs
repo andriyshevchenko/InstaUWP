@@ -4,9 +4,9 @@ using System.Windows.Input;
 namespace GalaSoft.MvvmLight.Extensions
 {
 
-    public class ViewModelWithNavigationCommands : IRedirectRoot, ISimpleNavigationViewModel
+    public class ViewModelWithNavigationCommands : IRedirectViewModel, ISimpleNavigationViewModel
     {
-        private IRedirectRoot _source;
+        private IRedirectViewModel _source;
 
         public ICommand GoForwardCommand =>
             new RelayCommand(() =>
@@ -26,7 +26,7 @@ namespace GalaSoft.MvvmLight.Extensions
                 }
             });
 
-        public ViewModelWithNavigationCommands(IRedirectRoot source)
+        public ViewModelWithNavigationCommands(IRedirectViewModel source)
         {
             _source = source;
         }

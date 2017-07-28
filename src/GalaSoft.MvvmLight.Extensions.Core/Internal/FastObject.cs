@@ -11,7 +11,7 @@ namespace GalaSoft.MvvmLight.Extensions
     /// Allows to create objects without direct constructor invocation,  
     /// only knowing its type and constructor arguments.
     /// Significantly faster than Activator.CreateInstance()
-    /// Warning! To use <see cref="FastObjectCreation"/> you have to know 
+    /// Warning! To use <see cref="FastObject"/> you have to know 
     /// exact position of required type constructor in Type.GetConstructors() array.
     /// For example, <see cref="String"/> has 8 constructors:
     /// 
@@ -28,24 +28,24 @@ namespace GalaSoft.MvvmLight.Extensions
     /// so the ctorPosition will be 6 (in zero-based index).
     /// Example usage:
     ///
-    ///     var ctor = new FastObjectCreation(typeof(string), 6, new char[2]{'1', '2'}); 
+    ///     var ctor = new FastObject(typeof(string), 6, new char[2]{'1', '2'}); 
     ///     var str = ctor.Value(); 
     ///     
     /// str is equal to "12" now.
     /// </summary>
-    public struct FastObjectCreation : IScalar<object>
+    public struct FastObject : IScalar<object>
     {
         private int _constructorNumber;
         private Type _type;
         private object[] _args;
 
         /// <summary>
-        /// Intializes a new instance of <see cref="FastObjectCreation"/>
+        /// Intializes a new instance of <see cref="FastObject"/>
         /// </summary>
         /// <parameters name="type">Type of object to create</parameters>
         /// <parameters name="ctorPosition">Position of constructor in Type.GetConstructors() array</parameters>
         /// <parameters name="args">Constructor arguments</parameters>
-        public FastObjectCreation(Type type, int ctorPosition, params object[] args)
+        public FastObject(Type type, int ctorPosition, params object[] args)
         {
             _type = type;
             _constructorNumber = ctorPosition
@@ -54,16 +54,16 @@ namespace GalaSoft.MvvmLight.Extensions
         }
 
         /// <summary>
-        /// Intializes a new instance of <see cref="FastObjectCreation"/> running a default constructor.
+        /// Intializes a new instance of <see cref="FastObject"/> running a default constructor.
         /// </summary>
         /// <parameters name="type">Type of object to create</parameters>
         /// <parameters name="ctorPosition">Position of constructor in Type.GetConstructors() array</parameters>
-        public FastObjectCreation(Type type, int ctorPosition = 0) : this(type, ctorPosition, array<object>())
+        public FastObject(Type type, int ctorPosition = 0) : this(type, ctorPosition, array<object>())
         {
 
         }
 
-        public delegate object ObjectActivator(params object[] args);
+        delegate object ObjectActivator(params object[] args);
 
         /// <summary>
         /// Initializes a new instance of required type.
@@ -76,7 +76,7 @@ namespace GalaSoft.MvvmLight.Extensions
 
             //create a single parameters of type object[]
             ParameterExpression parameters =
-                Expression.Parameter(typeof(object[]), "args");
+                Expression.Parameter(new TypeOf<object[]>().Value(), "args");
 
             Expression[] arguments =
                 new Expression[parametersInfo.Length];
@@ -99,7 +99,7 @@ namespace GalaSoft.MvvmLight.Extensions
             //create a lambda with the New
             //Expression as body and our parameters object[] as arg
             LambdaExpression lambda =
-                Expression.Lambda(typeof(ObjectActivator), newExp, parameters);
+                Expression.Lambda(new TypeOf<ObjectActivator>().Value(), newExp, parameters);
 
             //compile it
             ObjectActivator compiled = (ObjectActivator)lambda.Compile();

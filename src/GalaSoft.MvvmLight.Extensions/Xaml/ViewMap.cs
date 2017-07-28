@@ -1,33 +1,12 @@
-﻿using Cactoos;
-using InputValidation;
+﻿using InputValidation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
 namespace GalaSoft.MvvmLight.Extensions.Xaml
 {
-    public struct LazyView : IScalar<UserControl>
-    {
-        private object _viewModel;
-        private Func<UserControl> _source;
-
-        public LazyView(Func<UserControl> source, object viewModel)
-        {
-            _source = source;
-            _viewModel = viewModel;
-        }
-
-        public UserControl Value()
-        {
-            var userControl = _source();
-            userControl.DataContext = _viewModel;
-            return userControl;
-        }
-    }
-
     public class ViewMap : IViewMap
     {
         private Dictionary<Type, Func<UserControl>> Views => _lazy.Value;
@@ -38,6 +17,11 @@ namespace GalaSoft.MvvmLight.Extensions.Xaml
                       .ToList()
                       .As<IList<IPair>>()
               )
+        {
+
+        }
+
+        public ViewMap(IList<Pair> map) : this(map.Cast<IPair>().ToList())
         {
 
         }
@@ -55,7 +39,7 @@ namespace GalaSoft.MvvmLight.Extensions.Xaml
 
             if (Views.ContainsKey(type))
             {
-                return new LazyView(Views[type], viewModel).Value();
+                return new LazyUserControl(Views[type], viewModel).Value();
             }
             else
             {
@@ -66,7 +50,7 @@ namespace GalaSoft.MvvmLight.Extensions.Xaml
                 {
                     //redirect to base type view 
                     Views[type] = Views[baseType];
-                    return new LazyView(Views[baseType], viewModel).Value();
+                    return new LazyUserControl(Views[baseType], viewModel).Value();
                 }
 
                 //check if dictionary contains any of implemented
@@ -79,7 +63,7 @@ namespace GalaSoft.MvvmLight.Extensions.Xaml
                         {
                             //redirect to implemented interface view
                             Views[type] = Views[iface];
-                            return new LazyView(Views[iface], viewModel).Value();
+                            return new LazyUserControl(Views[iface], viewModel).Value();
                         }
                     }
                 }

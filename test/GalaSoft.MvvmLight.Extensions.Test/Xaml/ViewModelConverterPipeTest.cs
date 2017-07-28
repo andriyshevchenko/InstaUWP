@@ -15,7 +15,7 @@ namespace GalaSoft.MvvmLight.Extensions.Test.Xaml
             var converter =
                 new ViewModelConverterPipe(
                     new PairList(
-                        new Pair(FakeView.Type, typeof(object))
+                        new Pair(FakeView.Type, new GalaSoft.MvvmLight.Extensions.TypeOf<object>().Value())
                     )
                 );
             var parameter = "main";

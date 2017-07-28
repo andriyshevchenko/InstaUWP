@@ -10,7 +10,7 @@ namespace GalaSoft.MvvmLight.Extensions.Test
         [TestMethod]
         public void should_determine_is_on_top_after_add()
         {
-            var item = new Item(list(new object()));
+            var item = new Entry(list(new object()));
             item.NewViewModel(new object());
             Assert.IsTrue(item.OnTop);
         }
@@ -18,7 +18,7 @@ namespace GalaSoft.MvvmLight.Extensions.Test
         [TestMethod]
         public void should_determine_is_on_top()
         {
-            Assert.IsTrue(new Item(list(new object())).OnTop);
+            Assert.IsTrue(new Entry(list(new object())).OnTop);
         }
 
         [TestMethod]
@@ -33,9 +33,9 @@ namespace GalaSoft.MvvmLight.Extensions.Test
             Assert.AreEqual(Item().Position, 2);
         }
 
-        private static Item Item()
+        private static Entry Item()
         {
-            var item = new Item(list(new object()));
+            var item = new Entry(list(new object()));
             item.NewViewModel(new object());
             item.NewViewModel(new object());
             return item;

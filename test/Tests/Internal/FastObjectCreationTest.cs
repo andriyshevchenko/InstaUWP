@@ -7,12 +7,12 @@ using static System.Collections.Generic.Create;
 namespace Tests
 {
     [TestClass]
-    public class FastObjectCreationTest
+    public class FastObjectTest
     {
         [TestMethod]
         public void should_create_from_type_and_args()
         {
-            Assert.IsTrue(new FastObjectCreation(typeof(string), 6, array('1', '2')).Value().As<string>() == "12");
+            Assert.IsTrue(new FastObject(typeof(string), 6, array('1', '2')).Value().As<string>() == "12");
         }
     }
 }

@@ -11,7 +11,7 @@ namespace GalaSoft.MvvmLight.Extensions.Test.Xaml
         [UITestMethod]
         public void should_convert_mapped_views_to_dictionary()
         {
-            Type type = typeof(object);
+            Type type = new GalaSoft.MvvmLight.Extensions.TypeOf<object>().Value();
             Assert.IsTrue(
                 new PairsAsDictionary(
                     new PairList(

@@ -13,7 +13,7 @@ namespace GalaSoft.MvvmLight.Extensions.Test.Xaml
             var map =
                 new ViewMap(
                     new PairList(
-                        new Pair(FakeView.Type, typeof(object))
+                        new Pair(FakeView.Type, new GalaSoft.MvvmLight.Extensions.TypeOf<object>().Value())
                     )
                 );
             Assert.IsTrue(map.HasView(new object()));
@@ -25,7 +25,7 @@ namespace GalaSoft.MvvmLight.Extensions.Test.Xaml
             var map =
                 new ViewMap(
                     new PairList(
-                        new Pair(FakeView.Type, typeof(object))
+                        new Pair(FakeView.Type, new GalaSoft.MvvmLight.Extensions.TypeOf<object>().Value())
                     )
                 );
             Assert.IsTrue(map.GetViewFor(new object()).GetType() == FakeView.Type);
