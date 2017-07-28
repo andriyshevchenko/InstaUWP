@@ -11,7 +11,7 @@
 
             <mvvmlight:ViewModelConverterPipe x:Key="viewModelConverter">
                 <mvvmlight:Pair ViewTypeName="App.Blank" ViewModelTypeName="App.BlankViewModel"/>
-                <mvvmlight:Pair ViewTypeName="App.Error" ViewModelTypeName="GalaSoft.MvvmLight.Extensions.IErrorViewModel"/>
+                <mvvmlight:Pair ViewTypeName="App.Error" ViewModelTypeName="IErrorViewModel"/>
                 <mvvmlight:Pair ViewTypeName="App.Login" ViewModelTypeName="App.LoginViewModel"/>
             </mvvmlight:ViewModelConverterPipe>
 

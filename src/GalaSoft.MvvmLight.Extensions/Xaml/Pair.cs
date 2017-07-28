@@ -11,7 +11,7 @@ namespace GalaSoft.MvvmLight.Extensions.Xaml
     /// </summary>
     public class Pair : DependencyObject, IPair
     {
-        private const string RootNamespace = nameof(Extensions);
+        private readonly string RootNamespace = $"{nameof(GalaSoft)}.{nameof(MvvmLight)}.{nameof(Extensions)}";
 
         private IScalar<string> _correctViewTypeName;
         private IScalar<string> _correctViewModelTypeName;
