@@ -146,12 +146,6 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\GalaSoft.MvvmLight.Extensions.Uwp\GalaSoft.MvvmLight.Extensions.Uwp.csproj">
-      <Project>{699850ec-913f-4d63-9dbc-c2fccfeb76d7}</Project>
-      <Name>GalaSoft.MvvmLight.Extensions.Uwp</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <ItemGroup>
