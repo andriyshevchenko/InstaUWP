@@ -13,6 +13,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Internal\AssemblyTypeCache.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Internal\AssemblyRootNamespace.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Internal\AssemblyTypes.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Internal\ConcatEnumerables.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Internal\ICSharpName.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Internal\InferredName.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Internal\IsBlank.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Internal\ISimpleNamespace.cs" />

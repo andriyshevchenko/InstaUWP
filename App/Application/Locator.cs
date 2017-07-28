@@ -1,4 +1,5 @@
-﻿using System;
+﻿using App.ViewModel;
+using System;
 
 namespace App
 {

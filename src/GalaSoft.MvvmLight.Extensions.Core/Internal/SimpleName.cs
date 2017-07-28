@@ -4,22 +4,6 @@ using Cactoos.Scalar;
 namespace GalaSoft.MvvmLight.Extensions
 {
     /// <summary>
-    /// Declares a C# struct or class name.
-    /// </summary>
-    public interface ICSharpName
-    {
-        /// <summary>
-        /// Own name without a namespace.
-        /// </summary>
-        string OwnName { get; }
-
-        /// <summary>
-        /// The namespace.
-        /// </summary>
-        string Namespace { get; }
-    }
-
-    /// <summary>
     /// Allows to extract namespace and own name from a full name.
     /// </summary>
     public struct SimpleName : ICSharpName
