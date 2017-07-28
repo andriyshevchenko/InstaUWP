@@ -38,12 +38,9 @@ namespace GalaSoft.MvvmLight.Extensions
         /// <returns>New dictionary instance.</returns>
         public IReadOnlyDictionary<string, Type> Value()
         {
-            Assembly assembly = _assembly.Value();
-            return assembly.DefinedTypes
-                       .Cast<Type>()
-                       .Concat(assembly.ExportedTypes)
-                       .Distinct()
-                       .ToDictionary(type => type.FullName, type => type);
+            return new AssemblyTypes(_assembly)
+                .Value()
+                .ToDictionary(type => type.FullName, type => type);
         }
     }
 }

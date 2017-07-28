@@ -36,7 +36,7 @@ namespace GalaSoft.MvvmLight.Extensions.Xaml
         private static AssemblyTypeCache _libTypeCache =
             new AssemblyTypeCache(_lib);
 
-        private static IScalar<IReadOnlyDictionary<string, Type>> _typeCache
+        private static IScalar<IReadOnlyDictionary<string, Type>> _mergedTypeCache
             = new CachedScalar<IReadOnlyDictionary<string, Type>>(
                   new MergedTypeCache(_libTypeCache, _appTypeCache)
               );
@@ -50,46 +50,41 @@ namespace GalaSoft.MvvmLight.Extensions.Xaml
                = new CachedScalar<string>(
                      new LazyScalar<string>(() =>
                          new InferredName(
-                             ViewTypeName,
-                             (
-                                 new AssemblyRootNamespace(_app),
-                                 new AssemblyTypeCache(_app)
+                             new ConcatEnumerables<SimpleNamespace>(
+                                 new NamespacesOfAssembly(_app),
+                                 new NamespacesOfAssembly(_lib)
                              ),
-                             (
-                                 new AssemblyRootNamespace(_lib),
-                                 new AssemblyTypeCache(_lib)
-                             )
+                             _mergedTypeCache,
+                             ViewTypeName
                          ).Value()
                      )
-                );
+                 );
+            
 
             _correctViewModelTypeName
-                 = new CachedScalar<string>(
+               = new CachedScalar<string>(
                      new LazyScalar<string>(() =>
                          new InferredName(
-                             ViewModelTypeName,
-                             (
-                                 new AssemblyRootNamespace(_app),
-                                 new AssemblyTypeCache(_app)
+                             new ConcatEnumerables<SimpleNamespace>(
+                                 new NamespacesOfAssembly(_app),
+                                 new NamespacesOfAssembly(_lib)
                              ),
-                             (
-                                 new AssemblyRootNamespace(_lib),
-                                 new AssemblyTypeCache(_lib)
-                             )
+                             _mergedTypeCache,
+                             ViewModelTypeName
                          ).Value()
                      )
-                );
+               );
         }
 
         /// <summary>
         /// The view type.
         /// </summary>
-        public Type View => _typeCache.Value()[_correctViewTypeName.Value()];
+        public Type View => _mergedTypeCache.Value()[_correctViewTypeName.Value()];
 
         /// <summary>
         /// The view model type.
         /// </summary>
-        public Type ViewModel => _typeCache.Value()[_correctViewModelTypeName.Value()];
+        public Type ViewModel => _mergedTypeCache.Value()[_correctViewModelTypeName.Value()];
 
         /// <summary>
         /// Text representation of view type.

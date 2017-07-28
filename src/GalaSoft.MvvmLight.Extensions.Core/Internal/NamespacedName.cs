@@ -8,6 +8,12 @@ namespace GalaSoft.MvvmLight.Extensions
         private string _source;
         private string _namespace;
 
+        public NamespacedName(string source, ISimpleNamespace @namespace) 
+            : this(source, @namespace.Name)
+        {
+
+        }
+
         public NamespacedName(string source, string @namespace)
         {
             _source = source;

@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using GalaSoft.MvvmLight.Extensions;
 
 namespace Tests.Source
@@ -14,15 +13,15 @@ namespace Tests.Source
             var assemblyOfType2 = new AssemblyOfType<InferredNameTest>();
             var inferredName =
                 new InferredName(
-                    nameof(InferredNameTest),
-                    (
-                        new AssemblyRootNamespace(assemblyOfType),
-                        new AssemblyTypeCache(assemblyOfType)
+                    new ConcatEnumerables<SimpleNamespace>(
+                        new NamespacesOfAssembly(assemblyOfType),
+                        new NamespacesOfAssembly(assemblyOfType2)
                     ),
-                    (
-                        new AssemblyRootNamespace(assemblyOfType2),
-                        new AssemblyTypeCache(assemblyOfType2)
-                    )
+                   new MergedTypeCache(
+                       assemblyOfType,
+                       assemblyOfType2
+                   ),
+                   nameof(InferredNameTest)
                 );
             Assert.AreEqual("Tests.Source.InferredNameTest", inferredName.Value());
         }

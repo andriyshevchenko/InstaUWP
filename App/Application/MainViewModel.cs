@@ -1,6 +1,6 @@
 ﻿using GalaSoft.MvvmLight.Extensions;
 
-namespace App
+namespace App.ViewModel
 {
     public class MainViewModel : HostViewModel
     {

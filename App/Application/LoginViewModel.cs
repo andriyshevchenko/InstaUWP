@@ -1,7 +1,7 @@
 ﻿using GalaSoft.MvvmLight.Extensions.Core;
 using GalaSoft.MvvmLight.Extensions;
 
-namespace App
+namespace App.ViewModel
 {
     public class LoginViewModel : RedirectViewModel
     {

@@ -80,6 +80,7 @@
     <Compile Include="Source\ItemTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Source\NamespacedNameTest.cs" />
+    <Compile Include="Source\NamespacesOfAssemblyTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

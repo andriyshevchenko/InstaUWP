@@ -4,7 +4,7 @@ using System;
 using System.Windows.Input;
 using GalaSoft.MvvmLight.Extensions;
 
-namespace App
+namespace App.ViewModel
 {
     public class BlankViewModel : RedirectViewModel
     {

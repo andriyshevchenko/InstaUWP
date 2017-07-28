@@ -12,12 +12,16 @@
     <Compile Include="$(MSBuildThisFileDirectory)Internal\AssemblyOfType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Internal\AssemblyTypeCache.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Internal\AssemblyRootNamespace.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Internal\AssemblyTypes.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Internal\InferredName.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Internal\IsBlank.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Internal\ISimpleNamespace.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Internal\IsNamespaced.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Internal\MergedTypeCache.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Internal\NamespacesOfAssembly.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Internal\SimpleName.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Internal\NamespacedName.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Internal\SimpleNamespace.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Internal\TypeOf.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Source\ErrorViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Source\ErrorViewModelWithNavigationCommands.cs" />

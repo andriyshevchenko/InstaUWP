@@ -1,9 +1,9 @@
 ﻿using Cactoos;
+using Cactoos.Scalar;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
-
-using static System.Collections.Generic.Create;
 
 namespace GalaSoft.MvvmLight.Extensions
 {
@@ -13,63 +13,69 @@ namespace GalaSoft.MvvmLight.Extensions
     public struct InferredName : IScalar<string>
     {
         private string _source;
-        private ValueTuple<IScalar<string>, IScalar<IReadOnlyDictionary<string, Type>>>[] _items;
+        private IScalar<IEnumerable<SimpleNamespace>> _namespaces;
+        private IScalar<IReadOnlyDictionary<string, Type>> _typeCache;
 
-        public InferredName(string source, params ValueTuple<IScalar<string>, IScalar<IReadOnlyDictionary<string, Type>>>[] nameAndTypeCachePairs)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="namespaces"></param>
+        /// <param name="typeCache"></param>
+        /// <param name="source"></param>
+        public InferredName(IScalar<IEnumerable<SimpleNamespace>> namespaces, IScalar<IReadOnlyDictionary<string, Type>> typeCache, string source)
         {
-            _items = nameAndTypeCachePairs;
+            _namespaces = namespaces;
+            _typeCache = new CachedScalar<IReadOnlyDictionary<string, Type>>(typeCache);
             _source = source;
         }
 
-        public InferredName(string source, params ValueTuple<IScalar<string>, IScalar<Assembly>>[] nameAndTypeCachePairs)
-            : this(
-                  source,
-                  Zip(
-                      first(nameAndTypeCachePairs),
-                      map(
-                          nameAndTypeCachePairs,
-                          assembly =>
-                          (IScalar<IReadOnlyDictionary<string, Type>>)new AssemblyTypeCache(assembly.Item2)
-                      )
-                  )
-              )
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="types"></param>
+        /// <param name="typeCache"></param>
+        /// <param name="source"></param>
+        public InferredName(IScalar<Type[]> types, IScalar<IReadOnlyDictionary<string, Type>> typeCache, string source)
+            : this(new NamespacesOfAssembly(types), typeCache, source)
         {
 
         }
 
-        public InferredName(string source, params ValueTuple<IScalar<string>, Assembly>[] nameAndTypeCachePairs)
-             : this(
-                  source,
-                  Zip(
-                      first(nameAndTypeCachePairs),
-                      map(
-                          nameAndTypeCachePairs,
-                          assembly =>
-                          (IScalar<IReadOnlyDictionary<string, Type>>)new AssemblyTypeCache(assembly.Item2)
-                      )
-                  )
-              )
+        public InferredName(IScalar<Assembly> assembly, IScalar<IReadOnlyDictionary<string, Type>> typeCache, string source)
+            : this(new AssemblyTypes(assembly), typeCache, source)
         {
 
         }
+
+        public InferredName(Assembly assembly, IScalar<IReadOnlyDictionary<string, Type>> typeCache, string source)
+          : this(new AssemblyTypes(assembly), typeCache, source)
+        {
+
+        }
+
 
         public string Value()
         {
             string result = _source;
+            string targetNamespace = null;
             if (!new IsNamespaced(result).Value())
             {
-                string targetNamespace;
-                foreach (var (rootNamespace, assemblyTypeCache) in _items)
+                var namespaces = _namespaces.Value().ToArray();
+
+                foreach (var item in namespaces)
                 {
-                    var namespacedName = new NamespacedName(_source, rootNamespace.Value());
-                    if (assemblyTypeCache.Value().ContainsKey(namespacedName.String()))
+                    var namespacedName = new NamespacedName(result, item).String();
+                    IReadOnlyDictionary<string, Type> readOnlyDictionary = _typeCache.Value();
+                    if (readOnlyDictionary.ContainsKey(namespacedName))
                     {
-                        targetNamespace = rootNamespace.Value();
-                        return namespacedName.String();
+                        return namespacedName;
                     }
                 }
 
-                throw new InvalidOperationException($"Unable to infer the namespace for {result}");
+                if (new IsBlank(targetNamespace).Value())
+                {
+                    throw new InvalidOperationException($"Unable to infer the namespace for {result}");
+                }
             }
             return result;
         }
