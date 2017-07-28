@@ -2,6 +2,7 @@
 using Cactoos.Scalar;
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using Windows.UI.Xaml;
 
 namespace GalaSoft.MvvmLight.Extensions.Xaml
@@ -11,17 +12,33 @@ namespace GalaSoft.MvvmLight.Extensions.Xaml
     /// </summary>
     public class Pair : DependencyObject, IPair
     {
-        private readonly string RootNamespace = $"{nameof(GalaSoft)}.{nameof(MvvmLight)}.{nameof(Extensions)}";
+        private readonly string CurrentRootNamespace = $"{nameof(GalaSoft)}.{nameof(MvvmLight)}.{nameof(Extensions)}";
 
         private IScalar<string> _correctViewTypeName;
         private IScalar<string> _correctViewModelTypeName;
-        
+
+        private static IScalar<string> _appRootNamespace =
+            new CachedScalar<string>(
+                new AssemblyRootNamespace(_app)
+            );
+
+        private static IScalar<Assembly> _app =
+            new AssemblyOfType(
+                Application.Current.GetType()
+            );
+
+        private static IScalar<Assembly> _lib =
+            new AssemblyOfType<Pair>();
+
+        private static AssemblyTypeCache _appTypeCache =
+            new AssemblyTypeCache(_app);
+
+        private static AssemblyTypeCache _libTypeCache =
+            new AssemblyTypeCache(_lib);
+
         private static IScalar<IReadOnlyDictionary<string, Type>> _typeCache
             = new CachedScalar<IReadOnlyDictionary<string, Type>>(
-                  new MergedTypeCache(
-                      new AssemblyOfType<Pair>(),
-                      new AssemblyOfType(Application.Current.GetType())
-                  )
+                  new MergedTypeCache(_libTypeCache, _appTypeCache)
               );
 
         /// <summary>
@@ -30,14 +47,38 @@ namespace GalaSoft.MvvmLight.Extensions.Xaml
         public Pair()
         {
             _correctViewTypeName
-                = new LazyScalar<string>(() =>
-                      new NamespacedName(ViewTypeName, RootNamespace).String()
-                  );
+               = new CachedScalar<string>(
+                     new LazyScalar<string>(() =>
+                         new InferredName(
+                             ViewTypeName,
+                             (
+                                 new AssemblyRootNamespace(_app),
+                                 new AssemblyTypeCache(_app)
+                             ),
+                             (
+                                 new AssemblyRootNamespace(_lib),
+                                 new AssemblyTypeCache(_lib)
+                             )
+                         ).Value()
+                     )
+                );
 
             _correctViewModelTypeName
-                = new LazyScalar<string>(() =>
-                      new NamespacedName(ViewModelTypeName, RootNamespace).String()
-                  );
+                 = new CachedScalar<string>(
+                     new LazyScalar<string>(() =>
+                         new InferredName(
+                             ViewModelTypeName,
+                             (
+                                 new AssemblyRootNamespace(_app),
+                                 new AssemblyTypeCache(_app)
+                             ),
+                             (
+                                 new AssemblyRootNamespace(_lib),
+                                 new AssemblyTypeCache(_lib)
+                             )
+                         ).Value()
+                     )
+                );
         }
 
         /// <summary>
