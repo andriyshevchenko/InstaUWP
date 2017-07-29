@@ -13,13 +13,11 @@ namespace Tests.Source
             var assemblyOfType2 = new AssemblyOfType<InferredNameTest>();
             var inferredName =
                 new InferredName(
-                    new ConcatEnumerables<SimpleNamespace>(
-                        new NamespacesOfAssembly(assemblyOfType),
-                        new NamespacesOfAssembly(assemblyOfType2)
-                    ),
-                   new MergedTypeCache(
-                       assemblyOfType,
-                       assemblyOfType2
+                   new TypeCacheWithoutNamespace(
+                       new MergedTypeCache(
+                           assemblyOfType,
+                           assemblyOfType2
+                       )
                    ),
                    nameof(InferredNameTest)
                 );

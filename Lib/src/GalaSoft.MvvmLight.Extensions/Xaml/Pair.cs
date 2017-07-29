@@ -41,6 +41,13 @@ namespace GalaSoft.MvvmLight.Extensions.Xaml
                   new MergedTypeCache(_libTypeCache, _appTypeCache)
               );
 
+        private static IScalar<IReadOnlyDictionary<string, Type>> _typeCacheWithoutNamespace
+            = new CachedScalar<IReadOnlyDictionary<string, Type>>(
+                  new TypeCacheWithoutNamespace(
+                      _mergedTypeCache
+                  )
+              );
+
         /// <summary>
         /// Initializes a new instance of <see cref="Pair"/>.
         /// </summary>
@@ -49,14 +56,7 @@ namespace GalaSoft.MvvmLight.Extensions.Xaml
             _correctViewTypeName
                = new CachedScalar<string>(
                      new LazyScalar<string>(() =>
-                         new InferredName(
-                             new ConcatEnumerables<SimpleNamespace>(
-                                 new NamespacesOfAssembly(_app),
-                                 new NamespacesOfAssembly(_lib)
-                             ),
-                             _mergedTypeCache,
-                             ViewTypeName
-                         ).Value()
+                         new InferredName(_typeCacheWithoutNamespace, ViewTypeName).Value()
                      )
                  );
             
@@ -64,14 +64,7 @@ namespace GalaSoft.MvvmLight.Extensions.Xaml
             _correctViewModelTypeName
                = new CachedScalar<string>(
                      new LazyScalar<string>(() =>
-                         new InferredName(
-                             new ConcatEnumerables<SimpleNamespace>(
-                                 new NamespacesOfAssembly(_app),
-                                 new NamespacesOfAssembly(_lib)
-                             ),
-                             _mergedTypeCache,
-                             ViewModelTypeName
-                         ).Value()
+                         new InferredName(_typeCacheWithoutNamespace, ViewModelTypeName).Value()
                      )
                );
         }

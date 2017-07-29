@@ -11,6 +11,10 @@ namespace GalaSoft.MvvmLight.Extensions
         private string source;
         private IScalar<int> _lastOccurence;
 
+        /// <summary>
+        /// Initializes a new instance of <see cref="SimpleName"/>.
+        /// </summary>
+        /// <param name="nameWithNamespace">C# name with namespace.</param>
         public SimpleName(string nameWithNamespace)
         {
             source = nameWithNamespace;
@@ -28,6 +32,9 @@ namespace GalaSoft.MvvmLight.Extensions
             });
         }
 
+        /// <summary>
+        /// Gets the own name, without namespace.
+        /// </summary>
         public string OwnName
         {
             get
@@ -42,6 +49,9 @@ namespace GalaSoft.MvvmLight.Extensions
             }
         }
 
+        /// <summary>
+        /// Gets the namespace.
+        /// </summary>
         public string Namespace
         {
             get
