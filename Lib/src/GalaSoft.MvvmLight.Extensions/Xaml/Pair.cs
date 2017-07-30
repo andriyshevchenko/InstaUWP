@@ -1,4 +1,5 @@
 ﻿using Cactoos;
+using Cactoos.Reflection;
 using Cactoos.Scalar;
 using System;
 using System.Collections.Generic;
@@ -12,8 +13,6 @@ namespace GalaSoft.MvvmLight.Extensions.Xaml
     /// </summary>
     public class Pair : DependencyObject, IPair
     {
-        private readonly string CurrentRootNamespace = $"{nameof(GalaSoft)}.{nameof(MvvmLight)}.{nameof(Extensions)}";
-
         private IScalar<string> _correctViewTypeName;
         private IScalar<string> _correctViewModelTypeName;
 

@@ -14,6 +14,15 @@ namespace GalaSoft.MvvmLight.Extensions.Core
         /// <summary>
         /// Initializes a new instance of <see cref="RedirectViewModel"/>.
         /// </summary>
+        /// <param name="other">Other <see cref="RedirectViewModel"/>.</param>
+        public RedirectViewModel(RedirectViewModel other) : this(other._root, other._child) 
+        {
+
+        }
+        
+        /// <summary>
+        /// Initializes a new instance of <see cref="RedirectViewModel"/>.
+        /// </summary>
         /// <param name="root">The <see cref="INavigationRoot"/>.</param>
         /// <param name="childName">The name of a child.</param>
         public RedirectViewModel(INavigationRoot root, string childName)

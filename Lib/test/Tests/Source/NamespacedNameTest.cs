@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using GalaSoft.MvvmLight.Extensions;
+using Cactoos.Reflection;
 
 namespace Tests.Source
 {

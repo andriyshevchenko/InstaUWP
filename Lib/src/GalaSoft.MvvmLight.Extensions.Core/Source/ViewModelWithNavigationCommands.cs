@@ -4,7 +4,7 @@ using System.Windows.Input;
 namespace GalaSoft.MvvmLight.Extensions
 {
     /// <summary>
-    /// View model with <see cref="GoBackCommand"/> and <see cref="GoForwardCommand"/>.
+    /// View model with <see cref="ISimpleNavigationViewModel.GoBackCommand"/> and <see cref="ISimpleNavigationViewModel.GoForwardCommand"/>.
     /// </summary>
     public class ViewModelWithNavigationCommands : IRedirectViewModel, ISimpleNavigationViewModel
     {
