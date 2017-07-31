@@ -25,18 +25,25 @@
         [TestMethod]
         public void should_navigate_back_two_steps()
         {
-            Assert.AreEqual(monad(new FakeHost("main", new object(), 4),
-                            host => host.GoBack("main", 2))
-                            .Items["main"]
-                            .Position, 1);
+            Assert.AreEqual(
+                monad(
+                    new FakeHost("main", new object(), 4),
+                    host => host.GoBack("main", 2)
+                ).Items["main"].Position, 
+                1
+            );
         }
 
         [TestMethod]
         public void should_navigate_null_view_model()
         {
-            var vm = monad(new FakeHost("main", new object(), 2),
-                           (host) => host.NavigateInternal("main", 4, Direction.Back));
-            Assert.AreEqual(0, vm.Items["main"].Position);
+            Assert.AreEqual(
+                0,
+                monad(
+                    new FakeHost("main", new object(), 2),
+                    host => host.NavigateInternal("main", 4, Direction.Back)
+                ).Items["main"].Position
+            );
         }
 
         [TestMethod]

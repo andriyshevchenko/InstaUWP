@@ -17,11 +17,6 @@ namespace GalaSoft.MvvmLight.Extensions.Xaml
         private IScalar<string> _correctViewTypeName;
         private IScalar<string> _correctViewModelTypeName;
 
-        private static IScalar<string> _appRootNamespace =
-            new CachedScalar<string>(
-                new AssemblyRootNamespace(_app)
-            );
-
         private static IScalar<Assembly> _app =
             new AssemblyOfType(
                 Application.Current.GetType()
