@@ -44,10 +44,8 @@ namespace App
 		            .As<INavigationRoot>();
 
                 navigationRoot.NavigateTo(
-                    "main", 
-                     new ErrorViewModelWithNavigationCommands(
-                         new ErrorViewModel(navigationRoot, "main", e.Exception)
-                     )
+                      "main",
+                      new ErrorViewModelWithNavigationCommands(navigationRoot, e.Exception) 
                 );
             };
             Log.Information("app started succesfully");

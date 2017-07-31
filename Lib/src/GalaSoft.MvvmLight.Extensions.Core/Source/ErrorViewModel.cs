@@ -17,9 +17,9 @@ namespace GalaSoft.MvvmLight.Extensions
         /// Initializes a new instance of <see cref="ErrorViewModel"/>.
         /// </summary>
         /// <param name="root">The parent.</param>
+        /// <param name="error">An error.</param>
         /// <param name="childName">The name of the child.</param>
-        /// <param name="error"></param>
-        public ErrorViewModel(INavigationRoot root, string childName, string error) :this(root, childName)
+        public ErrorViewModel(INavigationRoot root, string error, string childName = MainChild) : this(root, childName)
         {
             Error = error;
         }
@@ -28,9 +28,9 @@ namespace GalaSoft.MvvmLight.Extensions
         /// Initializes a new instance of <see cref="ErrorViewModel"/>.
         /// </summary>
         /// <param name="root">The parent.</param>
-        /// <param name="childName">The name of the child.</param>
         /// <param name="exception">An error.</param>
-        public ErrorViewModel(INavigationRoot root, string childName, Exception exception) : this(root, childName, exception.ToString())
+        /// <param name="childName">The name of the child.</param>
+        public ErrorViewModel(INavigationRoot root, Exception exception, string childName = MainChild) : this(root, exception.ToString(), childName)
         {
 
         }
@@ -40,7 +40,7 @@ namespace GalaSoft.MvvmLight.Extensions
         /// </summary>
         /// <param name="root">The parent.</param>
         /// <param name="childName">The name of the child.</param>
-        public ErrorViewModel(INavigationRoot root, string childName) : base(root, childName)
+        public ErrorViewModel(INavigationRoot root, string childName = MainChild) : base(root, childName)
         {
         }
     }

@@ -1,4 +1,5 @@
-﻿using System.Windows.Input;
+﻿using System;
+using System.Windows.Input;
 
 namespace GalaSoft.MvvmLight.Extensions
 {
@@ -18,6 +19,16 @@ namespace GalaSoft.MvvmLight.Extensions
         {
             _error = source;
             _source = new ViewModelWithNavigationCommands(source);
+        }
+
+        /// <summary>
+        /// Initializes a new instance of <see cref="ErrorViewModelWithNavigationCommands"/>.
+        /// </summary>
+        /// <param name="root">The parent.</param>
+        /// <param name="error">An error.</param>
+        public ErrorViewModelWithNavigationCommands(INavigationRoot root, Exception error): this(new ErrorViewModel(root, error))
+        {
+
         }
 
         /// <summary>

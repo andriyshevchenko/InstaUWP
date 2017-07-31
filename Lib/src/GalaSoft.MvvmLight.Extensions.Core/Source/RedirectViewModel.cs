@@ -8,6 +8,10 @@ namespace GalaSoft.MvvmLight.Extensions.Core
     /// </summary>
     public class RedirectViewModel : IRedirectViewModel
     {
+        /// <summary>
+        /// The name of the main child. Used as a default parameter in many methods.
+        /// </summary>
+        public const string MainChild = "main";
         private INavigationRoot _root;
         private string _child;
 
@@ -25,7 +29,7 @@ namespace GalaSoft.MvvmLight.Extensions.Core
         /// </summary>
         /// <param name="root">The <see cref="INavigationRoot"/>.</param>
         /// <param name="childName">The name of a child.</param>
-        public RedirectViewModel(INavigationRoot root, string childName)
+        public RedirectViewModel(INavigationRoot root, string childName = MainChild)
         {
             _root = root.CheckNotNull("navigation root");
             _child = childName.CheckNotNull(nameof(childName));

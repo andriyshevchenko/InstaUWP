@@ -10,10 +10,11 @@ namespace GalaSoft.MvvmLight.Extensions
     /// <summary>
     /// View model which is a navigation root and able to provide its children
     /// to use with data binding.
-    /// It inherits GalaSoft.MvvmLight.<see cref="ViewModelBase"/>
+    /// It inherits GalaSoft.MvvmLight.<see cref="ViewModelBase"/>.
     /// </summary>
     public class HostViewModel : ViewModelBase, IParent, INavigationRoot
     {
+        private const string MainChild = "main";
         private bool notificationFlag = false;
         private ConcurrentDictionary<string, object> _children = new ConcurrentDictionary<string, object>();
         private Dictionary<string, Entry> _items = new Dictionary<string, Entry>();
@@ -188,7 +189,7 @@ namespace GalaSoft.MvvmLight.Extensions
         /// <param name="childName">The name of the child.</param>
         /// <param name="steps">The number of steps to make.</param>
         /// <returns>True if view model can navigate back.</returns>
-        public bool CanGoBack(string childName, int steps = 1)
+        public bool CanGoBack(string childName = MainChild, int steps = 1)
         {
             return _items.ContainsKey(childName) && _items[childName].CanGoBack(steps);
         }
@@ -199,7 +200,7 @@ namespace GalaSoft.MvvmLight.Extensions
         /// <param name="childName">The name of the child.</param>
         /// <param name="steps">The number of steps to make.</param>
         /// <returns>True if view model can navigate forward.</returns>
-        public bool CanGoForward(string childName, int steps = 1)
+        public bool CanGoForward(string childName = MainChild, int steps = 1)
         {
             return _items.ContainsKey(childName) && _items[childName].CanGoForward(steps);
         }
@@ -209,7 +210,7 @@ namespace GalaSoft.MvvmLight.Extensions
         /// </summary>
         /// <param name="childName">The name of the child.</param>
         /// <param name="steps">The number of steps to make.</param>
-        public void GoForward(string childName, int steps = 1)
+        public void GoForward(string childName = MainChild, int steps = 1)
         {
             NavigateInternal(childName, null, Direction.Forward, steps: steps);
         }
@@ -219,7 +220,7 @@ namespace GalaSoft.MvvmLight.Extensions
         /// </summary>
         /// <param name="childName">The name of the child.</param>
         /// <param name="steps">The number of steps to make.</param>
-        public void GoBack(string childName, int steps = 1)
+        public void GoBack(string childName = MainChild, int steps = 1)
         {
             NavigateInternal(childName, null, Direction.Back, steps: steps);
         }
