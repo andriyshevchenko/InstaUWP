@@ -1,7 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-using static System.Collections.Generic.Create;
-
 namespace GalaSoft.MvvmLight.Extensions.Xaml.Tests
 {
     [TestClass]

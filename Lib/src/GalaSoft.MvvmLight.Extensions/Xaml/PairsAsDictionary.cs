@@ -6,6 +6,7 @@ using Cactoos;
 
 using static System.Collections.Generic.Create;
 using static System.Functional.Func;
+using Cactoos.Reflection;
 
 namespace GalaSoft.MvvmLight.Extensions.Xaml
 {

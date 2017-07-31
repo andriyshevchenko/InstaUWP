@@ -1,5 +1,4 @@
-﻿using InputValidation;
-using System;
+﻿using System;
 using Windows.UI.Xaml.Data;
 
 namespace GalaSoft.MvvmLight.Extensions.Test.Xaml

@@ -1,6 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.VisualStudio.TestTools.UnitTesting.AppContainer;
-using GalaSoft.MvvmLight.Extensions.Xaml;
 
 namespace GalaSoft.MvvmLight.Extensions.Test.Xaml
 {

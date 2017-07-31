@@ -1,6 +1,7 @@
 ﻿using Cactoos;
 using Cactoos.Reflection;
 using Cactoos.Scalar;
+using Cactoos.Text;
 using System;
 using System.Collections.Generic;
 using System.Reflection;
