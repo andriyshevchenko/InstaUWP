@@ -13,6 +13,7 @@
                 <mvvmlight:Pair ViewTypeName="Blank" ViewModelTypeName="BlankViewModel"/>
                 <mvvmlight:Pair ViewTypeName="Error" ViewModelTypeName="IErrorViewModel"/>
                 <mvvmlight:Pair ViewTypeName="Login" ViewModelTypeName="LoginViewModel"/>
+                <mvvmlight:Pair ViewTypeName="RadialProgress" ViewModelTypeName="PleaseWaitViewModel"/>
             </mvvmlight:ViewModelConverterPipe>
 
             <ResourceDictionary.MergedDictionaries>
