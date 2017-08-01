@@ -8,13 +8,19 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <controls:Loading x:Name="LoadingControl" IsLoading="True"  >
+        <controls:Loading x:Name="LoadingControl" 
+                          IsLoading="True"  >
+            
             <StackPanel Orientation="Vertical">
-                <StackPanel Orientation="Horizontal" Padding="12">
+                <StackPanel Orientation="Horizontal"
+                            Padding="12">
                     <Grid Margin="0,0,8,0">
-                        <ProgressRing IsActive="True" Foreground="Blue" />
+                        <ProgressRing IsActive="True" 
+                                      Foreground="Blue" />
                     </Grid>
-                    <TextBlock Text="It's ok, we are working on it :)" Foreground="Black" VerticalAlignment="Center" />
+                    <TextBlock Text="It's ok, we are working on it :)"
+                               Foreground="Black"
+                               VerticalAlignment="Center" />
                 </StackPanel>
                 <Button Command="{Binding CancelCommand}"
                         Style="{StaticResource InstagramButton}"
