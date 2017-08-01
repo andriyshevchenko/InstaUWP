@@ -2,12 +2,32 @@
     x:Class="App.Login"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:App"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <StackPanel HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Width="268">
 
+            <Image Source="/Assets/sprites.png" Stretch="None"/>
+            <TextBox PlaceholderText="Mobile number or email"
+                         Style="{StaticResource InstagramTextBox}"
+                         Margin="0 8 0 0">
+
+            </TextBox>
+            <TextBox PlaceholderText="Password"
+                         Style="{StaticResource InstagramTextBox}"
+                         Margin="0 6 0 0">
+
+            </TextBox>
+            <Button Margin="0 12 0 0" 
+                    HorizontalAlignment="Center"
+                    Style="{StaticResource InstagramButton}"
+                    Width="268">
+                Proceed
+            </Button>
+        </StackPanel>
     </Grid>
 </Page>

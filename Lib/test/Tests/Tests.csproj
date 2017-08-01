@@ -75,6 +75,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Source\ErrorSafeCommandTest.cs" />
     <Compile Include="Source\HostViewModelTest.cs" />
     <Compile Include="Source\InferredNameTest.cs" />
     <Compile Include="Source\ItemTest.cs" />

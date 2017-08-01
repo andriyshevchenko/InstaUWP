@@ -15,6 +15,10 @@
                 <mvvmlight:Pair ViewTypeName="Login" ViewModelTypeName="LoginViewModel"/>
             </mvvmlight:ViewModelConverterPipe>
 
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles/InstagramButton.xaml"/>
+                <ResourceDictionary Source="Styles/InstagramTextBox.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

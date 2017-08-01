@@ -13,7 +13,10 @@
             <TextBlock >
                 Hello world
             </TextBlock>
-            <Button Content="Make an error" Command="{Binding MakeErrorCommand}"/>
-        </StackPanel>
+            <Button Content="Make an error" 
+                    Command="{Binding MakeErrorCommand}"
+                    Style="{StaticResource InstagramButton}"
+                    />
+        </StackPanel>   
     </Grid>
 </Page>

@@ -9,6 +9,7 @@
     <Import_RootNamespace>GalaSoft.MvvmLight.Extensions.Core</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Source\ErrorSafeCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Source\ErrorViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Source\ErrorViewModelWithNavigationCommands.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Source\FakeHost.cs" />
@@ -20,6 +21,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Source\ISimpleNavigationViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Source\IViewMap.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Source\RedirectViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Source\RetryCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Source\ViewModelWithNavigationCommands.cs" />
   </ItemGroup>
 </Project>

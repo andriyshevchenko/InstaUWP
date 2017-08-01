@@ -6,7 +6,7 @@ namespace App.ViewModel
     {
         public MainViewModel()
         {
-            NavigateTo(new BlankViewModel(this, "main"));
+            NavigateTo("main", new LoginViewModel(this, "main"));
         }
     }
 }

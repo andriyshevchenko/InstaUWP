@@ -15,7 +15,7 @@ namespace App.ViewModel
             throw new NotImplementedException();
         }
 
-        public BlankViewModel(INavigationRoot root, string childName = RedirectViewModel.) : base(root, childName)
+        public BlankViewModel(INavigationRoot root, string childName = MainChild) : base(root, childName)
         {
         }
     }
