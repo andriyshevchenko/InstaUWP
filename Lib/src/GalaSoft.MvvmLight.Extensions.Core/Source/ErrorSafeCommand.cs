@@ -13,13 +13,8 @@ namespace GalaSoft.MvvmLight.Extensions
     /// </summary>
     public class ErrorSafeCommand : ICommand, IAttempt
     {
-        private static ErrorSafeScalar<Unit> _initial =
-           new ErrorSafeScalar<Unit>(
-               new FuncScalar<Unit>(fun(() => { })),
-               new FuncScalar<Unit>(fun(() => { }))
-           );
-
-        private ErrorSafeScalar<Unit> _scalar = _initial;
+        private object _parameter;
+        private ErrorSafeScalar<Unit> _scalar;
         private ICommand _source;
           
         /// <summary>
@@ -29,6 +24,10 @@ namespace GalaSoft.MvvmLight.Extensions
         public ErrorSafeCommand(ICommand source)
         {
             _source = source;
+            _scalar = new ErrorSafeScalar<Unit>(
+                fun(() => _source.Execute(_parameter)),
+                () => default(Unit)
+            );
         }
 
         /// <summary>
@@ -77,10 +76,6 @@ namespace GalaSoft.MvvmLight.Extensions
         /// <param name="parameter">The parameter.</param>
         public void Execute(object parameter)
         {
-            _scalar = new ErrorSafeScalar<Unit>(
-                fun(() => _source.Execute(parameter)),
-                () => default(Unit)
-            );
             _scalar.Value();
         }
 

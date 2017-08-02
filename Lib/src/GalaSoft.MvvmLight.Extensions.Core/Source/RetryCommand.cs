@@ -13,13 +13,6 @@ namespace GalaSoft.MvvmLight.Extensions
     /// </summary>
     public class RetryCommand : ICommand, IAttempt
     {
-        private static RetryScalar<Unit> _initial =
-            new RetryScalar<Unit>(
-                new FuncScalar<Unit>(fun(() => { })),
-                int.MaxValue    
-            );
-
-
         private object _parameter;
         private RetryScalar<Unit> _scalar;
         private ICommand _source;
