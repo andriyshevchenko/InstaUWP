@@ -13,8 +13,15 @@ namespace GalaSoft.MvvmLight.Extensions
     /// </summary>
     public class ErrorSafeCommand : ICommand, IAttempt
     {
-        private ICommand _source;
+        private static ErrorSafeScalar<Unit> _initial =
+           new ErrorSafeScalar<Unit>(
+               new FuncScalar<Unit>(fun(() => { })),
+               new FuncScalar<Unit>(fun(() => { }))
+           );
 
+        private ErrorSafeScalar<Unit> _scalar = _initial;
+        private ICommand _source;
+          
         /// <summary>
         /// Initializes a new instance of <see cref="ErrorSafeCommand"/>.
         /// </summary>
@@ -70,20 +77,29 @@ namespace GalaSoft.MvvmLight.Extensions
         /// <param name="parameter">The parameter.</param>
         public void Execute(object parameter)
         {
-            new ErrorSafeScalar<Unit>(
+            _scalar = new ErrorSafeScalar<Unit>(
                 fun(() => _source.Execute(parameter)),
                 () => default(Unit)
-            ).Value();
+            );
+            _scalar.Value();
         }
 
+        /// <summary>
+        /// Returns the errors.
+        /// </summary>
+        /// <returns>The errors.</returns>
         public bool HasErrors()
         {
-            throw new NotImplementedException();
+            return _scalar.HasErrors();
         }
 
+        /// <summary>
+        /// Determines if attempt wasn't succesful.
+        /// </summary>
+        /// <returns>True, if attemt has errors.</returns>
         public Exception[] Errors()
         {
-            throw new NotImplementedException();
+            return _scalar.Errors();
         }
     }
 }

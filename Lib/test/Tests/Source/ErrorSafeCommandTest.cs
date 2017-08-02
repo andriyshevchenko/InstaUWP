@@ -17,7 +17,8 @@ namespace Tests.Source
                 monad(
                     command,
                     cmd => cmd.Execute(null)
-                )
+                ).HasErrors()
+            );
         }
     }
 }

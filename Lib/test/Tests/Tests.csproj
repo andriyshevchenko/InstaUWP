@@ -82,6 +82,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Source\NamespacedNameTest.cs" />
     <Compile Include="Source\NamespacesOfAssemblyTest.cs" />
+    <Compile Include="Source\RetryCommandTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
