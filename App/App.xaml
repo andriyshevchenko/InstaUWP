@@ -1,12 +1,17 @@
 ﻿<Application
-    x:Class="App.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:App"
     xmlns:mvvmlight="using:GalaSoft.MvvmLight.Extensions.Xaml"
+    x:Class="App.App"
     RequestedTheme="Light">
     <Application.Resources>
         <ResourceDictionary>
+
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles/InstagramButton.xaml"/>
+                <ResourceDictionary Source="Styles/InstagramTextBox.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
             <local:Locator x:Key="Locator" />
 
             <mvvmlight:ViewModelConverterPipe x:Key="viewModelConverter">
@@ -14,12 +19,9 @@
                 <mvvmlight:Pair ViewTypeName="Error" ViewModelTypeName="IErrorViewModel"/>
                 <mvvmlight:Pair ViewTypeName="Login" ViewModelTypeName="LoginViewModel"/>
                 <mvvmlight:Pair ViewTypeName="RadialProgress" ViewModelTypeName="PleaseWaitViewModel"/>
+                <mvvmlight:Pair ViewTypeName="Profile" ViewModelTypeName="ProfileViewModel"/>
             </mvvmlight:ViewModelConverterPipe>
 
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Styles/InstagramButton.xaml"/>
-                <ResourceDictionary Source="Styles/InstagramTextBox.xaml"/>
-            </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

@@ -22,11 +22,7 @@
                                Foreground="Black"
                                VerticalAlignment="Center" />
                 </StackPanel>
-                <Button Command="{Binding CancelCommand}"
-                        Style="{StaticResource InstagramButton}"
-                        HorizontalAlignment="Center">
-                    Cancel
-                </Button>
+               
             </StackPanel>
         </controls:Loading>
     </Grid>
