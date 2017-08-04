@@ -1,5 +1,4 @@
 ﻿using GalaSoft.MvvmLight.Extensions.Core;
-using Nito.Disposables;
 using System;
 using System.Threading.Tasks;
 
@@ -7,25 +6,16 @@ namespace App.ViewModel
 {
     public class ProfileViewModel : RedirectViewModel
     {
+        public string Message { get; }
+
         public async Task FetchData()
         {
-            await Task.Delay(TimeSpan.FromSeconds(3)).ConfigureAwait(false);
+            await Task.Delay(TimeSpan.FromSeconds(1)).ConfigureAwait(false);
         }
-
-        public AnonymousDisposable Initialize()
+ 
+        public ProfileViewModel(string source, RedirectViewModel other) : base(other)
         {
-            return new AnonymousDisposable(() => 
-            {
-                if (CanGoBack(2))
-                {
-                    GoBack(2);
-                }
-            });
-        }
-
-        public ProfileViewModel(RedirectViewModel other) : base(other)
-        {
-
+            Message = source;
         }
     }
 }

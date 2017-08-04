@@ -107,6 +107,8 @@
     <Compile Include="Application\MainViewModel.cs" />
     <Compile Include="Application\PleaseWaitViewModel.cs" />
     <Compile Include="Application\ProfileViewModel.cs" />
+    <Compile Include="Instagram\WrapConfig.cs" />
+    <Compile Include="Instagram\InstagramConfig.cs" />
     <Compile Include="View\Blank.xaml.cs">
       <DependentUpon>Blank.xaml</DependentUpon>
     </Compile>
