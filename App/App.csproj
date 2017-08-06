@@ -107,8 +107,7 @@
     <Compile Include="Application\MainViewModel.cs" />
     <Compile Include="Application\PleaseWaitViewModel.cs" />
     <Compile Include="Application\ProfileViewModel.cs" />
-    <Compile Include="Instagram\WrapConfig.cs" />
-    <Compile Include="Instagram\InstagramConfig.cs" />
+    <Compile Include="Instagram\NeverCloseHttp.cs" />
     <Compile Include="View\Blank.xaml.cs">
       <DependentUpon>Blank.xaml</DependentUpon>
     </Compile>
@@ -188,11 +187,8 @@
     <PackageReference Include="Cactoos.Net.UWP">
       <Version>1.0.4</Version>
     </PackageReference>
-    <PackageReference Include="InstaSharp">
-      <Version>2.0.6</Version>
-    </PackageReference>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
-      <Version>5.3.3</Version>
+      <Version>5.3.4</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Toolkit.Uwp">
       <Version>1.5.1</Version>
@@ -220,6 +216,10 @@
     <ProjectReference Include="..\Async\Mvvm.Async\Nito.Mvvm.Async.Uwp\Nito.Mvvm.Async.Uwp.csproj">
       <Project>{e4a1f3dc-9f94-4e79-ba74-57e0d69165ef}</Project>
       <Name>Nito.Mvvm.Async.Uwp</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\InstaSharper\InstaSharper.UWP\InstaSharper.UWP.csproj">
+      <Project>{ca2174e4-647f-476d-8792-d4a33c279975}</Project>
+      <Name>InstaSharper.UWP</Name>
     </ProjectReference>
     <ProjectReference Include="..\Lib\GalaSoft.MvvmLight.Extensions.Uwp.csproj">
       <Project>{699850ec-913f-4d63-9dbc-c2fccfeb76d7}</Project>

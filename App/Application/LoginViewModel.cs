@@ -1,14 +1,10 @@
 ﻿using GalaSoft.MvvmLight.Extensions.Core;
 using GalaSoft.MvvmLight.Extensions;
-using System.Windows.Input;
-using Nito.Mvvm;
+using System.Windows.Input; 
 using System.Threading.Tasks;
-using InstaSharp;
 using System.Net.Http;
-using App.Domain;
+using Nito.Mvvm;
 
-using static System.Collections.Generic.Create;
- 
 namespace App.ViewModel
 {
     /// <summary>
@@ -18,9 +14,7 @@ namespace App.ViewModel
     {
         public ICommand LoginCommand => new AsyncCommand(Proceed);
 
-        private static readonly HttpClient _http = new HttpClient();
-
-        private Properties.InstagramConfig _config = new Properties.InstagramConfig();
+        private static readonly HttpClient _http = new NeverCloseHttp();
 
         /// <summary>
         /// "Main" equivalent.
@@ -40,25 +34,8 @@ namespace App.ViewModel
 
         public async Task<string> AsynchronousOperation()
         {
-            //artificial delay
-            await Task.Delay(30).ConfigureAwait(false);
-
-            var config = new WrapConfig(_config);
-
-            var scopes = list(OAuth.Scope.Likes, OAuth.Scope.Comments);
-
-            var link =
-                OAuth.AuthLink(
-                    config.OAuthUri + "authorize",
-                    config.ClientId,
-                    config.RedirectUri,
-                    scopes,
-                    OAuth.ResponseType.Code
-                );
-
-            var message = await _http.GetAsync(link).ConfigureAwait(false);
-            return await message.Content.ReadAsStringAsync().ConfigureAwait(false);
-         }
+            return "";
+        }
 
         public LoginViewModel(INavigationRoot root, string childName) : base(root, childName)
         {
