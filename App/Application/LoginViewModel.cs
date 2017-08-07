@@ -4,9 +4,7 @@ using System.Windows.Input;
 using System.Threading.Tasks;
 using System.Net.Http;
 using Nito.Mvvm;
-using InstaSharper;
 using InstaSharper.API;
-using InstaSharper.API.Builder;
 using InstaSharper.Classes;
 
 namespace App.ViewModel
@@ -14,14 +12,14 @@ namespace App.ViewModel
     /// <summary>
     /// The entry view model for an application
     /// </summary>
-    public class LoginViewModel : RedirectViewModel
+    public class LoginViewModel : RedirectViewModelWithContent
     {
         public ICommand LoginCommand => new AsyncCommand(Proceed);
 
         private static readonly HttpClient _http = new NeverCloseHttp();
 
         private InstaApi _api = new WrapApi(new SessionData(), _http);
-
+         
         /// <summary>
         /// "Main" equivalent.
         /// </summary>
@@ -30,7 +28,18 @@ namespace App.ViewModel
         {
             NavigateTo(new PleaseWaitViewModel(this));
 
-            await AsynchronousOperation();
+            var loginResult = await AsynchronousOperation();
+
+            object viewModel;
+            if (!loginResult.Succeeded)
+            {
+                viewModel =  new BadCredentialViewModel(Reason.InvalidLogin));
+            }
+            else
+            {
+                viewModel = new BlankViewModel();
+            }
+            NavigateTo("dock", viewModel);
 
             var profileViewModel = new ProfileViewModel("", this);
 
@@ -40,15 +49,13 @@ namespace App.ViewModel
             await profileViewModel.FetchData().ConfigureAwait(false);
         }
 
-        public async Task AsynchronousOperation()
+        public async Task<IResult<bool>> AsynchronousOperation()
         {
-            await Task.Delay(System.TimeSpan.FromSeconds(3)).ConfigureAwait(false);
-            //return await _api.LoginAsync().ConfigureAwait(false);
+           return await _api.LoginAsync().ConfigureAwait(false);
         }
 
         public LoginViewModel(INavigationRoot root, string childName) : base(root, childName)
         {
-
         }
     }
 }

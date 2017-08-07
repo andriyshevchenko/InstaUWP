@@ -1,6 +1,5 @@
 ﻿using InstaSharper.API;
 using InstaSharper.Classes;
-using InstaSharper.Logger;
 using System.Net.Http;
 
 namespace App

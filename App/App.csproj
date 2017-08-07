@@ -101,18 +101,25 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Application\BadLoginViewModel.cs" />
     <Compile Include="Application\BlankViewModel.cs" />
     <Compile Include="Application\Locator.cs" />
     <Compile Include="Application\LoginViewModel.cs" />
     <Compile Include="Application\MainViewModel.cs" />
     <Compile Include="Application\PleaseWaitViewModel.cs" />
     <Compile Include="Application\ProfileViewModel.cs" />
+    <Compile Include="Instagram\LoginErrors.cs" />
     <Compile Include="Instagram\NeverCloseHttp.cs" />
+    <Compile Include="Instagram\SessionData.cs" />
+    <Compile Include="Instagram\WrapApi.cs" />
     <Compile Include="View\Blank.xaml.cs">
       <DependentUpon>Blank.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Error.xaml.cs">
       <DependentUpon>Error.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\FailedLogin.xaml.cs">
+      <DependentUpon>FailedLogin.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
@@ -153,6 +160,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Styles\InstagramErrorTextBlock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
     <Page Include="Styles\InstagramTextBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -163,6 +175,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Error.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\FailedLogin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

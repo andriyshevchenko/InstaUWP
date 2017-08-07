@@ -1,4 +1,5 @@
-﻿using InputValidation;
+﻿using System;
+using InputValidation;
 
 namespace GalaSoft.MvvmLight.Extensions.Core
 {
@@ -6,7 +7,7 @@ namespace GalaSoft.MvvmLight.Extensions.Core
     /// View model which is able to replace itself with a new.
     /// It uses a parent <see cref="INavigationRoot"/> to navigate.
     /// </summary>
-    public class RedirectViewModel : ViewModelBase, IRedirectViewModel
+    public class RedirectViewModel : ViewModelBase, IRedirectViewModel, INavigationChild
     {
         /// <summary>
         /// The name of the main child. Used as a default parameter in many methods.
@@ -23,7 +24,12 @@ namespace GalaSoft.MvvmLight.Extensions.Core
         {
 
         }
-        
+
+        public RedirectViewModel(RedirectViewModelWithContent other) 
+        {
+
+        }
+
         /// <summary>
         /// Initializes a new instance of <see cref="RedirectViewModel"/>.
         /// </summary>
@@ -81,5 +87,15 @@ namespace GalaSoft.MvvmLight.Extensions.Core
         {
             _root.NavigateTo(_child, viewModel);
         }
+
+        /// <summary>
+        /// The navigation root.
+        /// </summary>
+        public INavigationRoot Root => _root;
+
+        /// <summary>
+        /// The name of the child.
+        /// </summary>
+        public string ChildName => _child;
     }
 }

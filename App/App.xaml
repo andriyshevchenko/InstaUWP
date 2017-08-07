@@ -11,6 +11,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Styles/InstagramButton.xaml"/>
                 <ResourceDictionary Source="Styles/InstagramTextBox.xaml"/>
+                <ResourceDictionary Source="Styles/InstagramErrorTextBlock"/>
             </ResourceDictionary.MergedDictionaries>
             <local:Locator x:Key="Locator" />
 
@@ -20,6 +21,7 @@
                 <mvvmlight:Pair ViewTypeName="Login" ViewModelTypeName="LoginViewModel"/>
                 <mvvmlight:Pair ViewTypeName="RadialProgress" ViewModelTypeName="PleaseWaitViewModel"/>
                 <mvvmlight:Pair ViewTypeName="Profile" ViewModelTypeName="ProfileViewModel"/>
+                <mvvmlight:Pair ViewTypeName="FailedLogin" ViewModelTypeName="BadLoginViewModel"/>
             </mvvmlight:ViewModelConverterPipe>
 
         </ResourceDictionary>

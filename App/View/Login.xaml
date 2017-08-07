@@ -30,15 +30,10 @@
                 Proceed
             </Button>
 
-            <TextBlock Margin="0 12 0 0"
-                       Height="36"
-                       Foreground="#ED4956"
-                       TextWrapping="WrapWholeWords"
-                       FontSize="14"
-                       FontStretch="Normal"
-                       TextAlignment="Center">
-                Sorry, your password was incorrect. Please double-check your password.
-            </TextBlock>
+            <ContentControl Content="{Binding Children, 
+                            Converter={StaticResource viewModelConverter}, 
+                            ConverterParameter='dock'}"
+             />
         </StackPanel>
     </Grid>
 </Page>
