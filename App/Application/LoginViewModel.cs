@@ -1,9 +1,13 @@
 ﻿using GalaSoft.MvvmLight.Extensions.Core;
 using GalaSoft.MvvmLight.Extensions;
-using System.Windows.Input; 
+using System.Windows.Input;
 using System.Threading.Tasks;
 using System.Net.Http;
 using Nito.Mvvm;
+using InstaSharper;
+using InstaSharper.API;
+using InstaSharper.API.Builder;
+using InstaSharper.Classes;
 
 namespace App.ViewModel
 {
@@ -16,6 +20,8 @@ namespace App.ViewModel
 
         private static readonly HttpClient _http = new NeverCloseHttp();
 
+        private InstaApi _api = new WrapApi(new SessionData(), _http);
+
         /// <summary>
         /// "Main" equivalent.
         /// </summary>
@@ -24,17 +30,20 @@ namespace App.ViewModel
         {
             NavigateTo(new PleaseWaitViewModel(this));
 
-            var profileViewModel = new ProfileViewModel(await AsynchronousOperation(), this);
+            await AsynchronousOperation();
+
+            var profileViewModel = new ProfileViewModel("", this);
 
             NavigateTo(profileViewModel);
 
-            //no code is running below except asynchronous operation, so use ConfigureAwait(false)
+            //no code is running below except an asynchronous operation, so use ConfigureAwait(false)
             await profileViewModel.FetchData().ConfigureAwait(false);
         }
 
-        public async Task<string> AsynchronousOperation()
+        public async Task AsynchronousOperation()
         {
-            return "";
+            await Task.Delay(System.TimeSpan.FromSeconds(3)).ConfigureAwait(false);
+            //return await _api.LoginAsync().ConfigureAwait(false);
         }
 
         public LoginViewModel(INavigationRoot root, string childName) : base(root, childName)

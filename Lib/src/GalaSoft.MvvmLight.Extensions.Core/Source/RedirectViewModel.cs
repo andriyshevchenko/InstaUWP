@@ -6,7 +6,7 @@ namespace GalaSoft.MvvmLight.Extensions.Core
     /// View model which is able to replace itself with a new.
     /// It uses a parent <see cref="INavigationRoot"/> to navigate.
     /// </summary>
-    public class RedirectViewModel : IRedirectViewModel
+    public class RedirectViewModel : ViewModelBase, IRedirectViewModel
     {
         /// <summary>
         /// The name of the main child. Used as a default parameter in many methods.

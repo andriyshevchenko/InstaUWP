@@ -13,6 +13,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Source\ErrorViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Source\ErrorViewModelWithNavigationCommands.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Source\FakeHost.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Source\HostingRedirectViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Source\HostViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Source\IErrorViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Source\INavigationRoot.cs" />
