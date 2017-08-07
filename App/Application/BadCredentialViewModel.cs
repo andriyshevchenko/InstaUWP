@@ -42,7 +42,7 @@ namespace App.ViewModel
                     Message = errors["empty_login"];
                     break;
                 case Reason.EmptyPassword:
-                    Message = errors["invalid_password"];
+                    Message = errors["empty_password"];
                     break;
                 default:
                     break;

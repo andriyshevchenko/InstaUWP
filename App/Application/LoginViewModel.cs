@@ -9,6 +9,7 @@ using InstaSharper.Classes;
 using Cactoos.Text;
 using Cactoos;
 using Cactoos.Scalar;
+using Cactoos.Scalar.Async;
 
 namespace App.ViewModel
 {
@@ -34,7 +35,13 @@ namespace App.ViewModel
 
             NavigateTo(new PleaseWaitViewModel(this));
 
-            var loginResult = await AsynchronousOperation();
+            var login =
+                new ErrorSafeAsyncScalar<IResult<bool>>(
+                    _api.Value().LoginAsync(),
+                    () => Result.Fail<bool>("an exception was thrown")
+                );
+
+            var loginResult = await login.Value();
 
             if (loginResult.Succeeded)
             {
@@ -70,23 +77,14 @@ namespace App.ViewModel
                    );
         }
 
-        private void ValidatePassword()
+        private void Validate(string value, Reason reason)
         {
-            if (new IsBlank(Password).Value())
+            if (new IsBlank(value).Value())
             {
-                NavigateTo("dock", new BadCredentialViewModel(Reason.EmptyPassword));
+                NavigateTo("dock", new BadCredentialViewModel(reason));
             }
         }
-
-        private void ValidateLogin()
-        {
-            if (new IsBlank(Login).Value())
-            {
-                NavigateTo("dock", new BadCredentialViewModel(Reason.EmptyLogin));
-            }
-        }
-
-
+          
         private string _login;
 
         public string Login
@@ -94,7 +92,7 @@ namespace App.ViewModel
             get { return _login; }
             set
             {
-                ValidateLogin();
+                Validate(value, Reason.EmptyLogin);
                 Set(ref _login, value);
             }
         }
@@ -106,7 +104,7 @@ namespace App.ViewModel
             get { return _password; }
             set
             {
-                ValidatePassword();
+                Validate(value, Reason.EmptyPassword);
                 Set(ref _password, value);
             }
         }
