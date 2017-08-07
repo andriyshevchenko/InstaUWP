@@ -101,7 +101,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Application\BadLoginViewModel.cs" />
+    <Compile Include="Application\BadCredentialViewModel.cs" />
     <Compile Include="Application\BlankViewModel.cs" />
     <Compile Include="Application\Locator.cs" />
     <Compile Include="Application\LoginViewModel.cs" />
@@ -201,7 +201,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Cactoos.Net.UWP">
-      <Version>1.0.4</Version>
+      <Version>1.0.5</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
       <Version>5.3.4</Version>

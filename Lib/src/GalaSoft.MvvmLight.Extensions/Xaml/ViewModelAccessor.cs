@@ -34,7 +34,7 @@ namespace GalaSoft.MvvmLight.Extensions.Xaml
             {
                 return children[childName];
             }
-            throw new KeyNotFoundException(nameof(childName));
+            throw new KeyNotFoundException(childName);
         }
 
         /// <summary>

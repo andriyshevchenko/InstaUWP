@@ -180,10 +180,9 @@ namespace GalaSoft.MvvmLight.Extensions
 
             //Notify UI listeners.
             _children[childName] = VM;
-            //System.Threading.SynchronizationContext.Current.Post(
-            /* state =>*/
-            Set(nameof(Children), ref notificationFlag, !notificationFlag);//, null
-            //);
+            System.Threading.SynchronizationContext.Current.Post(
+                state => Set(nameof(Children), ref notificationFlag, !notificationFlag), null
+            );
         }
 
         /// <summary>

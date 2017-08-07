@@ -13,11 +13,13 @@
 
             <Image Source="/Assets/sprites.png" Stretch="None"/>
             <TextBox PlaceholderText="Mobile number or email"
+                     Text="{Binding Login, Mode=TwoWay}"
                          Style="{StaticResource InstagramTextBox}"
                          Margin="0 8 0 0">
 
             </TextBox>
             <TextBox PlaceholderText="Password"
+                     Text="{Binding Password, Mode=TwoWay}"
                          Style="{StaticResource InstagramTextBox}"
                          Margin="0 6 0 0">
 
@@ -30,7 +32,8 @@
                 Proceed
             </Button>
 
-            <ContentControl Content="{Binding Children, 
+            <ContentControl Margin="0 12 0 0"
+                            Content="{Binding Children, 
                             Converter={StaticResource viewModelConverter}, 
                             ConverterParameter='dock'}"
              />

@@ -4,10 +4,10 @@ namespace App
 {
     public class SessionData : UserSessionData
     {
-        public SessionData() 
+        public SessionData(string userName, string userPassword) 
         {
-            UserName = "shewchenkoandriy";
-            Password = "fathergorio";
+            UserName = userName;
+            Password = userPassword;
         }
     }
 }

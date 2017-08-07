@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Extensions;
 using GalaSoft.MvvmLight.Extensions.Core;
 using System.Windows.Input;
 
@@ -16,7 +17,12 @@ namespace App.ViewModel
             }
         }
 
-        public PleaseWaitViewModel(RedirectViewModel other) : base(other)
+        public PleaseWaitViewModel(INavigationRoot root, string child) : base(root, child)
+        {
+
+        }
+
+        public PleaseWaitViewModel(INavigationChild other) : base(other)
         {
 
         }

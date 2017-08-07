@@ -1,5 +1,4 @@
-﻿using System;
-using InputValidation;
+﻿using InputValidation;
 
 namespace GalaSoft.MvvmLight.Extensions.Core
 {
@@ -20,12 +19,16 @@ namespace GalaSoft.MvvmLight.Extensions.Core
         /// Initializes a new instance of <see cref="RedirectViewModel"/>.
         /// </summary>
         /// <param name="other">Other <see cref="RedirectViewModel"/>.</param>
-        public RedirectViewModel(RedirectViewModel other) : this(other._root, other._child) 
+        public RedirectViewModel(RedirectViewModel other) : this(other._root, other._child)
         {
 
         }
 
-        public RedirectViewModel(RedirectViewModelWithContent other) 
+        /// <summary>
+        /// Initializes a new instance of <see cref="RedirectViewModel"/>.
+        /// </summary>
+        /// <param name="other">Other <see cref="INavigationChild"/>.</param>
+        public RedirectViewModel(INavigationChild other) : this(other.Root, other.ChildName)
         {
 
         }
