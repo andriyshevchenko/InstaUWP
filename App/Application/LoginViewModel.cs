@@ -10,6 +10,7 @@ using Cactoos.Text;
 using Cactoos;
 using Cactoos.Scalar;
 using Cactoos.Scalar.Async;
+using Cactoos.List;
 
 namespace App.ViewModel
 {
@@ -30,6 +31,11 @@ namespace App.ViewModel
         /// <returns>New <see cref="Task"/> object.</returns>
         private async Task Proceed()
         {
+            if (!Validate(Login, Reason.EmptyLogin) || !Validate(Password, Reason.EmptyPassword))
+            {
+                return;
+            }
+
             //artificial delay
             await AsynchronousDelay();
 
@@ -37,7 +43,7 @@ namespace App.ViewModel
 
             var login =
                 new ErrorSafeAsyncScalar<IResult<bool>>(
-                    _api.Value().LoginAsync(),
+                    () => _api.Value().LoginAsync(),
                     () => Result.Fail<bool>("an exception was thrown")
                 );
 
@@ -54,7 +60,10 @@ namespace App.ViewModel
             }
             else
             {
-                NavigateTo("dock", new BadCredentialViewModel(Reason.InvalidLogin));
+                GoBack();
+                NavigateTo("dock", new BadCredentialViewModel(login.Errors()));
+                Set(nameof(Login), ref _login, string.Empty);
+                Set(nameof(Password), ref _password, string.Empty);
             }
         }
 
@@ -77,14 +86,16 @@ namespace App.ViewModel
                    );
         }
 
-        private void Validate(string value, Reason reason)
+        private bool Validate(string value, Reason reason)
         {
-            if (new IsBlank(value).Value())
+            bool blank = new IsBlank(value).Value();
+            if (blank)
             {
                 NavigateTo("dock", new BadCredentialViewModel(reason));
             }
+            return !blank;
         }
-          
+
         private string _login;
 
         public string Login

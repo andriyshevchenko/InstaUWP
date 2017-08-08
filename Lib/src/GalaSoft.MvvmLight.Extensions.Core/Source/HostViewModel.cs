@@ -122,7 +122,7 @@ namespace GalaSoft.MvvmLight.Extensions
         /// <summary>
         /// The children.
         /// </summary>
-        public IReadOnlyDictionary<string, object> Children => (IReadOnlyDictionary<string, object>)_children;
+        public IReadOnlyDictionary<string, object> Children => _children;
 
         /// <summary>
         /// Navigates a specific child to a specific view, with a specific direction in navigation 
@@ -180,9 +180,7 @@ namespace GalaSoft.MvvmLight.Extensions
 
             //Notify UI listeners.
             _children[childName] = VM;
-            System.Threading.SynchronizationContext.Current.Post(
-                state => Set(nameof(Children), ref notificationFlag, !notificationFlag), null
-            );
+            Set(nameof(Children), ref notificationFlag, !notificationFlag);
         }
 
         /// <summary>

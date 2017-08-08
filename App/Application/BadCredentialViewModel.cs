@@ -1,5 +1,7 @@
 ﻿using Cactoos;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
 using static System.Functional.FlowControl;
 
@@ -17,9 +19,19 @@ namespace App.ViewModel
     {
         public string Message { get; }
 
-        public BadCredentialViewModel()
+        public BadCredentialViewModel(Exception[] e) : this(e.First().Message)
         {
-            Message = string.Empty;
+
+        }
+
+        public BadCredentialViewModel(string message) : this(new Cactoos.Text.Text(message))
+        {
+
+        }
+
+        public BadCredentialViewModel(IText message)
+        {
+            Message = message.String();
         }
 
         public BadCredentialViewModel(Reason reason) : this(new LoginErrors(), reason)
