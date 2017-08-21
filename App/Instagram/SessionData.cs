@@ -4,7 +4,7 @@ namespace App
 {
     public class SessionData : UserSessionData
     {
-        public SessionData(string userName, string userPassword) 
+        public SessionData(string userName, string userPassword)
         {
             UserName = userName;
             Password = userPassword;

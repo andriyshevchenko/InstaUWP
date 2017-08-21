@@ -54,7 +54,7 @@ namespace App.ViewModel
                 var profileViewModel = new ProfileViewModel("The message", this);
 
                 NavigateTo(profileViewModel);
-
+            
                 //no code is running below except an asynchronous operation, so use ConfigureAwait(false)
                 await profileViewModel.FetchData().ConfigureAwait(false);
             }
