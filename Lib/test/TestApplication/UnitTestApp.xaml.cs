@@ -4,8 +4,9 @@ using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using InputValidation;
 
-namespace GalaSoft.MvvmLight.Extensions.Test
+namespace TestApplication
 {
     /// <summary>
     /// Provides application-specific behavior to supplement the default Application class.
@@ -19,6 +20,11 @@ namespace GalaSoft.MvvmLight.Extensions.Test
         public App()
         {
             this.InitializeComponent();
+            Window.Current.Content.As<Frame>().Content = new BlankPage()
+            {
+                DataContext = Locator.MainViewModel
+            };
+
             this.Suspending += OnSuspending;
         }
 
@@ -61,7 +67,7 @@ namespace GalaSoft.MvvmLight.Extensions.Test
 
             // Ensure the current window is active
             Window.Current.Activate();
-
+         
             Microsoft.VisualStudio.TestPlatform.TestExecutor.UnitTestClient.Run(e.Arguments);
         }
 

@@ -15,7 +15,7 @@ namespace Tests.Source
             var assemblyOfType2 = new AssemblyOfType<InferredNameTest>();
             var inferredName =
                 new InferredName(
-                   new TypeCacheWithoutNamespace(
+                   new SimpleNameTypeCache(
                        new MergedTypeCache(
                            assemblyOfType,
                            assemblyOfType2
@@ -23,7 +23,7 @@ namespace Tests.Source
                    ),
                    nameof(InferredNameTest)
                 );
-            Assert.AreEqual("Tests.Source.InferredNameTest", inferredName.Value());
+            Assert.AreEqual("Tests.Source.InferredNameTest", inferredName.String());
         }
     }
 }

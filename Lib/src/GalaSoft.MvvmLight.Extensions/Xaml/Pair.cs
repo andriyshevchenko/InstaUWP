@@ -36,9 +36,9 @@ namespace GalaSoft.MvvmLight.Extensions.Xaml
                   new MergedTypeCache(_libTypeCache, _appTypeCache)
               );
 
-        private static IScalar<IReadOnlyDictionary<string, Type>> _typeCacheWithoutNamespace
-            = new CachedScalar<IReadOnlyDictionary<string, Type>>(
-                  new TypeCacheWithoutNamespace(
+        private static IScalar<IReadOnlyDictionary<string, Type[]>> _typeCacheWithoutNamespace
+            = new CachedScalar<IReadOnlyDictionary<string, Type[]>>(
+                  new SimpleNameTypeCache(
                       _mergedTypeCache
                   )
               );
@@ -51,15 +51,14 @@ namespace GalaSoft.MvvmLight.Extensions.Xaml
             _correctViewTypeName
                = new CachedScalar<string>(
                      new LazyScalar<string>(() =>
-                         new InferredName(_typeCacheWithoutNamespace, ViewTypeName).Value()
+                         new InferredName(_typeCacheWithoutNamespace, ViewTypeName).String()
                      )
                  );
-            
-
+             
             _correctViewModelTypeName
                = new CachedScalar<string>(
                      new LazyScalar<string>(() =>
-                         new InferredName(_typeCacheWithoutNamespace, ViewModelTypeName).Value()
+                         new InferredName(_typeCacheWithoutNamespace, ViewModelTypeName).String()
                      )
                );
         }

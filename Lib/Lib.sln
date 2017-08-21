@@ -13,8 +13,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestLibNet45", "test\TestLi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "test\Tests\Tests.csproj", "{8E980D23-869D-4626-AC9E-AB45156F47CF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GalaSoft.MvvmLight.Extensions.Test", "test\GalaSoft.MvvmLight.Extensions.Test\GalaSoft.MvvmLight.Extensions.Test.csproj", "{D83B884D-E59A-42F9-9CE9-ED21648A398E}"
-EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		src\GalaSoft.MvvmLight.Extensions.Core\GalaSoft.MvvmLight.Extensions.Core.projitems*{30d8d9ae-d56a-4ce3-969e-6eb3102d4021}*SharedItemsImports = 4
@@ -82,26 +80,6 @@ Global
 		{8E980D23-869D-4626-AC9E-AB45156F47CF}.Release|x64.Build.0 = Release|Any CPU
 		{8E980D23-869D-4626-AC9E-AB45156F47CF}.Release|x86.ActiveCfg = Release|Any CPU
 		{8E980D23-869D-4626-AC9E-AB45156F47CF}.Release|x86.Build.0 = Release|Any CPU
-		{D83B884D-E59A-42F9-9CE9-ED21648A398E}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{D83B884D-E59A-42F9-9CE9-ED21648A398E}.Debug|ARM.ActiveCfg = Debug|ARM
-		{D83B884D-E59A-42F9-9CE9-ED21648A398E}.Debug|ARM.Build.0 = Debug|ARM
-		{D83B884D-E59A-42F9-9CE9-ED21648A398E}.Debug|ARM.Deploy.0 = Debug|ARM
-		{D83B884D-E59A-42F9-9CE9-ED21648A398E}.Debug|x64.ActiveCfg = Debug|x64
-		{D83B884D-E59A-42F9-9CE9-ED21648A398E}.Debug|x64.Build.0 = Debug|x64
-		{D83B884D-E59A-42F9-9CE9-ED21648A398E}.Debug|x64.Deploy.0 = Debug|x64
-		{D83B884D-E59A-42F9-9CE9-ED21648A398E}.Debug|x86.ActiveCfg = Debug|x86
-		{D83B884D-E59A-42F9-9CE9-ED21648A398E}.Debug|x86.Build.0 = Debug|x86
-		{D83B884D-E59A-42F9-9CE9-ED21648A398E}.Debug|x86.Deploy.0 = Debug|x86
-		{D83B884D-E59A-42F9-9CE9-ED21648A398E}.Release|Any CPU.ActiveCfg = Release|x86
-		{D83B884D-E59A-42F9-9CE9-ED21648A398E}.Release|ARM.ActiveCfg = Release|ARM
-		{D83B884D-E59A-42F9-9CE9-ED21648A398E}.Release|ARM.Build.0 = Release|ARM
-		{D83B884D-E59A-42F9-9CE9-ED21648A398E}.Release|ARM.Deploy.0 = Release|ARM
-		{D83B884D-E59A-42F9-9CE9-ED21648A398E}.Release|x64.ActiveCfg = Release|x64
-		{D83B884D-E59A-42F9-9CE9-ED21648A398E}.Release|x64.Build.0 = Release|x64
-		{D83B884D-E59A-42F9-9CE9-ED21648A398E}.Release|x64.Deploy.0 = Release|x64
-		{D83B884D-E59A-42F9-9CE9-ED21648A398E}.Release|x86.ActiveCfg = Release|x86
-		{D83B884D-E59A-42F9-9CE9-ED21648A398E}.Release|x86.Build.0 = Release|x86
-		{D83B884D-E59A-42F9-9CE9-ED21648A398E}.Release|x86.Deploy.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

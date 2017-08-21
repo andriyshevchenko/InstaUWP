@@ -4,6 +4,10 @@ using System.Collections.Generic;
 using InputValidation;
 
 using static System.Collections.Generic.Create;
+using Cactoos.IO;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace GalaSoft.MvvmLight.Extensions
 {
@@ -18,6 +22,14 @@ namespace GalaSoft.MvvmLight.Extensions
         private bool notificationFlag = false;
         private ConcurrentDictionary<string, object> _children = new ConcurrentDictionary<string, object>();
         private Dictionary<string, Entry> _items = new Dictionary<string, Entry>();
+
+        public HostViewModel()
+        {
+            PropertyChanged += (s, a) =>
+             {
+                
+             };
+        }
 
         /// <summary>
         /// Navigation diretion.
@@ -42,7 +54,7 @@ namespace GalaSoft.MvvmLight.Extensions
         {
             private readonly List<object> _vm;
             private int _position;
-            
+
             /// <summary>
             /// Determines if current view is on top of navigation stack.
             /// </summary>
@@ -122,7 +134,7 @@ namespace GalaSoft.MvvmLight.Extensions
         /// <summary>
         /// The children.
         /// </summary>
-        public IReadOnlyDictionary<string, object> Children => _children;
+        public IReadOnlyDictionary<string, object> Children => (IReadOnlyDictionary<string, object>)_children;
 
         /// <summary>
         /// Navigates a specific child to a specific view, with a specific direction in navigation 
@@ -193,7 +205,7 @@ namespace GalaSoft.MvvmLight.Extensions
         {
             return _items.ContainsKey(childName) && _items[childName].CanGoBack(steps);
         }
-        
+
         /// <summary>
         /// Determines if specific child can navigate forward.
         /// </summary>
