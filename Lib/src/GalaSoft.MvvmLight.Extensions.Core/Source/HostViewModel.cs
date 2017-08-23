@@ -4,10 +4,6 @@ using System.Collections.Generic;
 using InputValidation;
 
 using static System.Collections.Generic.Create;
-using Cactoos.IO;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace GalaSoft.MvvmLight.Extensions
 {
@@ -22,14 +18,6 @@ namespace GalaSoft.MvvmLight.Extensions
         private bool notificationFlag = false;
         private ConcurrentDictionary<string, object> _children = new ConcurrentDictionary<string, object>();
         private Dictionary<string, Entry> _items = new Dictionary<string, Entry>();
-
-        public HostViewModel()
-        {
-            PropertyChanged += (s, a) =>
-             {
-                
-             };
-        }
 
         /// <summary>
         /// Navigation diretion.

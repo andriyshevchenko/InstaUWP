@@ -6,7 +6,8 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using Serilog;
 using InputValidation;
-using GalaSoft.MvvmLight.Extensions; 
+using GalaSoft.MvvmLight.Extensions;
+using Serilog.Core;
 
 namespace App
 {
@@ -15,13 +16,14 @@ namespace App
     /// </summary>
     sealed partial class App : Windows.UI.Xaml.Application
     {
+        private static Logger _logger;
         static App()
         {
-            Log.Logger = new LoggerConfiguration()
-                            .WriteTo.RollingFile("C:\\projects\\log-{Date}.txt")
+            _logger = new LoggerConfiguration()
+                            .WriteTo.RollingFile(@"C:\Log-{Date}.txt")
                             .CreateLogger();
 
-            Log.Information("app starting");
+            _logger.Information("app starting");
         }
 
         /// <summary>
@@ -35,20 +37,20 @@ namespace App
             this.UnhandledException += (sender, e) =>
             {
                 e.Handled = true;
-                Log.Error($"app encountered an unhandled exception: {e.Exception.ToString()}");
-	
-		//this is "our" MainViewModel
+                _logger.Error($"app encountered an unhandled exception: {e.Exception.ToString()}");
+
+                //this is "our" MainViewModel
                 INavigationRoot navigationRoot = Window.Current.Content
                     .As<Frame>().Content
                     .As<FrameworkElement>().DataContext
-		            .As<INavigationRoot>();
+                    .As<INavigationRoot>();
 
                 navigationRoot.NavigateTo(
                       "main",
-                      new ErrorViewModelWithNavigationCommands(navigationRoot, e.Exception) 
+                      new ErrorViewModelWithNavigationCommands(navigationRoot, e.Exception)
                 );
             };
-            Log.Information("app started succesfully");
+            _logger.Information("app started succesfully");
         }
 
         /// <summary>

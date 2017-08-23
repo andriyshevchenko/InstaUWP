@@ -17,6 +17,11 @@ namespace App.ViewModel
     {
         public string Message { get; }
 
+        public BadCredentialViewModel(IAttempt attempt) : this(attempt.Errors())
+        {
+
+        }
+
         public BadCredentialViewModel(Exception[] e) : this(e.First().Message)
         {
 

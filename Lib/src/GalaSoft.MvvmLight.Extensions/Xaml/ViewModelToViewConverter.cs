@@ -3,6 +3,7 @@ using Windows.UI.Xaml.Data;
 using InputValidation;
 using System.Collections.Generic;
 using System.Linq;
+using Windows.UI.Xaml;
 
 namespace GalaSoft.MvvmLight.Extensions.Xaml
 {
@@ -69,6 +70,9 @@ namespace GalaSoft.MvvmLight.Extensions.Xaml
         /// <returns>New view instance for this view model.</returns>
         public object Convert(object value, Type targetType, object parameter, string language)
         {
+            if (value == DependencyProperty.UnsetValue)
+                return null;
+            
             return ViewMap
                 .CheckNotNull(NoIViewMapDefinedInXaml)
                 .GetViewFor(value);

@@ -2,6 +2,7 @@
 using Windows.UI.Xaml.Data;
 using InputValidation;
 using System.Collections.Generic;
+using Windows.UI.Xaml;
 
 namespace GalaSoft.MvvmLight.Extensions.Xaml
 {
@@ -34,7 +35,7 @@ namespace GalaSoft.MvvmLight.Extensions.Xaml
             {
                 return children[childName];
             }
-            throw new KeyNotFoundException(childName);
+            return DependencyProperty.UnsetValue;
         }
 
         /// <summary>

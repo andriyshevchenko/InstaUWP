@@ -10,7 +10,6 @@ using Cactoos.Text;
 using Cactoos;
 using Cactoos.Scalar;
 using Cactoos.Scalar.Async;
-using Cactoos.List;
 
 namespace App.ViewModel
 {
@@ -23,7 +22,7 @@ namespace App.ViewModel
 
         private static readonly HttpClient _http = new NeverCloseHttp();
 
-        private IScalar<InstaApi> _api;
+        private IScalar<IInstaApi> _api;
 
         /// <summary>
         /// "Main" equivalent.
@@ -31,7 +30,8 @@ namespace App.ViewModel
         /// <returns>New <see cref="Task"/> object.</returns>
         private async Task Proceed()
         {
-            if (!Validate(Login, Reason.EmptyLogin) || !Validate(Password, Reason.EmptyPassword))
+            if (!Validate(Login, Reason.EmptyLogin) || 
+                !Validate(Password, Reason.EmptyPassword))
             {
                 return;
             }
@@ -61,7 +61,14 @@ namespace App.ViewModel
             else
             {
                 GoBack();
-                NavigateTo("dock", new BadCredentialViewModel(login.Errors()));
+                if (login.HasErrors())
+                {
+                    NavigateTo("dock", new BadCredentialViewModel(login));
+                }
+                else
+                {
+                    NavigateTo("dock", new BadCredentialViewModel(loginResult.Info.Message));
+                }
                 Set(nameof(Login), ref _login, string.Empty);
                 Set(nameof(Password), ref _password, string.Empty);
             }
@@ -71,18 +78,13 @@ namespace App.ViewModel
         {
             await Task.Delay(30).ConfigureAwait(false);
         }
-
-        public async Task<IResult<bool>> AsynchronousOperation()
-        {
-            return await _api.Value().LoginAsync().ConfigureAwait(false);
-        }
-
+         
         public LoginViewModel(INavigationRoot root, string childName) : base(root, childName)
         {
-            _api = new LazyScalar<InstaApi>(() =>
+            _api = new LazyScalar<IInstaApi>(() =>
                         new WrapApi(
                             new SessionData(Login, Password), _http
-                        )
+                        ).Value()
                    );
         }
 
