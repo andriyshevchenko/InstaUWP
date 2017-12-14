@@ -16,12 +16,6 @@ namespace GalaSoft.MvvmLight.Extensions.Xaml
     /// </summary>
     public class PairsAsDictionary : IScalar<Dictionary<Type, Func<UserControl>>>
     {
-        /// <summary>
-        /// Reuse the instances.
-        /// </summary>
-        private static Dictionary<Type, UserControl> _instances 
-            = new Dictionary<Type, UserControl>();
-
         private readonly IList<IPair> items;
 
         /// <summary>
@@ -30,33 +24,20 @@ namespace GalaSoft.MvvmLight.Extensions.Xaml
         /// <returns>New dictionary instance.</returns>
         public Dictionary<Type, Func<UserControl>> Value()
         {
-            return dictionary(
-                       map(
-                           items,
-                           item => (
-                               item.ViewModel,
-                               fun(() => 
-                               {
-                                   Type type = item.View;
-
-                                   if (_instances.ContainsKey(type))
-                                   {
-                                       return _instances[type];
-                                   }
-
-                                   _instances[type] = new FastObject(type)
-                                       .Value()
-                                       .As<UserControl>();
-
-                                   return _instances[type];
-                               })
-                           )
-                        )
-                   );
+            var dictionary = new Dictionary<Type, Func<UserControl>>(items.Count);
+            for (int i = 0; i < items.Count; i++)
+            {
+                var pair = items[i];
+                dictionary.Add(
+                    pair.ViewModelType, 
+                    () => (UserControl)new FastObject(pair.ViewType).Value()
+                );
+            }
+            return dictionary;
         }
 
         /// <summary>
-        /// Initializes a new instance of <see cref="PairsAsDictionary"/>
+        /// Initializes a new instance of <see cref="PairsAsDictionary"/>.
         /// </summary>
         /// <param name="items">The pairs.</param>
         public PairsAsDictionary(IList<IPair> items)

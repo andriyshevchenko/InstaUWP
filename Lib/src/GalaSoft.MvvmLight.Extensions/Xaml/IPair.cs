@@ -10,11 +10,11 @@ namespace GalaSoft.MvvmLight.Extensions.Xaml
         /// <summary>
         /// The view type.
         /// </summary>
-        Type View { get; }
+        Type ViewType { get; }
         
         /// <summary>
         /// The view model type.
         /// </summary>
-        Type ViewModel { get; }
+        Type ViewModelType { get; }
     }
 }

@@ -1,0 +1,23 @@
+﻿<Application
+    x:Class="ExampleApplication.App"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mvvmlight="using:GalaSoft.MvvmLight.Extensions.Xaml"
+    xmlns:testapplication="using:TestApplication"
+    RequestedTheme="Light">
+    <Application.Resources>
+        <ResourceDictionary>
+            <testapplication:Locator x:Key="Locator"/>
+
+            <mvvmlight:ViewModelConverterPipe x:Key="viewModelConverter">
+                <mvvmlight:Pair View="BlankPage" ViewModel="BlankPageViewModel"/>
+                <mvvmlight:Pair View="OtherPage" ViewModel="OtherPageViewModel"/>
+                <mvvmlight:Pair View="ReproduceErrorPage" ViewModel="ReproduceErrorViewModel"/>
+                <mvvmlight:Pair View="FirstPart" ViewModel="FirstPartViewModel"/>
+                <mvvmlight:Pair View="SecondPart" ViewModel="SecondPartViewModel"/>
+                <mvvmlight:Pair View="SeeMore" ViewModel="SeeMoreViewModel"/>
+                <mvvmlight:Pair View="ErrorPage" ViewModel="ErrorViewModelWithNavigationCommands"/>
+            </mvvmlight:ViewModelConverterPipe>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

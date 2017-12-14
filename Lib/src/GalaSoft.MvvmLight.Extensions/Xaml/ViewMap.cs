@@ -63,14 +63,15 @@ namespace GalaSoft.MvvmLight.Extensions.Xaml
             }
             else
             {
+                Func<UserControl> source;
+
                 //check if base type is present in dictionary
-                TypeInfo typeInfo = type.GetTypeInfo();
-                Type baseType = typeInfo.BaseType;
+                Type baseType = type.GetTypeInfo().BaseType;
                 if (Views.ContainsKey(baseType))
                 {
                     //redirect to base type view 
-                    Views[type] = Views[baseType];
-                    return new LazyUserControl(Views[baseType], viewModel).Value();
+                    source = Views[type] = Views[baseType];
+                    return new LazyUserControl(source, viewModel).Value();
                 }
 
                 //check if dictionary contains any of implemented

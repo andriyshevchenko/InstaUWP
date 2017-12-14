@@ -51,14 +51,14 @@ namespace GalaSoft.MvvmLight.Extensions.Xaml
             _correctViewTypeName
                = new CachedScalar<string>(
                      new LazyScalar<string>(() =>
-                         new InferredName(_typeCacheWithoutNamespace, ViewTypeName).String()
+                         new InferredName(_typeCacheWithoutNamespace, View).String()
                      )
                  );
              
             _correctViewModelTypeName
                = new CachedScalar<string>(
                      new LazyScalar<string>(() =>
-                         new InferredName(_typeCacheWithoutNamespace, ViewModelTypeName).String()
+                         new InferredName(_typeCacheWithoutNamespace, ViewModel).String()
                      )
                );
         }
@@ -66,17 +66,17 @@ namespace GalaSoft.MvvmLight.Extensions.Xaml
         /// <summary>
         /// The view type.
         /// </summary>
-        public Type View => _mergedTypeCache.Value()[_correctViewTypeName.Value()];
+        public Type ViewType => _mergedTypeCache.Value()[_correctViewTypeName.Value()];
 
         /// <summary>
         /// The view model type.
         /// </summary>
-        public Type ViewModel => _mergedTypeCache.Value()[_correctViewModelTypeName.Value()];
+        public Type ViewModelType => _mergedTypeCache.Value()[_correctViewModelTypeName.Value()];
 
         /// <summary>
         /// Text representation of view type.
         /// </summary>
-        public string ViewTypeName
+        public string View
         {
             get { return (string)GetValue(ViewTypeNameProperty); }
             set { SetValue(ViewTypeNameProperty, value); }
@@ -86,12 +86,12 @@ namespace GalaSoft.MvvmLight.Extensions.Xaml
         /// Using a DependencyProperty as the backing store for ViewTypeName.  This enables animation, styling, binding, etc...
         /// </summary>
         public static readonly DependencyProperty ViewTypeNameProperty =
-            DependencyProperty.Register("ViewTypeName", typeof(string), typeof(Pair), new PropertyMetadata(null));
+            DependencyProperty.Register("View", typeof(string), typeof(Pair), new PropertyMetadata(null));
 
         /// <summary>
         /// Text representation of view model type.
         /// </summary>
-        public string ViewModelTypeName
+        public string ViewModel
         {
             get { return (string)GetValue(ViewModelTypeNameProperty); }
             set { SetValue(ViewModelTypeNameProperty, value); }
@@ -101,6 +101,6 @@ namespace GalaSoft.MvvmLight.Extensions.Xaml
         /// Using a DependencyProperty as the backing store for ViewModelTypeName.  This enables animation, styling, binding, etc...
         /// </summary>
         public static readonly DependencyProperty ViewModelTypeNameProperty =
-            DependencyProperty.Register("ViewModelTypeName", typeof(string), typeof(Pair), new PropertyMetadata(null));
+            DependencyProperty.Register("ViewModel", typeof(string), typeof(Pair), new PropertyMetadata(null));
     }
 }

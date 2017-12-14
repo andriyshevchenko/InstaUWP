@@ -2,8 +2,6 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using GalaSoft.MvvmLight.Extensions;
 
-using static System.Functional.Func;
-
 namespace Tests.Source
 {
     [TestClass]

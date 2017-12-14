@@ -1,12 +1,12 @@
 ﻿using GalaSoft.MvvmLight.Extensions;
 
-namespace TestApplication
+namespace ExampleApplication
 {
     public class MainViewModel : HostViewModel
     {
         public MainViewModel()
         {
-            NavigateTo("main", new OtherPageViewModel(this, "main"));
+            NavigateTo("main", new BlankPageViewModel(this));
         }
     }
 }

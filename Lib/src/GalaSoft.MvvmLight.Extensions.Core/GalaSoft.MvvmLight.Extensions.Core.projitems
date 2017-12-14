@@ -13,6 +13,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Source\ErrorViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Source\ErrorViewModelWithNavigationCommands.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Source\FakeHost.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Source\GoBackCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Source\GoForwardCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Source\HostViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Source\IErrorViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Source\INavigationChild.cs" />
@@ -21,6 +23,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Source\IRedirectViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Source\ISimpleNavigationViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Source\IViewMap.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Source\NavigateToCommand.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Source\RedirectViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Source\RedirectViewModelWithContent.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Source\RetryCommand.cs" />

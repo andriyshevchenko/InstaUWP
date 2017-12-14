@@ -1,12 +1,13 @@
-﻿using System;
+﻿using GalaSoft.MvvmLight.Extensions;
+using InputValidation;
+using System;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
-using InputValidation;
 
-namespace TestApplication
+namespace ExampleApplication
 {
     /// <summary>
     /// Provides application-specific behavior to supplement the default Application class.
@@ -20,12 +21,20 @@ namespace TestApplication
         public App()
         {
             this.InitializeComponent();
-            Window.Current.Content.As<Frame>().Content = new BlankPage()
-            {
-                DataContext = Locator.MainViewModel
-            };
-
             this.Suspending += OnSuspending;
+            this.UnhandledException += (sender, e) =>
+            {
+                //this is "our" MainViewModel
+                INavigationRoot navigationRoot = Window.Current.Content
+                    .As<Frame>().Content
+                    .As<FrameworkElement>().DataContext
+                    .As<INavigationRoot>();
+
+                navigationRoot.NavigateTo(
+                      "main",
+                      new ErrorViewModelWithNavigationCommands(navigationRoot, e.Exception)
+                );
+            };
         }
 
         /// <summary>
@@ -35,14 +44,6 @@ namespace TestApplication
         /// <param name="e">Details about the launch request and process.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
-
-#if DEBUG
-            if (System.Diagnostics.Debugger.IsAttached)
-            {
-                this.DebugSettings.EnableFrameRateCounter = true;
-            }
-#endif
-
             Frame rootFrame = Window.Current.Content as Frame;
 
             // Do not repeat app initialization when the Window already has content,
@@ -62,13 +63,19 @@ namespace TestApplication
                 // Place the frame in the current Window
                 Window.Current.Content = rootFrame;
             }
-            
-            Microsoft.VisualStudio.TestPlatform.TestExecutor.UnitTestClient.CreateDefaultUI();
 
-            // Ensure the current window is active
-            Window.Current.Activate();
-         
-            Microsoft.VisualStudio.TestPlatform.TestExecutor.UnitTestClient.Run(e.Arguments);
+            if (e.PrelaunchActivated == false)
+            {
+                if (rootFrame.Content == null)
+                {
+                    // When the navigation stack isn't restored navigate to the first page,
+                    // configuring the new page by passing required information as a navigation
+                    // parameter
+                    rootFrame.Navigate(typeof(MainPage), e.Arguments);
+                }
+                // Ensure the current window is active
+                Window.Current.Activate();
+            }
         }
 
         /// <summary>

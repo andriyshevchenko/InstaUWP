@@ -1,5 +1,4 @@
-﻿using GalaSoft.MvvmLight.Command;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 
 namespace GalaSoft.MvvmLight.Extensions
 {
@@ -13,26 +12,12 @@ namespace GalaSoft.MvvmLight.Extensions
         /// <summary>
         /// An <see cref="ICommand"/> to navigate forward in navigation stack.
         /// </summary>
-        public ICommand GoForwardCommand =>
-            new RelayCommand(() =>
-            {
-                if (CanGoForward())
-                {
-                    GoForward();
-                }
-            });
+        public ICommand GoForwardCommand => new GoForwardCommand(_source);
 
         /// <summary>
         /// An <see cref="ICommand"/> to navigate back in navigation stack.
         /// </summary>
-        public ICommand GoBackCommand =>
-            new RelayCommand(() =>
-            {
-                if (CanGoBack())
-                {
-                    GoBack();
-                }
-            });
+        public ICommand GoBackCommand => new GoBackCommand(_source);
 
         /// <summary>
         /// Initializes a new instance of <see cref="ViewModelWithNavigationCommands"/>.

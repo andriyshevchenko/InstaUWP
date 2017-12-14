@@ -1,4 +1,6 @@
-﻿namespace TestApplication
+﻿using ExampleApplication;
+
+namespace TestApplication
 {
     public class Locator
     {
