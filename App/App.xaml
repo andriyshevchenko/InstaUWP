@@ -16,12 +16,12 @@
             <local:Locator x:Key="Locator" />
 
             <mvvmlight:ViewModelConverterPipe x:Key="viewModelConverter">
-                <mvvmlight:Pair ViewTypeName="Blank" ViewModelTypeName="BlankViewModel"/>
-                <mvvmlight:Pair ViewTypeName="Error" ViewModelTypeName="IErrorViewModel"/>
-                <mvvmlight:Pair ViewTypeName="Login" ViewModelTypeName="LoginViewModel"/>
-                <mvvmlight:Pair ViewTypeName="RadialProgress" ViewModelTypeName="PleaseWaitViewModel"/>
-                <mvvmlight:Pair ViewTypeName="Profile" ViewModelTypeName="ProfileViewModel"/>
-                <mvvmlight:Pair ViewTypeName="FailedLogin" ViewModelTypeName="BadCredentialViewModel"/>
+                <mvvmlight:Pair View="Blank" ViewModel="BlankViewModel"/>
+                <mvvmlight:Pair View="Error" ViewModel="IErrorViewModel"/>
+                <mvvmlight:Pair View="Login" ViewModel="LoginViewModel"/>
+                <mvvmlight:Pair View="RadialProgress" ViewModel="PleaseWaitViewModel"/>
+                <mvvmlight:Pair View="Profile" ViewModel="ProfileViewModel"/>
+                <mvvmlight:Pair View="FailedLogin" ViewModel="BadCredentialViewModel"/>
             </mvvmlight:ViewModelConverterPipe>
 
         </ResourceDictionary>

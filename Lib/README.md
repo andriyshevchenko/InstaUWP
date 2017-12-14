@@ -1,5 +1,5 @@
-## UWPNav
-Library, which extends MvvmLight toolkit with declarative navigation.
+## PageFragments.UWP
+Library, which adds easy page fragments, just like YouTube homepage.
 ## Getting started
 Clone repository and run ExampleApplication or create your own: 
 - Go to `App.xaml`
@@ -12,12 +12,12 @@ Clone repository and run ExampleApplication or create your own:
 ```xml
 <ResourceDictionary>
     <mvvmlight:ViewModelConverterPipe x:Key="viewModelConverter">
-        <mvvmlight:Pair ViewTypeName="BlankPage" ViewModelTypeName="BlankPageViewModel"/>
-        <mvvmlight:Pair ViewTypeName="OtherPage" ViewModelTypeName="OtherPageViewModel"/>
-        <mvvmlight:Pair ViewTypeName="FirstPart" ViewModelTypeName="FirstPartViewModel"/>
-        <mvvmlight:Pair ViewTypeName="SecondPart" ViewModelTypeName="SecondPartViewModel"/>
-        <mvvmlight:Pair ViewTypeName="SeeMore" ViewModelTypeName="SeeMoreViewModel"/>
-        <mvvmlight:Pair ViewTypeName="ErrorPage" ViewModelTypeName="ErrorViewModelWithNavigationCommands"/>
+        <mvvmlight:Pair View="BlankPage" ViewModel="BlankPageViewModel"/>
+        <mvvmlight:Pair View="OtherPage" ViewModel="OtherPageViewModel"/>
+        <mvvmlight:Pair View="FirstPart" ViewModel="FirstPartViewModel"/>
+        <mvvmlight:Pair View="SecondPart" ViewModel="SecondPartViewModel"/>
+        <mvvmlight:Pair View="SeeMore" ViewModel="SeeMoreViewModel"/>
+        <mvvmlight:Pair View="ErrorPage" ViewMode="ErrorViewModelWithNavigationCommands"/>
     </mvvmlight:ViewModelConverterPipe>
 </ResourceDictionary>
 ```
@@ -120,5 +120,29 @@ and `OtherPage`:
     </Grid>
 </Page>
 ```
-- You will see an application is navigated to both `FirstPart` and `SecondPart`:
+You will see an application is navigated to both `FirstPart` and `SecondPart`:
 ![readme](readme/other.png)
+## Showing crash reports
+- Go to `App.xaml.cs`
+- Paste this code (you may change it)
+```csharp
+public App()
+{
+    this.InitializeComponent();
+    this.Suspending += OnSuspending;
+    this.UnhandledException += (sender, e) =>
+    {
+        //this is "our" MainViewModel
+        INavigationRoot navigationRoot = Window.Current.Content
+            .As<Frame>().Content
+            .As<FrameworkElement>().DataContext
+            .As<INavigationRoot>();
+
+            navigationRoot.NavigateTo(
+               "main",
+               new ErrorViewModelWithNavigationCommands(navigationRoot, e.Exception)
+            );
+    };
+}
+```
+To be continued...
