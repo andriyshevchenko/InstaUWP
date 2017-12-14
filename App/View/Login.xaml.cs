@@ -1,4 +1,5 @@
-﻿using Windows.UI.Xaml.Controls;
+﻿using App.ViewModel;
+using Windows.UI.Xaml.Controls;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -9,6 +10,8 @@ namespace App
     /// </summary>
     public sealed partial class Login : Page
     {
+        public LoginViewModel VM => DataContext as LoginViewModel;
+
         public Login()
         {
             this.InitializeComponent();

@@ -15,14 +15,14 @@
             </ResourceDictionary.MergedDictionaries>
             <local:Locator x:Key="Locator" />
 
-            <mvvmlight:ViewModelConverterPipe x:Key="viewModelConverter">
+            <mvvmlight:Mapping x:Key="viewMapping">
                 <mvvmlight:Pair View="Blank" ViewModel="BlankViewModel"/>
                 <mvvmlight:Pair View="Error" ViewModel="IErrorViewModel"/>
                 <mvvmlight:Pair View="Login" ViewModel="LoginViewModel"/>
                 <mvvmlight:Pair View="RadialProgress" ViewModel="PleaseWaitViewModel"/>
                 <mvvmlight:Pair View="Profile" ViewModel="ProfileViewModel"/>
                 <mvvmlight:Pair View="FailedLogin" ViewModel="BadCredentialViewModel"/>
-            </mvvmlight:ViewModelConverterPipe>
+            </mvvmlight:Mapping>
 
         </ResourceDictionary>
     </Application.Resources>

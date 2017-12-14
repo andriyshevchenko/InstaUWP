@@ -6,6 +6,6 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <TextBlock Style="{StaticResource InstagramErrorTextBlock}" Text="{Binding Message}"/>
+    <TextBlock Style="{StaticResource InstagramErrorTextBlock}" Text="{x:Bind VM.Message}"/>
     
 </Page>

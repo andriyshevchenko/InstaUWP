@@ -10,7 +10,7 @@ namespace GalaSoft.MvvmLight.Extensions.Xaml
     /// This is created from Xaml.
     /// </summary>
     [ContentProperty(Name = nameof(Map))]
-    public class ViewModelConverterPipe : ValueConverterGroup
+    public class Mapping : ValueConverterGroup
     {
         /// <summary>
         /// The pair list or mapping.
@@ -26,14 +26,14 @@ namespace GalaSoft.MvvmLight.Extensions.Xaml
         /// </summary>
         public static readonly DependencyProperty MapProperty =
             DependencyProperty.Register("Map", typeof(IList<object>),
-                typeof(ViewModelConverterPipe), new PropertyMetadata(new List<object>()));
+                typeof(Mapping), new PropertyMetadata(new List<object>()));
 
         /// <summary>
-        /// Initializes a new instance of <see cref="ViewModelConverterPipe"/>.
+        /// Initializes a new instance of <see cref="Mapping"/>.
         /// To use with unit testing.
         /// </summary>
         /// <param name="map">The map.</param>
-        public ViewModelConverterPipe(List<Pair> map)
+        public Mapping(List<Pair> map)
             : base(
                 new ViewModelAccessor(),
                 new ViewModelToViewConverter(
@@ -45,9 +45,9 @@ namespace GalaSoft.MvvmLight.Extensions.Xaml
         }
 
         /// <summary>
-        /// Initializes a new instance of <see cref="ViewModelConverterPipe"/>.
+        /// Initializes a new instance of <see cref="Mapping"/>.
         /// </summary>
-        public ViewModelConverterPipe()
+        public Mapping()
         {
             _lazy = new System.Lazy<ValueConverterList>(
                         () => new ValueConverterList(

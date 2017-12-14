@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.16
+VisualStudioVersion = 15.0.27130.2003
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App", "App\App.csproj", "{3B430C1B-D78A-40AA-9864-8B71550FC6B7}"
 EndProject
@@ -11,9 +11,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstaSharper.UWP", "InstaSh
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Nito.Mvvm.Async.Uwp", "Async\Mvvm.Async\Nito.Mvvm.Async.Uwp\Nito.Mvvm.Async.Uwp.csproj", "{E4A1F3DC-9F94-4E79-BA74-57E0D69165EF}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "GalaSoft.MvvmLight.Extensions.Core", "Lib\src\GalaSoft.MvvmLight.Extensions.Core\GalaSoft.MvvmLight.Extensions.Core.shproj", "{4FFDC3A3-F663-427C-BA1D-CA751865DB59}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "GalaSoft.MvvmLight.Extensions", "Lib\src\GalaSoft.MvvmLight.Extensions\GalaSoft.MvvmLight.Extensions.shproj", "{59B6DA88-7CA6-4232-88AF-2D443F54A864}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		InstaSharper\Code\Code.projitems*{0971029e-7e10-4d11-bece-2ff73b2c167f}*SharedItemsImports = 4
+		Lib\src\GalaSoft.MvvmLight.Extensions.Core\GalaSoft.MvvmLight.Extensions.Core.projitems*{4ffdc3a3-f663-427c-ba1d-ca751865db59}*SharedItemsImports = 13
+		Lib\src\GalaSoft.MvvmLight.Extensions\GalaSoft.MvvmLight.Extensions.projitems*{59b6da88-7ca6-4232-88af-2d443f54a864}*SharedItemsImports = 13
 		Lib\src\GalaSoft.MvvmLight.Extensions.Core\GalaSoft.MvvmLight.Extensions.Core.projitems*{699850ec-913f-4d63-9dbc-c2fccfeb76d7}*SharedItemsImports = 4
 		Lib\src\GalaSoft.MvvmLight.Extensions\GalaSoft.MvvmLight.Extensions.projitems*{699850ec-913f-4d63-9dbc-c2fccfeb76d7}*SharedItemsImports = 4
 		Async\Mvvm.Async\Nito.Mvvm.Async.Code\Nito.Mvvm.Async.Code.projitems*{e4a1f3dc-9f94-4e79-ba74-57e0d69165ef}*SharedItemsImports = 4
@@ -102,5 +108,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {07F72668-E47F-4CC3-9279-1C4BAC67EB32}
 	EndGlobalSection
 EndGlobal

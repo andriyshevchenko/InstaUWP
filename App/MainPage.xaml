@@ -10,7 +10,7 @@
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
          
         <ContentControl Content="{Binding Children, 
-                        Converter={StaticResource viewModelConverter}, 
+                        Converter={StaticResource viewMapping}, 
                         ConverterParameter='main'}"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center">

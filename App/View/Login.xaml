@@ -13,18 +13,18 @@
 
             <Image Source="/Assets/sprites.png" Stretch="None"/>
             <TextBox PlaceholderText="Mobile number or email"
-                     Text="{Binding Login, Mode=TwoWay}"
+                     Text="{x:Bind VM.Login, Mode=TwoWay}"
                      Style="{StaticResource InstagramTextBox}"
                      Margin="0 8 0 0">
 
             </TextBox>
             <TextBox PlaceholderText="Password"
-                     Text="{Binding Password, Mode=TwoWay}"
+                     Text="{x:Bind VM.Password, Mode=TwoWay}"
                      Style="{StaticResource InstagramTextBox}"
                      Margin="0 6 0 0">
 
             </TextBox>
-            <Button Command="{Binding LoginCommand}"
+            <Button Command="{x:Bind VM.LoginCommand}"
                     Margin="0 12 0 0" 
                     HorizontalAlignment="Center"
                     Style="{StaticResource InstagramButton}"
@@ -34,7 +34,7 @@
 
             <ContentControl Margin="0 12 0 0"
                             Content="{Binding Children, 
-                            Converter={StaticResource viewModelConverter}, 
+                            Converter={StaticResource viewMapping}, 
                             ConverterParameter='dock'}"
              />
         </StackPanel>
